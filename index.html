@@ -7,127 +7,156 @@
 
 <style>
 :root{
-  --bg-main:#f4f5f7;
-  --workspace:#e9ecef;
-  --overview:#f1f3f5;
+  --bg:#f3f4f6;
   --card:#ffffff;
   --border:#d1d5db;
   --text:#1f2937;
   --muted:#6b7280;
+  --accent:#005f73;
 
-  /* Impact colors (subtle) */
-  --impact-blue:#eef4fb;
-  --impact-green:#eef7f1;
-  --impact-orange:#fff4eb;
-  --impact-purple:#f4f1fa;
+  /* Impact colors (sober) */
+  --impact-blue:#e6f0f6;
+  --impact-green:#e9f5ee;
+  --impact-grey:#eef0f3;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  background:var(--bg-main);
+  background:var(--bg);
   font-family:Arial, Helvetica, sans-serif;
-  font-size:12.5px;
   color:var(--text);
+  font-size:12.5px;
 }
 
 .container{
-  max-width:1280px;
+  max-width:1320px;
   margin:auto;
-  padding:24px;
+  padding:28px;
 }
 
-/* HEADERS */
-h1,h2,h3{
-  font-size:14px;
-  font-weight:700;
-  margin:0 0 10px;
-}
-
-/* WORKSPACE TILE */
-.workspace-tile{
-  background:var(--workspace);
+/* HEADER */
+.header{
+  background:#e5e7eb;
   border:1px solid var(--border);
-  padding:22px;
+  padding:18px 24px;
   margin-bottom:26px;
 }
 
-.contact-buttons a{
-  display:inline-block;
-  margin-right:10px;
-  padding:8px 14px;
+.header h1{
+  font-size:14px;
+  margin:0;
+  font-weight:700;
+}
+
+/* CONTACT BAR */
+.contact-bar{
+  background:#eef0f3;
   border:1px solid var(--border);
-  background:#fff;
+  padding:14px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.contact-links{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.contact-links a{
+  display:flex;
+  align-items:center;
+  gap:8px;
   text-decoration:none;
   font-size:12.5px;
-}
-
-.contact-buttons a:hover{
-  background:#e5e7eb;
-}
-
-.certifications{
-  margin-top:14px;
-}
-
-.certifications img{
-  height:28px;
-  margin-right:14px;
-}
-
-/* OVERVIEW */
-.overview{
-  background:var(--overview);
-  border:1px solid var(--border);
-  padding:26px;
-  margin-bottom:36px;
-}
-
-.about-title{
-  font-size:22px;
   font-weight:700;
-  margin-bottom:10px;
+  color:var(--text);
 }
 
-.about-text{
-  font-size:16px;
-  margin-bottom:14px;
+.contact-links img{
+  width:18px;
+  height:18px;
 }
 
-.skills{
+.certs img{
+  height:36px;
+  margin-left:14px;
+}
+
+/* PROFILE */
+.profile{
+  display:grid;
+  grid-template-columns:1.4fr 0.9fr;
+  gap:34px;
+  margin-bottom:38px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:22px;
+}
+
+/* ABOUT */
+.about h2{
+  font-size:22px;
+  margin:0 0 14px;
+}
+
+.about p{
   font-size:15px;
   line-height:1.6;
+}
+
+.about b{
+  font-size:15px;
+}
+
+/* PHOTO */
+.photo-box img{
+  width:100%;
+  max-height:440px;
+  object-fit:cover;
+  border:1px solid var(--border);
+}
+
+.photo-box input{
+  margin-top:10px;
+}
+
+/* SECTION TITLE */
+.section-title{
+  font-size:14px;
+  font-weight:700;
+  border-bottom:1px solid var(--border);
+  padding-bottom:6px;
+  margin-bottom:18px;
 }
 
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
 }
 
-/* CARD */
-.card{
+/* CASE STUDY CARD */
+.case-card{
   background:var(--card);
   border:1px solid var(--border);
-  padding:20px;
+  padding:16px;
 }
 
-/* IMPACT */
-.impact{
-  margin-top:10px;
-  padding:12px;
-  font-size:12.5px;
+.case-card h3{
+  font-size:14px;
+  margin-bottom:10px;
 }
 
-.blue{background:var(--impact-blue)}
-.green{background:var(--impact-green)}
-.orange{background:var(--impact-orange)}
-.purple{background:var(--impact-purple)}
-
-/* IMAGE */
-img.upload{
+.case-card img{
   width:100%;
   height:180px;
   object-fit:cover;
@@ -135,121 +164,158 @@ img.upload{
   margin-bottom:8px;
 }
 
+.case-card input{
+  margin-bottom:10px;
+}
+
+/* IMPACT BLOCK */
+.impact{
+  padding:10px;
+  margin-top:8px;
+  font-weight:700;
+  font-size:13px;
+  border-left:4px solid var(--accent);
+}
+
+.impact.blue{background:var(--impact-blue)}
+.impact.green{background:var(--impact-green)}
+.impact.grey{background:var(--impact-grey)}
+
+/* TAGS */
+.tags span{
+  display:inline-block;
+  background:#e5e7eb;
+  padding:4px 8px;
+  font-size:12px;
+  margin-right:6px;
+  margin-top:6px;
+  border-radius:4px;
+}
+
 /* FOOTER */
 footer{
+  margin-top:50px;
   text-align:center;
-  margin-top:40px;
   color:var(--muted);
+  font-size:12px;
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<!-- WORKSPACE TILE -->
-<div class="workspace-tile">
-  <div class="contact-buttons">
-    <a href="https://www.linkedin.com/in/ghoouseismohd13/" target="_blank">LinkedIn</a>
-    <a href="https://github.com/MohdGhouse13" target="_blank">GitHub</a>
-    <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new" target="_blank">Email</a>
+<!-- HEADER -->
+<div class="header">
+  <h1>Mohd Ghouse — Business Intelligence & Analytics Workspace</h1>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-bar">
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/ghoouseismohd13/" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png">LinkedIn
+    </a>
+    <a href="https://github.com/MohdGhouse13" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png">GitHub
+    </a>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ghouse908@gmail.com" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png">Email
+    </a>
   </div>
 
-  <div class="certifications">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+  <div class="certs">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg">
   </div>
 </div>
 
-<!-- OVERVIEW -->
-<div class="overview">
-  <div class="about-title">About</div>
-  <div class="about-text">
-    Business Intelligence & Analytics professional delivering enterprise-grade
-    reporting, forecasting, and data-driven insights.
+<!-- PROFILE -->
+<div class="profile">
+
+  <!-- ABOUT -->
+  <div class="card about">
+    <h2>About</h2>
+    <p>
+      Business Intelligence & Analytics professional delivering enterprise-grade
+      reporting, forecasting, and data-driven insights for executive decision-making.
+    </p>
+    <p>
+      <b>Core Competencies:</b><br>
+      Power BI · Data Modeling · Forecasting · SQL · Python · Pandas · Matplotlib ·
+      Stakeholder Management · KPI Design · Performance Optimization
+    </p>
   </div>
 
-  <div class="skills">
-    <b>Core Competencies:</b><br>
-    Power BI Development · Data Modeling · Forecasting · SQL · Python ·
-    Pandas & Matplotlib · Stakeholder Management · KPI & Executive Reporting ·
-    Data Validation & Performance Optimization
+  <!-- PHOTO -->
+  <div class="card photo-box">
+    <img id="profileImg" src="https://via.placeholder.com/640x440">
+    <input type="file" accept="image/*" onchange="uploadImage(this,'profileImg')">
   </div>
+
 </div>
 
 <!-- CASE STUDIES -->
-<h2>Analytics Case Studies</h2>
+<div class="section-title">Analytics Case Studies</div>
 
 <div class="grid">
 
   <!-- POWER BI -->
-  <div class="card">
-    <h3>Power BI – Sales Forecasting</h3>
-    <img id="cs1" class="upload">
+  <div class="case-card">
+    <h3>Power BI — Sales Forecasting</h3>
+    <img id="cs1">
     <input type="file" accept="image/*" onchange="uploadImage(this,'cs1')">
-
-    <div class="impact blue">
-      Enabled 10+ year sales forecasting and executive KPI visibility.
+    <div class="impact blue">Impact: Enabled long-term demand planning and reduced manual reporting by ~35%</div>
+    <div class="tags">
+      <span>Power BI</span><span>DAX</span><span>Forecasting</span>
     </div>
   </div>
 
   <!-- PYTHON -->
-  <div class="card">
-    <h3>Python – Analytics & EDA</h3>
-    <img id="cs2" class="upload">
+  <div class="case-card">
+    <h3>Python — Analytics & EDA</h3>
+    <img id="cs2">
     <input type="file" accept="image/*" onchange="uploadImage(this,'cs2')">
-
-    <div class="impact green">
-      Automated exploratory analysis and reduced manual effort.
+    <div class="impact green">Impact: Improved insight accuracy and faster exploratory analysis</div>
+    <div class="tags">
+      <span>Python</span><span>EDA</span><span>Statistics</span>
     </div>
   </div>
 
-  <!-- PANDAS / MATPLOTLIB -->
-  <div class="card">
+  <!-- PANDAS -->
+  <div class="case-card">
     <h3>Pandas & Matplotlib</h3>
-    <img id="cs3" class="upload">
+    <img id="cs3">
     <input type="file" accept="image/*" onchange="uploadImage(this,'cs3')">
-
-    <div class="impact orange">
-      Visualized trends and patterns for business interpretation.
-    </div>
-  </div>
-
-  <!-- MYSQL -->
-  <div class="card">
-    <h3>MySQL – Data Extraction</h3>
-    <img id="cs4" class="upload">
-    <input type="file" accept="image/*" onchange="uploadImage(this,'cs4')">
-
-    <div class="impact purple">
-      Structured queries supporting BI data pipelines.
+    <div class="impact grey">Impact: Clear executive-ready visual storytelling</div>
+    <div class="tags">
+      <span>Pandas</span><span>Matplotlib</span><span>Visualization</span>
     </div>
   </div>
 
 </div>
 
 <footer>
-Internal Analytics Workspace | Mohd Ghouse
+© 2026 Mohd Ghouse | Internal Analytics Portfolio
 </footer>
 
 </div>
 
 <script>
 function uploadImage(input,id){
-  const r=new FileReader();
-  r.onload=()=>{
-    document.getElementById(id).src=r.result;
-    localStorage[id]=r.result;
-  }
-  r.readAsDataURL(input.files[0]);
+  const reader=new FileReader();
+  reader.onload=()=>{
+    document.getElementById(id).src=reader.result;
+    localStorage[id]=reader.result;
+  };
+  reader.readAsDataURL(input.files[0]);
 }
 
 window.onload=()=>{
-  ['cs1','cs2','cs3','cs4'].forEach(id=>{
+  ['profileImg','cs1','cs2','cs3'].forEach(id=>{
     if(localStorage[id]) document.getElementById(id).src=localStorage[id];
   });
-}
+};
 </script>
 
 </body>
