@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mohd Ghouse | BI Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ms-blue:#0067B8;
+  --border:#e5e5e5;
+  --light:#f9f9f9;
+}
+body {
+  margin:0;
+  font-family:"Segoe UI", Arial, sans-serif;
+  background:#fff;
+  color:#1f1f1f;
+}
+.container {
+  max-width:1200px;
+  margin:auto;
+  padding:32px;
+}
+.header {
+  display:flex;
+  gap:24px;
+  align-items:center;
+  border-bottom:1px solid var(--border);
+  padding-bottom:24px;
+  flex-wrap:wrap;
+}
+.profile-pic {
+  width:140px;
+  height:140px;
+  border-radius:12px;
+  border:3px solid var(--ms-blue);
+  object-fit:cover;
+}
+h1 { margin:0; color:var(--ms-blue); }
+.sub { color:#555; margin-top:6px; }
+section { margin-top:48px; }
+section h2 {
+  color:var(--ms-blue);
+  border-bottom:1px solid var(--border);
+  padding-bottom:6px;
+}
+.projects {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:24px;
+}
+.card {
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.05);
+  background:#fff;
+}
+.carousel {
+  position:relative;
+  height:180px;
+  background:var(--light);
+  border-radius:8px;
+  overflow:hidden;
+  margin-bottom:10px;
+}
+.carousel img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:none;
+}
+.carousel img.active { display:block; }
+.carousel button {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.4);
+  color:#fff;
+  border:none;
+  padding:6px 10px;
+  cursor:pointer;
+  border-radius:4px;
+}
+.carousel .prev { left:6px; }
+.carousel .next { right:6px; }
+.tag {
+  display:inline-block;
+  background:#f3f9ff;
+  color:var(--ms-blue);
+  padding:4px 10px;
+  border-radius:12px;
+  font-size:12px;
+  margin:4px 6px 0 0;
+}
+.links a {
+  display:inline-block;
+  margin-right:12px;
+  color:var(--ms-blue);
+  font-size:14px;
+  text-decoration:none;
+  font-weight:600;
+}
+.certs {
+  display:flex;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.cert {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px;
+}
+.cert img { height:40px; }
+footer {
+  margin-top:60px;
+  border-top:1px solid var(--border);
+  padding-top:20px;
+  color:#666;
+  font-size:14px;
+}
+@media(max-width:600px){
+  .profile-pic { width:110px; height:110px; }
+  .carousel { height:150px; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="header">
+  <div>
+    <img src="https://via.placeholder.com/140" id="profileImg" class="profile-pic">
+    <input type="file" accept="image/*" id="profileUpload">
+  </div>
+  <div>
+    <h1>Mohd Ghouse</h1>
+    <div class="sub">Microsoft Certified Power BI Data Analyst</div>
+    <div class="sub">Power BI · DAX · Data Modeling · SQL · Forecasting</div>
+    <div class="sub">Hyderabad, India</div>
+  </div>
+</div>
+
+<section>
+<h2>Projects</h2>
+<div class="projects">
+
+<div class="card">
+<h3>Sales Forecasting Dashboard</h3>
+<div class="carousel">
+  <img class="active">
+  <img>
+  <button class="prev">‹</button>
+  <button class="next">›</button>
+</div>
+<input type="file" multiple accept="image/*" onchange="loadCarousel(event,this.previousElementSibling)">
+<p>Time-series sales forecasting using historical data to project future demand.</p>
+<div class="links">
+  <a href="#" target="_blank">Power BI Service</a>
+  <a href="#" target="_blank">GitHub</a>
+</div>
+<div>
+  <span class="tag">Power BI</span>
+  <span class="tag">Forecasting</span>
+  <span class="tag">DAX</span>
+</div>
+</div>
+
+<div class="card">
+<h3>Star Schema Data Model</h3>
+<div class="carousel">
+  <img class="active">
+  <img>
+  <button class="prev">‹</button>
+  <button class="next">›</button>
+</div>
+<input type="file" multiple accept="image/*" onchange="loadCarousel(event,this.previousElementSibling)">
+<p>Optimized star-schema model for scalable BI reporting.</p>
+<div class="links">
+  <a href="#" target="_blank">GitHub</a>
+</div>
+<div>
+  <span class="tag">Data Modeling</span>
+  <span class="tag">Star Schema</span>
+  <span class="tag">SQL</span>
+</div>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>Certifications</h2>
+<div class="certs">
+  <div class="cert">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg">
+    <div>Microsoft Certified – Power BI Data Analyst (PL-300)</div>
+  </div>
+  <div class="cert">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg">
+    <div>IBM Certified – Python & AI</div>
+  </div>
+</div>
+</section>
+
+<section>
+<h2>Experience</h2>
+<p><strong>IT Associate – Accenture (2022–Present)</strong></p>
+<p>Power BI dashboard development, data modeling, KPI reporting, and DAX measures.</p>
+</section>
+
+<footer>
+© 2026 Mohd Ghouse | Business Intelligence Portfolio
+</footer>
+
+</div>
+
+<script>
+profileUpload.onchange = e => {
+  const r = new FileReader();
+  r.onload = () => profileImg.src = r.result;
+  r.readAsDataURL(e.target.files[0]);
+};
+
+function loadCarousel(e,carousel){
+  const imgs = carousel.querySelectorAll("img");
+  imgs.forEach(i=>i.src="");
+  [...e.target.files].forEach((f,i)=>{
+    if(i<imgs.length){
+      const r=new FileReader();
+      r.onload=()=>imgs[i].src=r.result;
+      r.readAsDataURL(f);
+    }
+  });
+}
+
+document.querySelectorAll(".carousel").forEach(c=>{
+  const imgs=c.querySelectorAll("img");
+  let i=0;
+  c.querySelector(".next").onclick=()=>{ imgs[i].classList.remove("active"); i=(i+1)%imgs.length; imgs[i].classList.add("active"); }
+  c.querySelector(".prev").onclick=()=>{ imgs[i].classList.remove("active"); i=(i-1+imgs.length)%imgs.length; imgs[i].classList.add("active"); }
+});
+</script>
+
+</body>
+</html>
