@@ -2,251 +2,294 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Mohd Ghouse | BI Portfolio</title>
+<title>Analytics Workspace | Mohd Ghouse</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --ms-blue:#0067B8;
-  --border:#e5e5e5;
-  --light:#f9f9f9;
+:root{
+  --bg:#f5f6f8;
+  --card:#ffffff;
+  --border:#d1d5db;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --accent:#0057b8;
 }
-body {
+
+*{box-sizing:border-box}
+
+body{
   margin:0;
-  font-family:"Segoe UI", Arial, sans-serif;
-  background:#fff;
-  color:#1f1f1f;
+  background:var(--bg);
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:12.5px;
+  color:var(--text);
 }
-.container {
-  max-width:1200px;
+
+h1,h2,h3,h4{
+  font-size:14px;
+  font-weight:700;
+  margin:0 0 10px;
+}
+
+.container{
+  max-width:1280px;
   margin:auto;
-  padding:32px;
+  padding:24px;
 }
-.header {
+
+/* HEADER */
+.header{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:18px 22px;
   display:flex;
-  gap:24px;
+  justify-content:space-between;
   align-items:center;
-  border-bottom:1px solid var(--border);
-  padding-bottom:24px;
-  flex-wrap:wrap;
+  margin-bottom:24px;
 }
-.profile-pic {
-  width:140px;
-  height:140px;
-  border-radius:12px;
-  border:3px solid var(--ms-blue);
+
+.header span{color:var(--muted)}
+
+/* PROFILE */
+.profile{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:32px;
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:24px;
+  margin-bottom:32px;
+}
+
+.profile img{
+  width:100%;
+  border-radius:4px;
   object-fit:cover;
 }
-h1 { margin:0; color:var(--ms-blue); }
-.sub { color:#555; margin-top:6px; }
-section { margin-top:48px; }
-section h2 {
-  color:var(--ms-blue);
+
+/* SECTIONS */
+.section{
+  margin-bottom:36px;
+}
+
+.section-title{
   border-bottom:1px solid var(--border);
   padding-bottom:6px;
+  margin-bottom:18px;
 }
-.projects {
+
+/* GRID */
+.grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:24px;
+  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+  gap:22px;
 }
-.card {
+
+/* CARD */
+.card{
+  background:var(--card);
   border:1px solid var(--border);
-  border-radius:12px;
   padding:20px;
-  box-shadow:0 4px 14px rgba(0,0,0,0.05);
-  background:#fff;
 }
-.carousel {
-  position:relative;
-  height:180px;
-  background:var(--light);
-  border-radius:8px;
-  overflow:hidden;
-  margin-bottom:10px;
+
+/* CASE STUDY */
+.case-block{margin-bottom:10px}
+.case-block b{display:block}
+
+/* METRICS */
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-top:10px;
 }
-.carousel img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:none;
-}
-.carousel img.active { display:block; }
-.carousel button {
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,0.4);
-  color:#fff;
-  border:none;
-  padding:6px 10px;
-  cursor:pointer;
-  border-radius:4px;
-}
-.carousel .prev { left:6px; }
-.carousel .next { right:6px; }
-.tag {
-  display:inline-block;
-  background:#f3f9ff;
-  color:var(--ms-blue);
-  padding:4px 10px;
-  border-radius:12px;
-  font-size:12px;
-  margin:4px 6px 0 0;
-}
-.links a {
-  display:inline-block;
-  margin-right:12px;
-  color:var(--ms-blue);
-  font-size:14px;
-  text-decoration:none;
-  font-weight:600;
-}
-.certs {
-  display:flex;
-  gap:24px;
-  flex-wrap:wrap;
-}
-.cert {
-  display:flex;
-  align-items:center;
-  gap:12px;
+
+.metric{
+  background:#f9fafb;
   border:1px solid var(--border);
-  border-radius:10px;
-  padding:14px;
+  padding:8px;
+  font-size:12px;
 }
-.cert img { height:40px; }
-footer {
-  margin-top:60px;
-  border-top:1px solid var(--border);
-  padding-top:20px;
-  color:#666;
-  font-size:14px;
+
+/* BUTTONS */
+button{
+  background:#e5e7eb;
+  border:1px solid var(--border);
+  font-size:12.5px;
+  padding:8px 14px;
+  cursor:pointer;
 }
-@media(max-width:600px){
-  .profile-pic { width:110px; height:110px; }
-  .carousel { height:150px; }
+
+button:hover{background:#d1d5db}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  background:#fff;
+  padding:24px;
+  max-width:720px;
+  max-height:80vh;
+  overflow:auto;
+}
+
+.close{
+  float:right;
+  cursor:pointer;
+  font-size:18px;
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
+<!-- HEADER -->
 <div class="header">
   <div>
-    <img src="https://via.placeholder.com/140" id="profileImg" class="profile-pic">
-    <input type="file" accept="image/*" id="profileUpload">
+    <h1>Workspace: Business Intelligence & Analytics</h1>
+    <span>Owner:</span> Mohd Ghouse |
+    <span>Role:</span> BI Analyst / Developer |
+    <span>Status:</span> Active
   </div>
+</div>
+
+<!-- PROFILE -->
+<div class="profile">
   <div>
-    <h1>Mohd Ghouse</h1>
-    <div class="sub">Microsoft Certified Power BI Data Analyst</div>
-    <div class="sub">Power BI · DAX · Data Modeling · SQL · Forecasting</div>
-    <div class="sub">Hyderabad, India</div>
+    <h2>Overview</h2>
+    <p>
+      Enterprise-grade analytics solutions focused on data modeling,
+      forecasting, KPI standardization, and executive reporting.
+      Designed for stakeholder decision-making and scalable BI delivery.
+    </p>
+
+    <p>
+      <b>Email:</b>
+      <a href="mailto:ghouse908@gmail.com">ghouse908@gmail.com</a><br>
+      <b>LinkedIn:</b>
+      linkedin.com/in/ghouseismohd13<br>
+      <b>GitHub:</b>
+      github.com/Yunglean95
+    </p>
+  </div>
+
+  <div>
+    <img id="profilePic" src="profile.png">
+    <input type="file" accept="image/*" onchange="uploadImage(this,'profilePic')">
   </div>
 </div>
 
-<section>
-<h2>Projects</h2>
-<div class="projects">
+<!-- CASE STUDIES -->
+<div class="section">
+  <h2 class="section-title">Analytics Case Studies</h2>
 
-<div class="card">
-<h3>Sales Forecasting Dashboard</h3>
-<div class="carousel">
-  <img class="active">
-  <img>
-  <button class="prev">‹</button>
-  <button class="next">›</button>
-</div>
-<input type="file" multiple accept="image/*" onchange="loadCarousel(event,this.previousElementSibling)">
-<p>Time-series sales forecasting using historical data to project future demand.</p>
-<div class="links">
-  <a href="#" target="_blank">Power BI Service</a>
-  <a href="#" target="_blank">GitHub</a>
-</div>
-<div>
-  <span class="tag">Power BI</span>
-  <span class="tag">Forecasting</span>
-  <span class="tag">DAX</span>
-</div>
-</div>
+  <div class="grid">
 
-<div class="card">
-<h3>Star Schema Data Model</h3>
-<div class="carousel">
-  <img class="active">
-  <img>
-  <button class="prev">‹</button>
-  <button class="next">›</button>
-</div>
-<input type="file" multiple accept="image/*" onchange="loadCarousel(event,this.previousElementSibling)">
-<p>Optimized star-schema model for scalable BI reporting.</p>
-<div class="links">
-  <a href="#" target="_blank">GitHub</a>
-</div>
-<div>
-  <span class="tag">Data Modeling</span>
-  <span class="tag">Star Schema</span>
-  <span class="tag">SQL</span>
-</div>
-</div>
+    <!-- CASE 1 -->
+    <div class="card">
+      <h3>Case Study – Sales Forecasting (Power BI)</h3>
+      <img id="cs1" style="width:100%;height:180px;object-fit:cover;border:1px solid var(--border)">
+      <input type="file" accept="image/*" onchange="uploadImage(this,'cs1')">
 
-</div>
-</section>
+      <div class="case-block"><b>Problem</b> Limited forward-looking visibility into global sales trends.</div>
+      <div class="case-block"><b>Data</b> Historical global sales with regional and publisher dimensions.</div>
+      <div class="case-block"><b>Solution</b> Time-series forecasting dashboard using optimized DAX.</div>
+      <div class="case-block"><b>Impact</b> Enabled long-term planning and reduced manual reporting.</div>
 
-<section>
-<h2>Certifications</h2>
-<div class="certs">
-  <div class="cert">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg">
-    <div>Microsoft Certified – Power BI Data Analyst (PL-300)</div>
+      <div class="metrics">
+        <div class="metric">Forecast horizon: 10+ years</div>
+        <div class="metric">DAX measures: 25+</div>
+        <div class="metric">Regions analyzed: 4</div>
+        <div class="metric">Performance gain: ~35%</div>
+      </div>
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="card">
+      <h3>Case Study – Star Schema Data Model</h3>
+      <img id="cs2" style="width:100%;height:180px;object-fit:cover;border:1px solid var(--border)">
+      <input type="file" accept="image/*" onchange="uploadImage(this,'cs2')">
+
+      <div class="case-block"><b>Problem</b> Reporting performance issues from flat data.</div>
+      <div class="case-block"><b>Data</b> Fact sales with time, region, publisher dimensions.</div>
+      <div class="case-block"><b>Solution</b> Enterprise star-schema optimized for Power BI.</div>
+      <div class="case-block"><b>Impact</b> Improved scalability and reporting consistency.</div>
+
+      <div class="metrics">
+        <div class="metric">Fact tables: 1</div>
+        <div class="metric">Dimensions: 6</div>
+        <div class="metric">Load time reduced: ~40%</div>
+        <div class="metric">Reports supported: Multiple</div>
+      </div>
+    </div>
+
+    <!-- CASE 3 -->
+    <div class="card">
+      <h3>Case Study – Regional Performance Analysis</h3>
+      <img id="cs3" style="width:100%;height:180px;object-fit:cover;border:1px solid var(--border)">
+      <input type="file" accept="image/*" onchange="uploadImage(this,'cs3')">
+
+      <div class="case-block"><b>Problem</b> Lack of clarity on regional demand.</div>
+      <div class="case-block"><b>Data</b> Region-wise sales by genre and platform.</div>
+      <div class="case-block"><b>Solution</b> Drill-down comparative dashboards.</div>
+      <div class="case-block"><b>Impact</b> Identified regional growth opportunities.</div>
+
+      <div class="metrics">
+        <div class="metric">Regions: NA, EU, JP</div>
+        <div class="metric">Genres: 10+</div>
+        <div class="metric">KPIs tracked: 15+</div>
+        <div class="metric">Insight accuracy improved</div>
+      </div>
+    </div>
+
   </div>
-  <div class="cert">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg">
-    <div>IBM Certified – Python & AI</div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section">
+  <h2 class="section-title">Professional Experience</h2>
+  <div class="grid">
+    <div class="card">
+      <b>IT Associate – Accenture</b><br>
+      June 2022 – Present
+    </div>
+    <div class="card">
+      <b>Process Executive – Cognizant</b><br>
+      2018 – June 2022
+    </div>
   </div>
 </div>
-</section>
 
-<section>
-<h2>Experience</h2>
-<p><strong>IT Associate – Accenture (2022–Present)</strong></p>
-<p>Power BI dashboard development, data modeling, KPI reporting, and DAX measures.</p>
-</section>
-
-<footer>
-© 2026 Mohd Ghouse | Business Intelligence Portfolio
+<footer style="text-align:center;color:var(--muted)">
+Internal Analytics Workspace | Mohd Ghouse
 </footer>
 
 </div>
 
 <script>
-profileUpload.onchange = e => {
-  const r = new FileReader();
-  r.onload = () => profileImg.src = r.result;
-  r.readAsDataURL(e.target.files[0]);
-};
-
-function loadCarousel(e,carousel){
-  const imgs = carousel.querySelectorAll("img");
-  imgs.forEach(i=>i.src="");
-  [...e.target.files].forEach((f,i)=>{
-    if(i<imgs.length){
-      const r=new FileReader();
-      r.onload=()=>imgs[i].src=r.result;
-      r.readAsDataURL(f);
-    }
-  });
+function uploadImage(input,id){
+  const reader=new FileReader();
+  reader.onload=()=>{
+    document.getElementById(id).src=reader.result;
+    localStorage[id]=reader.result;
+  }
+  reader.readAsDataURL(input.files[0]);
 }
 
-document.querySelectorAll(".carousel").forEach(c=>{
-  const imgs=c.querySelectorAll("img");
-  let i=0;
-  c.querySelector(".next").onclick=()=>{ imgs[i].classList.remove("active"); i=(i+1)%imgs.length; imgs[i].classList.add("active"); }
-  c.querySelector(".prev").onclick=()=>{ imgs[i].classList.remove("active"); i=(i-1+imgs.length)%imgs.length; imgs[i].classList.add("active"); }
-});
+window.onload=()=>{
+  ['profilePic','cs1','cs2','cs3'].forEach(id=>{
+    if(localStorage[id]) document.getElementById(id).src=localStorage[id];
+  });
+}
 </script>
 
 </body>
