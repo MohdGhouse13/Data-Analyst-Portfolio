@@ -7,28 +7,29 @@
 
 <style>
 :root{
-  --bg:#f5f6f8;
+  --bg-main:#f4f5f7;
+  --workspace:#e9ecef;
+  --overview:#f1f3f5;
   --card:#ffffff;
   --border:#d1d5db;
   --text:#1f2937;
   --muted:#6b7280;
-  --accent:#0057b8;
+
+  /* Impact colors (subtle) */
+  --impact-blue:#eef4fb;
+  --impact-green:#eef7f1;
+  --impact-orange:#fff4eb;
+  --impact-purple:#f4f1fa;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  background:var(--bg);
+  background:var(--bg-main);
   font-family:Arial, Helvetica, sans-serif;
   font-size:12.5px;
   color:var(--text);
-}
-
-h1,h2,h3,h4{
-  font-size:14px;
-  font-weight:700;
-  margin:0 0 10px;
 }
 
 .container{
@@ -37,51 +38,72 @@ h1,h2,h3,h4{
   padding:24px;
 }
 
-/* HEADER */
-.header{
-  background:var(--card);
+/* HEADERS */
+h1,h2,h3{
+  font-size:14px;
+  font-weight:700;
+  margin:0 0 10px;
+}
+
+/* WORKSPACE TILE */
+.workspace-tile{
+  background:var(--workspace);
   border:1px solid var(--border);
-  padding:18px 22px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:24px;
+  padding:22px;
+  margin-bottom:26px;
 }
 
-.header span{color:var(--muted)}
-
-/* PROFILE */
-.profile{
-  display:grid;
-  grid-template-columns:1fr 360px;
-  gap:32px;
-  background:var(--card);
+.contact-buttons a{
+  display:inline-block;
+  margin-right:10px;
+  padding:8px 14px;
   border:1px solid var(--border);
-  padding:24px;
-  margin-bottom:32px;
+  background:#fff;
+  text-decoration:none;
+  font-size:12.5px;
 }
 
-.profile img{
-  width:100%;
-  border-radius:4px;
-  object-fit:cover;
+.contact-buttons a:hover{
+  background:#e5e7eb;
 }
 
-/* SECTIONS */
-.section{
+.certifications{
+  margin-top:14px;
+}
+
+.certifications img{
+  height:28px;
+  margin-right:14px;
+}
+
+/* OVERVIEW */
+.overview{
+  background:var(--overview);
+  border:1px solid var(--border);
+  padding:26px;
   margin-bottom:36px;
 }
 
-.section-title{
-  border-bottom:1px solid var(--border);
-  padding-bottom:6px;
-  margin-bottom:18px;
+.about-title{
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.about-text{
+  font-size:16px;
+  margin-bottom:14px;
+}
+
+.skills{
+  font-size:15px;
+  line-height:1.6;
 }
 
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
   gap:22px;
 }
 
@@ -92,58 +114,32 @@ h1,h2,h3,h4{
   padding:20px;
 }
 
-/* CASE STUDY */
-.case-block{margin-bottom:10px}
-.case-block b{display:block}
-
-/* METRICS */
-.metrics{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
+/* IMPACT */
+.impact{
   margin-top:10px;
-}
-
-.metric{
-  background:#f9fafb;
-  border:1px solid var(--border);
-  padding:8px;
-  font-size:12px;
-}
-
-/* BUTTONS */
-button{
-  background:#e5e7eb;
-  border:1px solid var(--border);
+  padding:12px;
   font-size:12.5px;
-  padding:8px 14px;
-  cursor:pointer;
 }
 
-button:hover{background:#d1d5db}
+.blue{background:var(--impact-blue)}
+.green{background:var(--impact-green)}
+.orange{background:var(--impact-orange)}
+.purple{background:var(--impact-purple)}
 
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  justify-content:center;
-  align-items:center;
+/* IMAGE */
+img.upload{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border:1px solid var(--border);
+  margin-bottom:8px;
 }
 
-.modal-content{
-  background:#fff;
-  padding:24px;
-  max-width:720px;
-  max-height:80vh;
-  overflow:auto;
-}
-
-.close{
-  float:right;
-  cursor:pointer;
-  font-size:18px;
+/* FOOTER */
+footer{
+  text-align:center;
+  margin-top:40px;
+  color:var(--muted);
 }
 </style>
 </head>
@@ -152,124 +148,88 @@ button:hover{background:#d1d5db}
 
 <div class="container">
 
-<!-- HEADER -->
-<div class="header">
-  <div>
-    <h1>Workspace: Business Intelligence & Analytics</h1>
-    <span>Owner:</span> Mohd Ghouse |
-    <span>Role:</span> BI Analyst / Developer |
-    <span>Status:</span> Active
+<!-- WORKSPACE TILE -->
+<div class="workspace-tile">
+  <div class="contact-buttons">
+    <a href="https://www.linkedin.com/in/ghoouseismohd13/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/MohdGhouse13" target="_blank">GitHub</a>
+    <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new" target="_blank">Email</a>
+  </div>
+
+  <div class="certifications">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
   </div>
 </div>
 
-<!-- PROFILE -->
-<div class="profile">
-  <div>
-    <h2>Overview</h2>
-    <p>
-      Enterprise-grade analytics solutions focused on data modeling,
-      forecasting, KPI standardization, and executive reporting.
-      Designed for stakeholder decision-making and scalable BI delivery.
-    </p>
-
-    <p>
-      <b>Email:</b>
-      <a href="mailto:ghouse908@gmail.com">ghouse908@gmail.com</a><br>
-      <b>LinkedIn:</b>
-      linkedin.com/in/ghouseismohd13<br>
-      <b>GitHub:</b>
-      github.com/Yunglean95
-    </p>
+<!-- OVERVIEW -->
+<div class="overview">
+  <div class="about-title">About</div>
+  <div class="about-text">
+    Business Intelligence & Analytics professional delivering enterprise-grade
+    reporting, forecasting, and data-driven insights.
   </div>
 
-  <div>
-    <img id="profilePic" src="profile.png">
-    <input type="file" accept="image/*" onchange="uploadImage(this,'profilePic')">
+  <div class="skills">
+    <b>Core Competencies:</b><br>
+    Power BI Development · Data Modeling · Forecasting · SQL · Python ·
+    Pandas & Matplotlib · Stakeholder Management · KPI & Executive Reporting ·
+    Data Validation & Performance Optimization
   </div>
 </div>
 
 <!-- CASE STUDIES -->
-<div class="section">
-  <h2 class="section-title">Analytics Case Studies</h2>
+<h2>Analytics Case Studies</h2>
 
-  <div class="grid">
+<div class="grid">
 
-    <!-- CASE 1 -->
-    <div class="card">
-      <h3>Case Study – Sales Forecasting (Power BI)</h3>
-      <img id="cs1" style="width:100%;height:180px;object-fit:cover;border:1px solid var(--border)">
-      <input type="file" accept="image/*" onchange="uploadImage(this,'cs1')">
+  <!-- POWER BI -->
+  <div class="card">
+    <h3>Power BI – Sales Forecasting</h3>
+    <img id="cs1" class="upload">
+    <input type="file" accept="image/*" onchange="uploadImage(this,'cs1')">
 
-      <div class="case-block"><b>Problem</b> Limited forward-looking visibility into global sales trends.</div>
-      <div class="case-block"><b>Data</b> Historical global sales with regional and publisher dimensions.</div>
-      <div class="case-block"><b>Solution</b> Time-series forecasting dashboard using optimized DAX.</div>
-      <div class="case-block"><b>Impact</b> Enabled long-term planning and reduced manual reporting.</div>
-
-      <div class="metrics">
-        <div class="metric">Forecast horizon: 10+ years</div>
-        <div class="metric">DAX measures: 25+</div>
-        <div class="metric">Regions analyzed: 4</div>
-        <div class="metric">Performance gain: ~35%</div>
-      </div>
-    </div>
-
-    <!-- CASE 2 -->
-    <div class="card">
-      <h3>Case Study – Star Schema Data Model</h3>
-      <img id="cs2" style="width:100%;height:180px;object-fit:cover;border:1px solid var(--border)">
-      <input type="file" accept="image/*" onchange="uploadImage(this,'cs2')">
-
-      <div class="case-block"><b>Problem</b> Reporting performance issues from flat data.</div>
-      <div class="case-block"><b>Data</b> Fact sales with time, region, publisher dimensions.</div>
-      <div class="case-block"><b>Solution</b> Enterprise star-schema optimized for Power BI.</div>
-      <div class="case-block"><b>Impact</b> Improved scalability and reporting consistency.</div>
-
-      <div class="metrics">
-        <div class="metric">Fact tables: 1</div>
-        <div class="metric">Dimensions: 6</div>
-        <div class="metric">Load time reduced: ~40%</div>
-        <div class="metric">Reports supported: Multiple</div>
-      </div>
-    </div>
-
-    <!-- CASE 3 -->
-    <div class="card">
-      <h3>Case Study – Regional Performance Analysis</h3>
-      <img id="cs3" style="width:100%;height:180px;object-fit:cover;border:1px solid var(--border)">
-      <input type="file" accept="image/*" onchange="uploadImage(this,'cs3')">
-
-      <div class="case-block"><b>Problem</b> Lack of clarity on regional demand.</div>
-      <div class="case-block"><b>Data</b> Region-wise sales by genre and platform.</div>
-      <div class="case-block"><b>Solution</b> Drill-down comparative dashboards.</div>
-      <div class="case-block"><b>Impact</b> Identified regional growth opportunities.</div>
-
-      <div class="metrics">
-        <div class="metric">Regions: NA, EU, JP</div>
-        <div class="metric">Genres: 10+</div>
-        <div class="metric">KPIs tracked: 15+</div>
-        <div class="metric">Insight accuracy improved</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- EXPERIENCE -->
-<div class="section">
-  <h2 class="section-title">Professional Experience</h2>
-  <div class="grid">
-    <div class="card">
-      <b>IT Associate – Accenture</b><br>
-      June 2022 – Present
-    </div>
-    <div class="card">
-      <b>Process Executive – Cognizant</b><br>
-      2018 – June 2022
+    <div class="impact blue">
+      Enabled 10+ year sales forecasting and executive KPI visibility.
     </div>
   </div>
+
+  <!-- PYTHON -->
+  <div class="card">
+    <h3>Python – Analytics & EDA</h3>
+    <img id="cs2" class="upload">
+    <input type="file" accept="image/*" onchange="uploadImage(this,'cs2')">
+
+    <div class="impact green">
+      Automated exploratory analysis and reduced manual effort.
+    </div>
+  </div>
+
+  <!-- PANDAS / MATPLOTLIB -->
+  <div class="card">
+    <h3>Pandas & Matplotlib</h3>
+    <img id="cs3" class="upload">
+    <input type="file" accept="image/*" onchange="uploadImage(this,'cs3')">
+
+    <div class="impact orange">
+      Visualized trends and patterns for business interpretation.
+    </div>
+  </div>
+
+  <!-- MYSQL -->
+  <div class="card">
+    <h3>MySQL – Data Extraction</h3>
+    <img id="cs4" class="upload">
+    <input type="file" accept="image/*" onchange="uploadImage(this,'cs4')">
+
+    <div class="impact purple">
+      Structured queries supporting BI data pipelines.
+    </div>
+  </div>
+
 </div>
 
-<footer style="text-align:center;color:var(--muted)">
+<footer>
 Internal Analytics Workspace | Mohd Ghouse
 </footer>
 
@@ -277,16 +237,16 @@ Internal Analytics Workspace | Mohd Ghouse
 
 <script>
 function uploadImage(input,id){
-  const reader=new FileReader();
-  reader.onload=()=>{
-    document.getElementById(id).src=reader.result;
-    localStorage[id]=reader.result;
+  const r=new FileReader();
+  r.onload=()=>{
+    document.getElementById(id).src=r.result;
+    localStorage[id]=r.result;
   }
-  reader.readAsDataURL(input.files[0]);
+  r.readAsDataURL(input.files[0]);
 }
 
 window.onload=()=>{
-  ['profilePic','cs1','cs2','cs3'].forEach(id=>{
+  ['cs1','cs2','cs3','cs4'].forEach(id=>{
     if(localStorage[id]) document.getElementById(id).src=localStorage[id];
   });
 }
