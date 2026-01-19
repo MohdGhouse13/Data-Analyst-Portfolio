@@ -62,7 +62,7 @@
         .hero-name {
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             line-height: 1;
-            font-weight: 900; /* Bold weight restored */
+            font-weight: 900; 
             text-transform: uppercase;
             margin-bottom: 1rem;
         }
@@ -268,6 +268,23 @@
             color: var(--color-text-muted);
             font-weight: 700;
         }
+
+        /* Empty slot styling for certificates - Increased Size */
+        .badge-slot {
+            width: 60px;
+            height: 60px;
+            border: 2px dashed var(--color-border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: var(--color-bg);
+            transition: border-color 0.2s ease;
+        }
+        .badge-slot:hover {
+            border-color: var(--gc-accent);
+        }
     </style>
 </head>
 <body>
@@ -310,19 +327,24 @@
                 
                 <!-- Credentials Hub -->
                 <div class="flex flex-wrap gap-4 mb-6">
-                    <!-- Badges -->
+                    <!-- Custom Badge Upload Slots - Enlarged -->
                     <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 rounded flex items-center gap-8 shadow-sm">
                         <div class="flex gap-4">
-                            <div class="relative group">
-                                <img id="badge1-img" src="https://img.icons8.com/color/64/microsoft.png" class="h-10" alt="Badge">
+                            <div class="relative group badge-slot">
+                                <img id="badge1-img" class="h-14 w-14 hidden object-contain" alt="Badge 1">
+                                <span class="text-[10px] text-slate-400 font-bold opacity-60 group-hover:opacity-100 transition-opacity uppercase">+ MS</span>
                                 <input type="file" class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewFile(this, 'badge1-img')">
                             </div>
-                            <div class="relative group">
-                                <img id="badge2-img" src="https://img.icons8.com/color/64/ibm.png" class="h-10" alt="Badge">
+                            <div class="relative group badge-slot">
+                                <img id="badge2-img" class="h-14 w-14 hidden object-contain" alt="Badge 2">
+                                <span class="text-[10px] text-slate-400 font-bold opacity-60 group-hover:opacity-100 transition-opacity uppercase">+ IBM</span>
                                 <input type="file" class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewFile(this, 'badge2-img')">
                             </div>
                         </div>
-                        <span class="text-[11px] font-bold uppercase tracking-widest text-slate-500">Microsoft & IBM certified</span>
+                        <div class="flex flex-col">
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-slate-500">Microsoft & IBM</span>
+                            <span class="text-[9px] font-bold uppercase tracking-tighter text-slate-400">Certified Professional</span>
+                        </div>
                     </div>
 
                     <!-- Contact Hub -->
@@ -336,7 +358,6 @@
                 <!-- Animated Technologies Row (Marquee) -->
                 <div class="marquee-container mb-12">
                     <div class="marquee-content">
-                        <!-- Group 1 -->
                         <div class="tech-logo-item"><img src="https://img.icons8.com/color/48/power-bi.png" class="tech-logo"><span class="tech-label">Power BI</span></div>
                         <div class="tech-logo-item"><img src="https://img.icons8.com/color/48/mysql-logo.png" class="tech-logo"><span class="tech-label">MySQL</span></div>
                         <div class="tech-logo-item"><img src="https://img.icons8.com/color/48/python--v1.png" class="tech-logo"><span class="tech-label">Python</span></div>
@@ -614,7 +635,8 @@
                     const img = document.getElementById(id);
                     img.src = e.target.result;
                     img.classList.remove('hidden');
-                    const parent = img.closest('.visual-viewport') || img.closest('.portrait-frame');
+                    // Find the closest parent that might have placeholder spans
+                    const parent = img.closest('.badge-slot') || img.closest('.visual-viewport') || img.closest('.portrait-frame');
                     if (parent) {
                         const placeholders = parent.querySelectorAll('span, p');
                         placeholders.forEach(p => p.classList.add('hidden'));
