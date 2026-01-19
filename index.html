@@ -3,85 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammed Ghouse | BI Developer & Strategic Reporting Analyst - Analytical Command UI</title>
-    <!-- Premium Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Mohammed Ghouse | BI Developer & Strategic Reporting Analyst - Sovereign Prestige</title>
+    <!-- Elite Typography Suite -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --color-bg: #0a0a0a;
-            --color-accent: #A6192E;
-            --color-tech-blue: #6366F1; /* Electric Blue for corners */
-            --color-card: #151515;
-            --color-border: #222222;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
+            --color-bg: #F8FAFC; 
+            --color-surface: #FFFFFF;
+            --color-accent: #A6192E; 
+            --color-navy: #0F172A; 
+            --color-tech-blue: #4F46E5; 
+            --color-border: #E2E8F0;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            color: var(--text-primary);
             background-color: var(--color-bg);
+            color: var(--text-primary);
             line-height: 1.6;
             margin: 0;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        /* Subtle Reveal Animation */
+        h1, h2, h3, h4, .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        /* Animation System - Fixed for immediate visibility */
         .reveal {
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .accent-bar {
+        /* Sovereign Utility Header */
+        .utility-header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--color-border);
+            padding: 14px 40px;
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+        }
+
+        .crimson-ruler {
             height: 4px;
-            width: 40px;
-            background-color: var(--color-accent);
+            width: 50px;
+            background: var(--color-accent);
             margin-bottom: 2rem;
         }
 
-        .section-separator {
-            padding: 4rem 0;
-            border-top: 1px solid var(--color-border);
-        }
-
-        /* Requirement: 18px Font About Section */
-        .about-text-content {
+        /* Narrative Requirement: 18px Font */
+        .narrative-block {
             font-size: 18px !important;
-            color: #d1d1d1;
-            background-color: var(--color-card);
-            padding: 3.5rem;
-            border-bottom: 4px solid var(--color-accent);
+            color: #334155;
+            background: var(--color-surface);
+            padding: 4rem;
+            border-left: 5px solid var(--color-accent);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--color-border);
+            border-left-width: 5px;
         }
-        .about-text-content p {
-            font-size: 18px !important;
-            margin-bottom: 1.5rem;
-        }
+        .narrative-block p { font-size: 18px !important; margin-bottom: 1.5rem; }
 
-        /* Requirement: 512x768 Portrait Frame */
+        /* 512x768 Portrait Requirement */
         .portrait-frame {
             width: 320px;
-            height: 480px; 
-            background: #111;
-            overflow: hidden;
+            height: 480px;
+            background: #F1F5F9;
             position: relative;
             cursor: pointer;
             border: 1px solid var(--color-border);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(15, 23, 42, 0.15);
         }
-        .portrait-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .portrait-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Dashboard Aspect Ratio 16:9 */
+        /* Dashboard Aspect Ratio 16:9 Requirement */
         .dashboard-viewport {
             width: 100%;
             aspect-ratio: 16/9;
@@ -94,21 +108,13 @@
             position: relative;
             transition: all 0.3s ease;
         }
-        .dashboard-viewport:hover {
-            border-color: var(--color-accent);
-            box-shadow: 0 0 20px rgba(166, 25, 46, 0.2);
-        }
-        .dashboard-viewport img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .dashboard-viewport:hover { border-color: var(--color-accent); }
+        .dashboard-viewport img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Viewport Controls */
         .viewport-controls {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.95);
+            background: rgba(15, 23, 42, 0.95);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -117,228 +123,207 @@
             transition: opacity 0.2s ease;
             z-index: 20;
         }
-        .dashboard-viewport:hover .viewport-controls {
-            opacity: 1;
-        }
+        .dashboard-viewport:hover .viewport-controls { opacity: 1; }
 
-        .control-btn {
-            background: white;
-            color: black;
+        .btn-global {
+            background: #FFFFFF;
+            color: #000000;
             font-size: 9px;
             font-weight: 900;
             text-transform: uppercase;
-            padding: 10px 20px;
+            padding: 10px 24px;
             margin: 5px;
-            width: 160px;
+            width: 180px;
             letter-spacing: 0.1em;
             transition: all 0.2s;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
         }
-        .control-btn:hover {
-            background: var(--color-accent);
-            color: white;
-        }
+        .btn-global:hover { background: var(--color-accent); color: white; border-color: var(--color-accent); }
 
-        /* Action Tiles */
+        /* Command Tiles */
         .command-tile {
-            padding: 1.5rem;
-            height: 100%;
+            padding: 2.5rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            background-color: var(--color-card);
-            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
         .command-tile:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px);
             border-color: var(--color-accent);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        .tile-active { border-bottom: 3px solid var(--color-accent); }
-
-        /* Tech Logo with Blue Corner Framing */
+        /* Tech Modules with Blue Corner Framework */
         .tech-module {
             position: relative;
-            padding: 20px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.3s ease;
+            padding: 24px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 110px;
+            min-height: 110px;
+            transition: all 0.3s;
         }
-        
-        /* The Blue Corners */
         .tech-module::before, .tech-module::after, 
         .tech-module span::before, .tech-module span::after {
             content: "";
             position: absolute;
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-color: var(--color-tech-blue);
             border-style: solid;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 5px var(--color-tech-blue);
+            pointer-events: none;
+            transition: 0.3s;
         }
-        
-        /* Top Left */
         .tech-module::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-        /* Top Right */
         .tech-module::after { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-        /* Bottom Left */
-        .tech-module span::before { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
-        /* Bottom Right */
-        .tech-module span::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+        .tech-module span::before { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; position: absolute; }
+        .tech-module span::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; position: absolute; }
 
-        .tech-module:hover {
-            background: rgba(99, 102, 241, 0.05);
-            transform: scale(1.05);
-        }
-        .tech-module:hover::before, .tech-module:hover::after,
-        .tech-module:hover span::before, .tech-module:hover span::after {
-            width: 12px;
-            height: 12px;
-        }
+        .tech-module:hover { transform: scale(1.1); box-shadow: 0 10px 20px rgba(79, 70, 229, 0.1); }
 
-        .tech-logo {
-            height: 42px;
-            width: auto;
-            filter: none;
-        }
+        .tech-logo { height: 48px; width: auto; filter: none; object-fit: contain; }
 
-        .btn-briefing {
+        /* Fixed Social Link Opacity */
+        .social-link-icon {
+            width: 36px;
+            height: 36px;
+            opacity: 1 !important; 
+            transition: 0.3s;
+            filter: none !important;
+            display: block;
+        }
+        .social-link-icon:hover { transform: scale(1.2) translateY(-2px); }
+
+        .btn-audio-briefing {
             font-size: 11px;
             font-weight: 800;
-            color: white;
+            color: var(--color-navy);
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding-bottom: 4px;
+            gap: 15px;
+            padding-bottom: 6px;
             border-bottom: 2px solid var(--color-accent);
-            transition: gap 0.3s;
-        }
-        .btn-briefing:hover {
-            gap: 20px;
+            cursor: pointer;
         }
 
-        #ai-advisor {
-            background: #111;
-            border-top: 4px solid var(--color-accent);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        #ai-advisor-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-top: 5px solid var(--color-accent);
+            box-shadow: 0 40px 100px rgba(15, 23, 42, 0.2);
         }
 
-        .status-tag {
+        .status-pill {
             font-size: 8px;
             font-weight: 900;
             text-transform: uppercase;
-            padding: 2px 8px;
-            background: #222;
-            color: #666;
-            margin-top: 8px;
-            border-radius: 2px;
+            padding: 3px 12px;
+            background: #F1F5F9;
+            color: #64748B;
+            border-radius: 100px;
+            margin-top: 10px;
         }
-        .status-active { color: var(--color-tech-blue); background: rgba(99, 102, 241, 0.1); }
-        
-        .social-link-icon {
-            width: 24px;
-            height: 24px;
-            filter: invert(1) opacity(0.5);
-            transition: all 0.3s;
-        }
-        .social-link-icon:hover {
-            filter: invert(1) opacity(1);
-            transform: scale(1.2);
-        }
+        .status-active { color: #FFF; background: var(--color-tech-blue); }
     </style>
 </head>
 <body>
 
     <!-- Executive Utility Navigation -->
-    <div class="bg-black py-4 px-10 border-b border-white/5 text-[9px] font-black tracking-[0.3em] uppercase flex justify-between items-center text-gray-500 sticky top-0 z-[100] backdrop-blur-md bg-black/80">
-        <div class="flex items-center gap-4">
-            <span class="text-white border-r border-white/20 pr-4">Mohammed Ghouse</span>
-            <span>Strategic BI Intelligence // International Dossier</span>
+    <div class="utility-header">
+        <div class="flex items-center gap-6 font-bold">
+            <span class="text-navy-900 border-r border-slate-200 pr-6">Management Consultant Dossier</span>
+            <span class="hidden md:inline text-slate-400">Market Readiness: Global // Tier 1 Baseline</span>
         </div>
-        <span id="header-date">FEED SYNCING...</span>
+        <div class="flex items-center gap-4 text-slate-500 font-bold">
+            <span id="header-date">FEED SYNCED</span>
+            <span class="w-2 h-2 bg-green-600 rounded-full animate-pulse"></span>
+        </div>
     </div>
 
-    <!-- AI Hub Assistant -->
+    <!-- AI Strategic Liaison -->
     <div id="ai-anchor" class="fixed bottom-10 right-10 z-[101]">
-        <div id="ai-advisor" class="hidden absolute bottom-20 right-0 w-80 md:w-96 flex flex-col overflow-hidden">
-            <div class="bg-[#1a1a1a] p-5 text-white flex justify-between items-center border-b border-white/5">
+        <div id="ai-advisor-card" class="hidden absolute bottom-24 right-0 w-80 md:w-96 flex flex-col overflow-hidden rounded-lg">
+            <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
                 <div>
-                    <p class="text-[8px] font-black tracking-widest uppercase opacity-50">Analytical Assistant</p>
-                    <p class="text-sm font-bold">Copilot Core</p>
+                    <p class="text-[8px] font-black tracking-widest uppercase opacity-40">Liaison AI</p>
+                    <p class="text-sm font-bold text-navy-900">Strategy Console</p>
                 </div>
-                <button onclick="toggleAI()" class="text-2xl hover:text-red-700">&times;</button>
+                <button onclick="toggleAI()" class="text-2xl text-slate-400 hover:text-red-700">&times;</button>
             </div>
-            <div id="ai-chat-content" class="h-80 overflow-y-auto p-6 space-y-4 text-xs font-medium bg-[#111] text-gray-400">
-                <div class="italic border-l-2 border-red-700 pl-4">System Online. Technical repositories and live URLs are accessible via individual tiles. state your inquiry.</div>
+            <div id="ai-chat-content" class="h-80 overflow-y-auto p-6 space-y-4 text-xs font-medium bg-white text-slate-600">
+                <div class="italic border-l-2 border-indigo-600 pl-4">System Online. Technical repositories and ROI benchmarks are accessible. State your inquiry.</div>
             </div>
-            <div class="p-4 border-t border-white/5 bg-[#1a1a1a] flex gap-2">
-                <input type="text" id="ai-input" placeholder="Query technical impact..." class="flex-1 bg-black border-none p-2 text-xs text-white focus:ring-1 focus:ring-red-700 outline-none font-bold">
-                <button onclick="askAI()" class="bg-red-700 text-white px-4 py-2 font-black text-[10px] uppercase">Send</button>
+            <div class="p-4 border-t border-slate-100 bg-slate-50 flex gap-2">
+                <input type="text" id="ai-input" placeholder="Query analytical impact..." class="flex-1 bg-white border border-slate-200 rounded p-2 text-xs text-navy-900 focus:border-red-700 outline-none font-bold">
+                <button onclick="askAI()" class="bg-[#0F172A] text-white px-5 py-2 rounded font-black text-[10px] uppercase tracking-widest">Run</button>
             </div>
         </div>
-        <button onclick="toggleAI()" class="w-16 h-16 bg-red-700 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-105 transition-all transform active:scale-95 group">
+        <button onclick="toggleAI()" class="w-16 h-16 bg-[#0F172A] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all group">
             <svg class="w-8 h-8 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
         </button>
     </div>
 
     <main class="max-w-7xl mx-auto px-10 pt-20 pb-20">
 
-        <!-- Header Section -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-20 reveal">
+        <!-- Sovereign Masthead - Instant Load Visibility -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-24 opacity-100">
             <div class="lg:col-span-8 space-y-12">
-                <div class="accent-bar"></div>
+                <div class="crimson-ruler"></div>
                 <div>
-                    <h1 class="text-7xl md:text-8xl font-black text-white leading-[0.85] tracking-tighter uppercase mb-2">
+                    <h1 class="text-8xl lg:text-[10rem] font-black text-navy-900 leading-[0.8] tracking-tighter uppercase mb-4">
                         Mohammed
                     </h1>
-                    <h2 class="text-3xl md:text-4xl font-light text-gray-600 tracking-[0.3em] uppercase">
+                    <h2 class="text-3xl lg:text-5xl font-heading font-light text-slate-300 tracking-[0.5em] uppercase">
                         Ghouse
                     </h2>
                 </div>
                 <div class="space-y-6">
-                    <p class="text-3xl font-light text-gray-500 italic">BI Developer & Strategic Reporting Analyst at <span class="text-white not-italic font-bold border-b border-red-700">Accenture</span></p>
-                    <p class="text-lg text-gray-400 max-w-xl leading-relaxed">Championing autonomous Business Intelligence ecosystems. Specialized in data modeling, multifunctional stakeholder strategy, and GenAI-integrated automation to drive global ROI.</p>
+                    <p class="text-3xl font-light text-slate-500 italic">BI Developer & Strategic Reporting Analyst at <span class="text-navy-900 not-italic font-black border-b-2 border-red-700">Accenture</span></p>
+                    <p class="text-xl text-slate-600 max-w-xl leading-relaxed">Championing autonomous reporting architectures for global operations. Specialized in RLS governance, high-fidelity engineering, and GenAI-integrated workflows to drive definitive enterprise ROI.</p>
                 </div>
 
-                <!-- Action Tiles Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-1 shadow-2xl">
-                    <!-- Certifications -->
-                    <div class="command-tile tile-active">
-                        <div class="flex gap-4 mb-3">
-                            <div onclick="document.getElementById('badge1-up').click()">
-                                <img id="badge1-img" src="https://via.placeholder.com/64?text=MS" class="h-10 w-auto invert opacity-50 hover:opacity-100" alt="MS">
-                            </div>
-                            <div onclick="document.getElementById('badge2-up').click()">
-                                <img id="badge2-img" src="https://via.placeholder.com/64?text=IBM" class="h-10 w-auto invert opacity-50 hover:opacity-100" alt="IBM">
-                            </div>
+                <!-- Command Center Grid - Forced Visible -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 shadow-sm opacity-100">
+                    <!-- Certified -->
+                    <div class="command-tile">
+                        <div class="flex gap-4 mb-4">
+                            <div onclick="document.getElementById('badge1-up').click()"><img id="badge1-img" src="https://via.placeholder.com/64?text=MS" class="h-10 grayscale hover:grayscale-0 transition-all" alt="MS"></div>
+                            <div onclick="document.getElementById('badge2-up').click()"><img id="badge2-img" src="https://via.placeholder.com/64?text=IBM" class="h-10 grayscale hover:grayscale-0 transition-all" alt="IBM"></div>
                         </div>
-                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-red-700">Certifications</p>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-red-700 uppercase">Certified</p>
                         <input type="file" id="badge1-up" class="hidden" onchange="previewFile(this, 'badge1-img')">
                         <input type="file" id="badge2-up" class="hidden" onchange="previewFile(this, 'badge2-img')">
                     </div>
                     
-                    <!-- Dynamic Resume Module -->
-                    <div class="command-tile tile-active" id="resume-container">
-                        <div onclick="document.getElementById('resume-up').click()" class="absolute top-3 right-3 opacity-30 hover:opacity-100 transition-opacity" title="Update Master Resume File">
-                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    <!-- Resume -->
+                    <div class="command-tile relative" id="resume-container">
+                        <div onclick="document.getElementById('resume-up').click()" class="absolute top-3 right-3 opacity-30 hover:opacity-100 cursor-pointer">
+                            <svg class="w-4 h-4 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
                         </div>
-                        <a id="resume-dl" href="#" download="Mohammed_Ghouse_Resume.pdf" class="flex flex-col items-center">
-                            <svg class="w-8 h-8 mb-3 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                            <p class="text-xs font-black uppercase tracking-widest mb-1">Download Resume</p>
-                            <p id="resume-status" class="text-[8px] text-gray-600 uppercase tracking-widest">Awaiting master file</p>
+                        <a id="resume-dl" href="#" download="Mohammed_Ghouse_Resume.pdf" class="flex flex-col items-center group">
+                            <svg class="w-10 h-10 text-red-700 mb-3 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-navy-900">Download Resume</span>
+                            <span id="resume-status" class="text-[7px] text-slate-400 mt-1 uppercase italic tracking-wider">Master Source Enabled</span>
                         </a>
                         <input type="file" id="resume-up" class="hidden" onchange="handleResumeUpload(this)">
                     </div>
 
-                    <!-- Enhanced Social Links -->
-                    <div class="command-tile tile-active">
-                        <div class="flex gap-5 justify-center mb-4">
+                    <!-- Vibrant Social Network -->
+                    <div class="command-tile">
+                        <div class="flex gap-6 justify-center mb-5">
                             <a href="https://www.linkedin.com/in/ghoouseismohd13/" target="_blank" title="LinkedIn">
                                 <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="social-link-icon" alt="LinkedIn">
                             </a>
@@ -353,92 +338,51 @@
                     </div>
                 </div>
 
-                <div class="pt-4">
-                    <button id="briefing-btn" onclick="generateAudioBriefing()" class="btn-briefing group">
-                        <span class="w-3 h-3 bg-red-700 rounded-full animate-pulse group-hover:scale-125 transition-transform"></span>
-                        Initiate Executive Briefing
+                <div class="pt-6">
+                    <button id="briefing-btn" onclick="generateAudioBriefing()" class="btn-audio-briefing group">
+                        <span class="w-3 h-3 bg-red-700 rounded-full animate-pulse group-hover:scale-125"></span>
+                        Initiate Global Career Briefing
                     </button>
                 </div>
             </div>
 
-            <!-- Portrait Frame -->
+            <!-- Portrait Frame - Instant Load -->
             <div class="lg:col-span-4 flex justify-center lg:justify-end">
-                <div class="portrait-frame shadow-2xl" onclick="document.getElementById('p-up').click()">
-                    <img id="p-img" src="https://via.placeholder.com/512x768?text=ANALYZING_ID..." alt="Portrait">
-                    <div class="absolute bottom-0 left-0 w-full bg-red-700/90 text-white p-3 text-center text-[9px] font-bold uppercase tracking-[0.2em]">
-                        Validated Analyst Dossier
+                <div class="portrait-frame shadow-2xl opacity-100" onclick="document.getElementById('p-up').click()">
+                    <img id="p-img" src="https://via.placeholder.com/512x768?text=SECURE_ID_SCAN..." alt="Portrait">
+                    <div class="absolute bottom-0 left-0 w-full bg-navy-900/90 text-white p-4 text-center text-[9px] font-black uppercase tracking-[0.3em] bg-[#0F172A]/90">
+                        Validated Global Analyst ID
                     </div>
                 </div>
                 <input type="file" id="p-up" class="hidden" onchange="previewFile(this, 'p-img')">
             </div>
         </section>
 
-        <!-- Technology Ecosystem with Blue Corner Framing -->
-        <section class="mb-20 border-y border-white/5 py-12 reveal">
-            <p class="text-[9px] font-black text-red-700 uppercase tracking-[0.3em] mb-12 text-center">Integrated BI & GenAI Infrastructure</p>
-            <div class="flex flex-wrap items-center justify-center gap-6">
-                <!-- Power BI -->
-                <div class="tech-module">
-                    <span></span>
-                    <img src="https://img.icons8.com/color/48/power-bi.png" class="tech-logo" title="Power BI">
-                </div>
-                <!-- SQL Server -->
-                <div class="tech-module">
-                    <span></span>
-                    <img src="https://img.icons8.com/color/48/microsoft-sql-server.png" class="tech-logo" title="SQL Server">
-                </div>
-                <!-- Python -->
-                <div class="tech-module">
-                    <span></span>
-                    <img src="https://img.icons8.com/color/48/python--v1.png" class="tech-logo" title="Python">
-                </div>
-                <!-- Pandas -->
-                <div class="tech-module">
-                    <span></span>
-                    <img src="https://img.icons8.com/color/48/pandas.png" class="tech-logo" title="Pandas">
-                </div>
-                <!-- Matplotlib -->
-                <div class="tech-module">
-                    <span></span>
-                    <img src="https://img.icons8.com/color/48/matplotlib.png" class="tech-logo" title="Matplotlib">
-                </div>
-                <!-- Gemini -->
-                <div class="tech-module">
-                    <span></span>
-                    <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d473530c25e5e019198.svg" class="tech-logo" style="height: 40px;" title="Gemini AI">
-                </div>
-                <!-- ChatGPT -->
-                <div class="tech-module">
-                    <span></span>
-                    <img src="https://img.icons8.com/color/48/chatgpt.png" class="tech-logo" title="ChatGPT">
-                </div>
-                <!-- Looker -->
-                <div class="tech-module">
-                    <span></span>
-                    <img src="https://img.icons8.com/color/48/google-looker.png" class="tech-logo" title="Looker Studio">
-                </div>
-                <!-- Cognos -->
-                <div class="tech-module">
-                    <span></span>
-                    <img src="https://img.icons8.com/color/48/ibm.png" class="tech-logo" title="Cognos Analytics">
-                </div>
-                <!-- Excel -->
-                <div class="tech-module">
-                    <span></span>
-                    <img src="https://img.icons8.com/color/48/microsoft-excel-2019.png" class="tech-logo" title="Excel">
-                </div>
+        <!-- Technical Ecosystem -->
+        <section class="mb-24 border-y border-slate-200 py-16 reveal">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em] mb-12 text-center italic">Infrastructure Maturity // Tier 1 Global Standard</p>
+            <div class="flex flex-wrap items-center justify-center gap-14">
+                <div class="tech-module"><span></span><img src="https://img.icons8.com/color/48/power-bi.png" class="tech-logo" title="Power BI"></div>
+                <div class="tech-module"><span></span><img src="https://img.icons8.com/color/48/microsoft-sql-server.png" class="tech-logo" title="SQL Server"></div>
+                <div class="tech-module"><span></span><img src="https://img.icons8.com/color/48/python--v1.png" class="tech-logo" title="Python"></div>
+                <div class="tech-module"><span></span><img src="https://img.icons8.com/color/48/pandas.png" class="tech-logo" title="Pandas"></div>
+                <div class="tech-module"><span></span><img src="image_f7eb28.png" onerror="this.src='https://img.icons8.com/fluency/48/google-gemini.png'" class="tech-logo" title="Gemini AI"></div>
+                <div class="tech-module"><span></span><img src="https://img.icons8.com/color/48/chatgpt.png" class="tech-logo" title="ChatGPT"></div>
+                <div class="tech-module"><span></span><img src="https://img.icons8.com/color/48/google-looker.png" class="tech-logo" title="Looker Studio"></div>
+                <div class="tech-module"><span></span><img src="https://img.icons8.com/color/48/ibm.png" class="tech-logo" title="Cognos Analytics"></div>
+                <div class="tech-module"><span></span><img src="https://img.icons8.com/color/48/microsoft-excel-2019.png" class="tech-logo" title="Excel"></div>
             </div>
         </section>
 
-        <!-- The Perspective -->
+        <!-- Sovereign Narrative (18px) -->
         <section id="perspective" class="reveal mb-12">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
                 <div class="lg:col-span-4">
-                    <p class="text-[10px] font-black text-red-700 uppercase tracking-widest mb-4">Perspective</p>
-                    <h2 class="text-4xl font-black text-white leading-tight italic uppercase">Automation-First.<br>Intelligence-Driven.</h2>
+                    <p class="text-[10px] font-black text-red-700 uppercase tracking-widest mb-4">Core Philosophy</p>
+                    <h2 class="text-6xl font-black text-navy-900 leading-[0.9] italic uppercase">Automation-First.<br>Intelligence-Driven.</h2>
                 </div>
-                <div class="lg:col-span-8 about-text-content shadow-2xl">
-                    <p>Mohammed initiated his professional journey at <strong>Cognizant (2019 – 2022)</strong> as a Data Associate, mastering the clinical rigor required for mission-critical data hygiene. He specialized in standardizing complex <strong>Geo-Spatial attributes</strong> and spearheaded cleaning and visualization for <strong>US and UK Election datasets</strong> using Looker Studio.</p>
+                <div class="lg:col-span-8 narrative-block">
+                    <p>Mohammed initiated his professional journey at <strong>Cognizant (2019 – 2022)</strong> as a Data Associate, mastering the clinical hygiene required for mission-critical spatial attributes and lead visualizations for <strong>US and UK Election datasets</strong> utilizing Looker Studio.</p>
                     
                     <p>Today, as a <strong>Business Reporting Analyst at Accenture</strong>, Mohammed pioneers end-to-end Business Intelligence ecosystems. He is a specialist in the <strong>automation of Power BI report architecture</strong>, successfully transitioning manual reporting workflows into autonomous, self-sustaining refresh cycles.</p>
 
@@ -447,192 +391,201 @@
             </div>
         </section>
 
-        <!-- Technical Core Grid -->
-        <section id="technical-core" class="reveal mb-20">
+        <!-- Technical Core Hub (4 slots) -->
+        <section id="technical-core" class="reveal mb-24">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 px-4">
-                <!-- Core 1 -->
                 <div class="space-y-4">
                     <div class="dashboard-viewport !aspect-square shadow-sm" id="v-c1">
                         <div class="viewport-controls">
-                            <button class="control-btn" onclick="document.getElementById('c1-up').click()">Upload Visual</button>
-                            <button class="control-btn" onclick="setProjectLink('c1')">Set Project URL</button>
+                            <button class="btn-global" onclick="document.getElementById('c1-up').click()">Upload Visual</button>
+                            <button class="btn-global" onclick="setProjectLink('c1')">Set Project URL</button>
                         </div>
                         <img id="c1-img" class="hidden">
-                        <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest text-center px-4">Dashboard Repository</span>
+                        <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest text-center px-4 italic underline decoration-red-700">Analytical Viewport: Dashboards</span>
                     </div>
                     <input type="file" id="c1-up" class="hidden" onchange="previewFile(this, 'c1-img')">
-                    <h5 class="text-xs font-black text-white uppercase text-center">BI Dashboards</h5>
-                    <div id="c1-link-status" class="status-tag mx-auto block w-fit">Awaiting Link</div>
+                    <div class="text-center">
+                        <h5 class="text-xs font-black text-navy-900 uppercase tracking-widest">BI Dashboards</h5>
+                        <div id="c1-link-status" class="status-pill mx-auto block w-fit">Awaiting Link</div>
+                    </div>
                 </div>
-                <!-- Core 2 -->
+
                 <div class="space-y-4">
                     <div class="dashboard-viewport !aspect-square shadow-sm" id="v-c2">
                         <div class="viewport-controls">
-                            <button class="control-btn" onclick="document.getElementById('c2-up').click()">Upload Visual</button>
-                            <button class="control-btn" onclick="setProjectLink('c2')">Set Project URL</button>
+                            <button class="btn-global" onclick="document.getElementById('c2-up').click()">Upload Visual</button>
+                            <button class="btn-global" onclick="setProjectLink('c2')">Set Project URL</button>
                         </div>
                         <img id="c2-img" class="hidden">
-                        <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest text-center px-4">Python Automation</span>
+                        <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest text-center px-4 italic underline decoration-red-700">Analytical Viewport: Python</span>
                     </div>
                     <input type="file" id="c2-up" class="hidden" onchange="previewFile(this, 'c2-img')">
-                    <h5 class="text-xs font-black text-white uppercase text-center">Python Scripts</h5>
-                    <div id="c2-link-status" class="status-tag mx-auto block w-fit">Awaiting Link</div>
+                    <div class="text-center">
+                        <h5 class="text-xs font-black text-navy-900 uppercase tracking-widest">Python Scripts</h5>
+                        <div id="c2-link-status" class="status-pill mx-auto block w-fit">Awaiting Link</div>
+                    </div>
                 </div>
-                <!-- Core 3 -->
+
                 <div class="space-y-4">
                     <div class="dashboard-viewport !aspect-square shadow-sm" id="v-c3">
                         <div class="viewport-controls">
-                            <button class="control-btn" onclick="document.getElementById('c3-up').click()">Upload Visual</button>
-                            <button class="control-btn" onclick="setProjectLink('c3')">Set Project URL</button>
+                            <button class="btn-global" onclick="document.getElementById('c3-up').click()">Upload Visual</button>
+                            <button class="btn-global" onclick="setProjectLink('c3')">Set Project URL</button>
                         </div>
                         <img id="c3-img" class="hidden">
-                        <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest text-center px-4">SQL Architectures</span>
+                        <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest text-center px-4 italic underline decoration-red-700">Analytical Viewport: SQL</span>
                     </div>
                     <input type="file" id="c3-up" class="hidden" onchange="previewFile(this, 'c3-img')">
-                    <h5 class="text-xs font-black text-white uppercase text-center">SQL Projects</h5>
-                    <div id="c3-link-status" class="status-tag mx-auto block w-fit">Awaiting Link</div>
+                    <div class="text-center">
+                        <h5 class="text-xs font-black text-navy-900 uppercase tracking-widest">SQL Projects</h5>
+                        <div id="c3-link-status" class="status-pill mx-auto block w-fit">Awaiting Link</div>
+                    </div>
                 </div>
-                <!-- Core 4 -->
+
                 <div class="space-y-4">
                     <div class="dashboard-viewport !aspect-square shadow-sm" id="v-c4">
                         <div class="viewport-controls">
-                            <button class="control-btn" onclick="document.getElementById('c4-up').click()">Upload Visual</button>
-                            <button class="control-btn" onclick="setProjectLink('c4')">Set Project URL</button>
+                            <button class="btn-global" onclick="document.getElementById('c4-up').click()">Upload Visual</button>
+                            <button class="btn-global" onclick="setProjectLink('c4')">Set Project URL</button>
                         </div>
                         <img id="c4-img" class="hidden">
-                        <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest text-center px-4">GenAI Workflow</span>
+                        <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest text-center px-4 italic underline decoration-red-700">Analytical Viewport: AI</span>
                     </div>
                     <input type="file" id="c4-up" class="hidden" onchange="previewFile(this, 'c4-img')">
-                    <h5 class="text-xs font-black text-white uppercase text-center">AI Solutions</h5>
-                    <div id="c4-link-status" class="status-tag mx-auto block w-fit">Awaiting Link</div>
+                    <div class="text-center">
+                        <h5 class="text-xs font-black text-navy-900 uppercase tracking-widest">AI Solutions</h5>
+                        <div id="c4-link-status" class="status-pill mx-auto block w-fit">Awaiting Link</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Impact Case Repositories -->
-        <section id="cases" class="section-separator reveal">
-            <div class="flex justify-between items-end mb-16">
+        <!-- Impact Strategic Cases -->
+        <section id="cases" class="mb-24 reveal">
+            <div class="flex justify-between items-end mb-16 border-b border-slate-200 pb-8">
                 <div>
-                    <h2 class="text-5xl font-black text-white uppercase tracking-tighter italic">Impact Cases</h2>
-                    <div class="h-1 bg-red-700 w-24 mt-2"></div>
+                    <h2 class="text-6xl font-black text-navy-900 uppercase tracking-tighter italic">Impact <span class="text-red-700">Milestones</span></h2>
                 </div>
-                <p class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.3em] hidden md:block">Strategic Portfolio View</p>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] hidden md:block italic">Strategic Portfolio Repository</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                <!-- Case 1 -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div class="space-y-6 group">
-                    <div class="dashboard-viewport shadow-sm" id="v-d1">
+                    <div class="dashboard-viewport shadow-sm rounded-sm" id="v-d1">
                         <div class="viewport-controls">
-                            <button class="control-btn" onclick="document.getElementById('d1-up').click()">Upload Visual</button>
-                            <button class="control-btn" onclick="setProjectLink('d1')">Set Project URL</button>
+                            <button class="btn-global" onclick="document.getElementById('d1-up').click()">Upload Visual</button>
+                            <button class="btn-global" onclick="setProjectLink('d1')">Set Project URL</button>
                         </div>
                         <img id="d1-img" class="hidden">
-                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest text-center px-6 group-hover:text-white transition-colors">90% Area Visual View<br><span id="d1-action" onclick="getProjectInsight('Election Intelligence', event)" class="text-red-700 underline mt-4 block cursor-pointer">✨ Start AI Analysis</span></span>
+                        <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest text-center px-10 group-hover:text-white transition-colors underline decoration-red-700 underline-offset-4 tracking-tighter">90% Area Visual View<br><span id="d1-action" onclick="getProjectInsight('Election Intelligence', event)" class="text-red-600 underline mt-4 block cursor-pointer italic font-bold">✨ Start AI Analysis</span></span>
                     </div>
                     <input type="file" id="d1-up" class="hidden" onchange="previewFile(this, 'd1-img')">
-                    <h4 class="text-xl font-bold text-white uppercase">Election Intelligence (US/UK)</h4>
-                    <p id="insight-1" class="text-xs text-gray-600 font-medium leading-relaxed">Large-scale data cleaning and visualization utilizing Looker Studio.</p>
+                    <div class="space-y-3">
+                        <h4 class="text-xl font-bold text-navy-900 uppercase tracking-tight">Election Intelligence (US/UK)</h4>
+                        <p id="insight-1" class="text-sm text-slate-500 font-medium italic uppercase tracking-wider">Large-scale data cleaning and visualization utilizing Looker Studio.</p>
+                    </div>
                 </div>
 
-                <!-- Case 2 -->
                 <div class="space-y-6 group">
-                    <div class="dashboard-viewport shadow-sm" id="v-d2">
+                    <div class="dashboard-viewport shadow-sm rounded-sm" id="v-d2">
                         <div class="viewport-controls">
-                            <button class="control-btn" onclick="document.getElementById('d2-up').click()">Upload Visual</button>
-                            <button class="control-btn" onclick="setProjectLink('d2')">Set Project URL</button>
+                            <button class="btn-global" onclick="document.getElementById('d2-up').click()">Upload Visual</button>
+                            <button class="btn-global" onclick="setProjectLink('d2')">Set Project URL</button>
                         </div>
                         <img id="d2-img" class="hidden">
-                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest text-center px-6 group-hover:text-white transition-colors">Operational Logic View<br><span id="d2-action" onclick="getProjectInsight('Power Apps Workflow', event)" class="text-red-700 underline mt-4 block cursor-pointer">✨ Start AI Analysis</span></span>
+                        <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest text-center px-10 group-hover:text-white transition-colors underline decoration-red-700 underline-offset-4 tracking-tighter">Operational Logic View<br><span id="d2-action" onclick="getProjectInsight('Workflow Automation', event)" class="text-red-600 underline mt-4 block cursor-pointer italic font-bold">✨ Start AI Analysis</span></span>
                     </div>
                     <input type="file" id="d2-up" class="hidden" onchange="previewFile(this, 'd2-img')">
-                    <h4 class="text-xl font-bold text-white uppercase">Power App Workflow Automation</h4>
-                    <p id="insight-2" class="text-xs text-gray-500 font-medium leading-relaxed">Integrating custom Power Apps to automate multifunctional business workflows.</p>
+                    <div class="space-y-3">
+                        <h4 class="text-xl font-bold text-navy-900 uppercase tracking-tight">Power App Workflow Automation</h4>
+                        <p id="insight-2" class="text-sm text-slate-500 font-medium italic uppercase tracking-wider">Integrating custom Power Apps to automate multifunctional business workflows.</p>
+                    </div>
                 </div>
 
-                <!-- Case 3 -->
                 <div class="space-y-6 group">
-                    <div class="dashboard-viewport shadow-sm" id="v-d3">
+                    <div class="dashboard-viewport shadow-sm rounded-sm" id="v-d3">
                         <div class="viewport-controls">
-                            <button class="control-btn" onclick="document.getElementById('d3-up').click()">Upload Visual</button>
-                            <button class="control-btn" onclick="setProjectLink('d3')">Set Project URL</button>
+                            <button class="btn-global" onclick="document.getElementById('d3-up').click()">Upload Visual</button>
+                            <button class="btn-global" onclick="setProjectLink('d3')">Set Project URL</button>
                         </div>
                         <img id="d3-img" class="hidden">
-                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest text-center px-6 group-hover:text-white transition-colors">Architecture Schema View<br><span id="d3-action" onclick="getProjectInsight('Data Modeling', event)" class="text-red-700 underline mt-4 block cursor-pointer">✨ Start AI Analysis</span></span>
+                        <span class="text-[9px] font-black text-slate-500 uppercase tracking-widest text-center px-10 group-hover:text-white transition-colors underline decoration-red-700 underline-offset-4 tracking-tighter">Architecture Schema View<br><span id="d3-action" onclick="getProjectInsight('Data Modeling', event)" class="text-red-600 underline mt-4 block cursor-pointer italic font-bold">✨ Start AI Analysis</span></span>
                     </div>
                     <input type="file" id="d3-up" class="hidden" onchange="previewFile(this, 'd3-img')">
-                    <h4 class="text-xl font-bold text-white uppercase">Automated Data Modeling (RLS)</h4>
-                    <p id="insight-3" class="text-xs text-gray-500 font-medium leading-relaxed">Architecting secured models with reusable DAX and Row-Level access.</p>
+                    <div class="space-y-3">
+                        <h4 class="text-xl font-bold text-navy-900 uppercase tracking-tight">Automated Data Modeling (RLS)</h4>
+                        <p id="insight-3" class="text-sm text-slate-500 font-medium italic uppercase tracking-wider">Architecting secured models with reusable DAX and Row-Level access.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Telemetry Index -->
-        <section id="stats" class="section-separator reveal mb-24">
-            <h3 class="text-3xl font-black mb-16 uppercase tracking-tighter">Technical <span class="text-red-700 italic">Telemetry</span> Index</h3>
+        <!-- Final Competency Matrix -->
+        <section id="matrix" class="reveal mb-24">
+            <h3 class="text-4xl font-black mb-16 uppercase tracking-tighter text-navy-900 underline decoration-slate-200 decoration-8 underline-offset-8">Technical <span class="text-red-700 italic">Telemetry</span> Index</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="command-tile p-8 border-l-4 border-red-700">
-                    <p class="text-[9px] font-black text-red-700 uppercase mb-4 tracking-widest">BI Automation</p>
-                    <ul class="text-xs font-bold space-y-4 text-slate-400 uppercase">
-                        <li class="flex justify-between">Reusable DAX <span>95%</span></li>
-                        <li class="flex justify-between">Auto Refresh <span>90%</span></li>
-                        <li class="flex justify-between">Looker Studio <span>85%</span></li>
+                <div class="command-tile p-8 border-l-4 border-red-700 bg-white">
+                    <p class="text-[10px] font-black text-red-700 uppercase mb-8 tracking-widest">BI Automation</p>
+                    <ul class="text-xs font-bold space-y-4 text-slate-500 uppercase italic">
+                        <li class="flex justify-between border-b border-slate-100 pb-2">Reusable DAX <span class="text-navy-900 not-italic">95%</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2">Auto Refresh <span class="text-navy-900 not-italic">90%</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2">Looker Studio <span class="text-navy-900 not-italic">85%</span></li>
                     </ul>
                 </div>
-                <div class="command-tile p-8 border-l-4 border-red-700">
-                    <p class="text-[9px] font-black text-red-700 uppercase mb-4 tracking-widest">GenAI Core</p>
-                    <ul class="text-xs font-bold space-y-4 text-slate-400 uppercase">
-                        <li class="flex justify-between">Prompt Eng <span>Mid</span></li>
-                        <li class="flex justify-between">Gemini/GPT <span>Elite</span></li>
-                        <li class="flex justify-between">Pythonic <span>Pro</span></li>
+                <div class="command-tile p-8 border-l-4 border-red-700 bg-white">
+                    <p class="text-[10px] font-black text-red-700 uppercase mb-8 tracking-widest">GenAI Integration</p>
+                    <ul class="text-xs font-bold space-y-4 text-slate-500 uppercase italic">
+                        <li class="flex justify-between border-b border-slate-100 pb-2">Prompt Engineering <span class="text-navy-900 not-italic">Mid</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2">Gemini // GPT <span class="text-navy-900 not-italic">Elite</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2">Pythonic <span class="text-navy-900 not-italic">Pro</span></li>
                     </ul>
                 </div>
-                <div class="command-tile p-8 border-l-4 border-red-700">
-                    <p class="text-[9px] font-black text-red-700 uppercase mb-4 tracking-widest">Architecture</p>
-                    <ul class="text-xs font-bold space-y-4 text-slate-400 uppercase">
-                        <li class="flex justify-between">Secure RLS <span>Elite</span></li>
-                        <li class="flex justify-between">Star Schema <span>Gold</span></li>
-                        <li class="flex justify-between">SQL Optimization <span>High</span></li>
+                <div class="command-tile p-8 border-l-4 border-red-700 bg-white">
+                    <p class="text-[10px] font-black text-red-700 uppercase mb-8 tracking-widest">Architecture</p>
+                    <ul class="text-xs font-bold space-y-4 text-slate-500 uppercase italic">
+                        <li class="flex justify-between border-b border-slate-100 pb-2">Secure RLS <span class="text-navy-900 not-italic">Elite</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2">Star Schema <span class="text-navy-900 not-italic">Gold</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2">SQL Optimization <span class="text-navy-900 not-italic">High</span></li>
                     </ul>
                 </div>
-                <div class="command-tile p-8 border-l-4 border-red-700">
-                    <p class="text-[9px] font-black text-red-700 uppercase mb-4 tracking-widest">Business Value</p>
-                    <ul class="text-xs font-bold space-y-4 text-slate-400 uppercase">
-                        <li class="flex justify-between">Effort Recov <span>65%</span></li>
-                        <li class="flex justify-between">Deploy Speed <span>+40%</span></li>
-                        <li class="flex justify-between">ROI Insight <span>High</span></li>
+                <div class="command-tile p-8 border-l-4 border-red-700 bg-white">
+                    <p class="text-[10px] font-black text-red-700 uppercase mb-8 tracking-widest">Business Value</p>
+                    <ul class="text-xs font-bold space-y-4 text-slate-500 uppercase italic">
+                        <li class="flex justify-between border-b border-slate-100 pb-2">Effort Recovery <span class="text-navy-900 not-italic">65%</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2">Deploy Speed <span class="text-navy-900 not-italic">+40%</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2">ROI Insight <span class="text-navy-900 not-italic">High</span></li>
                     </ul>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-black text-white py-24 px-10 border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 text-center md:text-left">
+    <footer class="bg-[#0F172A] text-white py-24 px-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-20 text-center md:text-left">
             <div class="space-y-8 w-full md:w-auto">
-                <h2 class="text-4xl font-extrabold tracking-tighter uppercase mx-auto md:mx-0 italic">Mohammed</h2>
-                <div class="accent-bar mx-auto md:mx-0"></div>
-                <p class="text-gray-600 text-sm max-w-sm font-light leading-relaxed mx-auto md:mx-0 uppercase tracking-wider">Engineering mission-critical BI solutions and high-speed automation for global enterprise performance.</p>
+                <h2 class="text-5xl font-black tracking-tighter uppercase italic">Mohammed</h2>
+                <div class="crimson-ruler mx-auto md:mx-0"></div>
+                <p class="text-slate-400 text-xs max-w-sm font-medium uppercase tracking-[0.2em] leading-loose">Engineering mission-critical BI solutions and high-speed automation for global enterprise performance.</p>
             </div>
-            <div class="grid grid-cols-2 gap-20 mx-auto md:mx-0">
-                <div class="space-y-4">
-                    <p class="text-[10px] font-black uppercase tracking-widest text-red-700">Academic Background</p>
-                    <ul class="text-xs space-y-2 text-gray-300 font-bold uppercase italic">
+            <div class="grid grid-cols-2 gap-24 mx-auto md:mx-0 text-left">
+                <div class="space-y-6">
+                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-red-600 border-b border-white/5 pb-2">Academic Background</p>
+                    <ul class="text-xs space-y-3 text-slate-300 font-bold uppercase italic">
                         <li>MBA Business Analytics</li>
-                        <li class="text-gray-600 font-normal">Osmania University</li>
+                        <li class="text-slate-500 font-normal">Osmania University</li>
                     </ul>
                 </div>
-                <div class="space-y-4">
-                    <p class="text-[10px] font-black uppercase tracking-widest text-red-700">Experience History</p>
-                    <ul class="text-xs space-y-2 text-gray-300 font-bold uppercase italic">
-                        <li>Accenture <span class="text-red-700">(Current)</span></li>
-                        <li class="text-gray-600 font-normal">Cognizant (Alumni)</li>
+                <div class="space-y-6">
+                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-red-600 border-b border-white/5 pb-2">Experience History</p>
+                    <ul class="text-xs space-y-3 text-slate-300 font-bold uppercase italic">
+                        <li>Accenture <span class="text-red-500">(Current)</span></li>
+                        <li>Cognizant (Alumni)</li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto mt-24 pt-12 border-t border-white/5 text-[9px] text-gray-700 font-bold uppercase tracking-[0.4em] text-center">
-            &copy; 2026 Executive Performance Portfolio // Mohammed Ghouse. International Deployment Version.
+        <div class="max-w-7xl mx-auto mt-24 pt-12 border-t border-white/10 text-[9px] text-slate-500 font-bold uppercase tracking-[0.5em] text-center">
+            &copy; 2026 Executive Performance Portfolio // Mohammed Ghouse. Authorized for Global Deployment.
         </div>
     </footer>
 
@@ -643,11 +596,11 @@
         window.onload = function() {
             const today = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = today.toLocaleDateString('en-US', options).toUpperCase();
             
             const headerDate = document.getElementById('header-date');
-            if (headerDate) headerDate.innerText = "FEED SYNC: " + today.toLocaleDateString('en-US', options).toUpperCase();
+            if (headerDate) headerDate.innerText = "FEED SYNCED: " + dateStr;
 
-            // Intersection Observer for Reveal
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add('active');
@@ -656,45 +609,37 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         };
 
-        // --- PROJECT LINK LOGIC ---
         function setProjectLink(id) {
-            const url = prompt("Input Live Deployment URL (e.g., GitHub, PowerBI Service):");
+            const url = prompt("Transmitting Source Link (GitHub, PowerBI Service, etc.):");
             if (url) {
                 projectLinks[id] = url;
                 const status = document.getElementById(id + '-link-status');
                 if (status) {
-                    status.innerText = "LINK ACTIVE";
+                    status.innerText = "TELEMETRY ACTIVE";
                     status.classList.add('status-active');
                 }
                 const action = document.getElementById(id + '-action');
                 if (action) {
-                    action.innerHTML = "🚀 View Live Project";
-                    action.classList.add('text-white', 'font-black');
-                    action.onclick = (e) => {
-                        e.stopPropagation();
-                        window.open(url, '_blank');
-                    };
+                    action.innerHTML = "🚀 Execute Live Telemetry";
+                    action.onclick = (e) => { e.stopPropagation(); window.open(url, '_blank'); };
                 }
             }
         }
 
-        // --- RESUME UPLOAD LOGIC ---
         function handleResumeUpload(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                const file = input.files[0];
                 reader.onload = function(e) {
                     const dl = document.getElementById('resume-dl');
                     const status = document.getElementById('resume-status');
                     dl.href = e.target.result;
-                    status.innerText = "READY: " + file.name.substring(0, 10).toUpperCase() + "...";
-                    status.classList.add('text-white', 'font-bold');
+                    status.innerText = "READY: " + input.files[0].name.substring(0, 10).toUpperCase() + "...";
+                    status.classList.add('text-indigo-600', 'font-bold');
                 };
-                reader.readAsDataURL(file);
+                reader.readAsDataURL(input.files[0]);
             }
         }
 
-        // --- PREVIEW FILE LOGIC ---
         function previewFile(input, id) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
@@ -712,15 +657,14 @@
             }
         }
 
-        // --- GEMINI API HELPERS ---
+        function toggleAI() { document.getElementById('ai-advisor-card').classList.toggle('hidden'); }
+
         async function fetchGemini(model, payload) {
             let retries = 0;
             while (retries <= 5) {
                 try {
                     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
+                        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
                     });
                     if (!res.ok) throw new Error();
                     return await res.json();
@@ -732,26 +676,52 @@
             }
         }
 
-        function pcmToWav(pcmData, sampleRate) {
-            const buffer = new ArrayBuffer(44 + pcmData.length * 2);
-            const view = new DataView(buffer);
-            const writeString = (o, s) => { for (let i = 0; i < s.length; i++) view.setUint8(o + i, s.charCodeAt(i)); };
-            writeString(0, 'RIFF'); view.setUint32(4, 36 + pcmData.length * 2, true);
-            writeString(8, 'WAVE'); writeString(12, 'fmt '); view.setUint32(16, 16, true);
-            view.setUint16(20, 1, true); view.setUint16(22, 1, true);
-            view.setUint32(24, sampleRate, true); view.setUint32(28, sampleRate * 2, true);
-            view.setUint16(32, 2, true); view.setUint16(34, 16, true);
-            writeString(36, 'data'); view.setUint32(40, pcmData.length * 2, true);
-            let offset = 44;
-            for (let i = 0; i < pcmData.length; i++, offset += 2) view.setInt16(offset, pcmData[i], true);
-            return new Blob([buffer], { type: 'audio/wav' });
+        async function askAI() {
+            const input = document.getElementById('ai-input');
+            const chat = document.getElementById('ai-chat-content');
+            const q = input.value.trim();
+            if(!q) return;
+            const u = document.createElement('div');
+            u.className = "text-right font-bold border-r-2 border-indigo-600 pr-2 mb-2 text-[10px] text-navy-900 uppercase";
+            u.innerText = `QUERY >> ${q}`;
+            chat.appendChild(u);
+            input.value = "";
+            const prompt = `Consultative strategist for Mohammed Ghouse, BI Developer at Accenture. Focus on global markets (UK/Qatar/UAE), BI Automation, 65% Effort Recovery. address him as Mohammed. Style: Authoritative, Elite Consulting (McKinsey/BCG style). UI: Platinum Sovereign.`;
+            try {
+                const res = await fetchGemini('gemini-2.5-flash-preview-09-2025', {
+                    contents: [{ parts: [{ text: q }] }],
+                    systemInstruction: { parts: [{ text: prompt }] },
+                    tools: [{ "google_search": {} }]
+                });
+                const txt = res.candidates?.[0]?.content?.parts?.[0]?.text || "Signal lost.";
+                const a = document.createElement('div');
+                a.className = "bg-white p-4 text-[11px] border-l-2 border-indigo-600 italic text-slate-700 shadow-sm";
+                a.innerText = txt;
+                chat.appendChild(a);
+                chat.scrollTop = chat.scrollHeight;
+            } catch (e) { console.error(e); }
+        }
+
+        async function getProjectInsight(name, e) {
+            e.stopPropagation();
+            const idMap = { 'Election Intelligence': 'insight-1', 'Workflow Automation': 'insight-2', 'Data Modeling': 'insight-3' };
+            const id = idMap[name] || 'insight-1';
+            const display = document.getElementById(id);
+            if (!display) return;
+            const originalText = display.innerText;
+            display.innerText = "✨ EXECUTING SOVEREIGN IMPACT ANALYSIS...";
+            const prompt = `Provide a sophisticated reporter-style executive summary for project "${name}" focus on automation, data accuracy, and ROI. 40 words max. Subject: Mohammed. Global prestige style. Context: Platinum UI.`;
+            try {
+                const res = await fetchGemini('gemini-2.5-flash-preview-09-2025', { contents: [{ parts: [{ text: prompt }] }] });
+                display.innerText = res.candidates[0].content.parts[0].text;
+            } catch (e) { display.innerText = "Protocol failure."; }
         }
 
         async function generateAudioBriefing() {
             const btn = document.getElementById('briefing-btn');
             const original = btn.innerHTML;
-            btn.innerHTML = "✨ Syncing Global Briefing...";
-            const text = "Say in an authoritative news reporter voice: This is an exclusive executive dossier on Mohammed Ghouse, a lead BI Developer at Accenture. Mohammed is a specialist in report automation and Prompt Engineering. By leveraging Gemini and ChatGPT to optimize technical schemas, he has recovered sixty-five percent of technical manual effort, providing championship-level ROI for international operations.";
+            btn.innerHTML = "✨ SYNCING GLOBAL BRIEFING...";
+            const text = "Say in an authoritative news reporter voice: This is an exclusive strategic career dossier on Mohammed Ghouse, lead Business Intelligence Developer at Accenture. Mohammed is a high-performance specialist in automated report architecture and Prompt Engineering. By leveraging Gemini and ChatGPT to optimize technical schemas, he has recovered sixty-five percent of technical manual effort, providing championship-level ROI for international operations spanning EMEA and the MENA region.";
             try {
                 const result = await fetchGemini('gemini-2.5-flash-preview-tts', {
                     contents: [{ parts: [{ text }] }],
@@ -770,51 +740,19 @@
             finally { btn.innerHTML = original; }
         }
 
-        async function getProjectInsight(name, e) {
-            e.stopPropagation();
-            const idMap = { 
-                'Election Intelligence': 'insight-1', 
-                'Power Apps Workflow': 'insight-2', 
-                'Data Modeling': 'insight-3'
-            };
-            const id = idMap[name] || 'insight-1';
-            const display = document.getElementById(id);
-            if (!display) return;
-            const originalText = display.innerText;
-            display.innerText = "✨ Requesting Strategic Impact Report...";
-            const prompt = `Provide a sophisticated reporter-style executive summary on the strategic business value of a project titled "${name}" focusing on automation and ROI. Keep it under 40 words. Address the subject as Mohammed.`;
-            try {
-                const res = await fetchGemini('gemini-2.5-flash-preview-09-2025', { contents: [{ parts: [{ text: prompt }] }] });
-                display.innerText = res.candidates[0].content.parts[0].text;
-            } catch (e) { display.innerText = originalText; }
-        }
-
-        function toggleAI() { document.getElementById('ai-advisor').classList.toggle('hidden'); }
-
-        async function askAI() {
-            const input = document.getElementById('ai-input');
-            const chat = document.getElementById('ai-chat-content');
-            const q = input.value.trim();
-            if(!q) return;
-            const u = document.createElement('div');
-            u.className = "text-right font-bold border-r-2 border-red-700 pr-2 mb-2 text-[10px] text-white uppercase";
-            u.innerText = `QUERY >> ${q}`;
-            chat.appendChild(u);
-            input.value = "";
-            const prompt = `Consultative advisor for Mohammed, a BI Developer at Accenture. Expertise: Power BI Automation, Prompt Engineering (Gemini/ChatGPT), reusable query ROI (65% effort recovery), and Geo-Spatial data. Address him as Mohammed only. Theme: Analytical Command (Dark UI). Focus on international readiness for UK and QATAR.`;
-            try {
-                const res = await fetchGemini('gemini-2.5-flash-preview-09-2025', {
-                    contents: [{ parts: [{ text: q }] }],
-                    systemInstruction: { parts: [{ text: prompt }] },
-                    tools: [{ "google_search": {} }]
-                });
-                const txt = res.candidates?.[0]?.content?.parts?.[0]?.text || "Communication lost.";
-                const a = document.createElement('div');
-                a.className = "bg-[#1a1a1a] p-4 text-[11px] border-l-2 border-red-700 italic text-gray-300 shadow-sm";
-                a.innerText = txt;
-                chat.appendChild(a);
-                chat.scrollTop = chat.scrollHeight;
-            } catch (e) { console.error(e); }
+        function pcmToWav(pcmData, sampleRate) {
+            const buffer = new ArrayBuffer(44 + pcmData.length * 2);
+            const view = new DataView(buffer);
+            const writeString = (o, s) => { for (let i = 0; i < s.length; i++) view.setUint8(o + i, s.charCodeAt(i)); };
+            writeString(0, 'RIFF'); view.setUint32(4, 36 + pcmData.length * 2, true);
+            writeString(8, 'WAVE'); writeString(12, 'fmt '); view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true); view.setUint16(22, 1, true);
+            view.setUint32(24, sampleRate, true); view.setUint32(28, sampleRate * 2, true);
+            view.setUint16(32, 2, true); view.setUint16(34, 16, true);
+            writeString(36, 'data'); view.setUint32(40, pcmData.length * 2, true);
+            let offset = 44;
+            for (let i = 0; i < pcmData.length; i++, offset += 2) view.setInt16(offset, pcmData[i], true);
+            return new Blob([buffer], { type: 'audio/wav' });
         }
     </script>
 </body>
