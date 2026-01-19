@@ -1,322 +1,821 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Analytics Workspace | Mohd Ghouse</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Ghouse | BI Developer & Strategic Reporting Analyst - Analytical Command UI</title>
+    <!-- Premium Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --color-bg: #0a0a0a;
+            --color-accent: #A6192E;
+            --color-tech-blue: #6366F1; /* Electric Blue for corners */
+            --color-card: #151515;
+            --color-border: #222222;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+        }
 
-<style>
-:root{
-  --bg:#f3f4f6;
-  --card:#ffffff;
-  --border:#d1d5db;
-  --text:#1f2937;
-  --muted:#6b7280;
-  --accent:#005f73;
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--color-bg);
+            line-height: 1.6;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-  /* Impact colors (sober) */
-  --impact-blue:#e6f0f6;
-  --impact-green:#e9f5ee;
-  --impact-grey:#eef0f3;
-}
+        /* Subtle Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-*{box-sizing:border-box}
+        .accent-bar {
+            height: 4px;
+            width: 40px;
+            background-color: var(--color-accent);
+            margin-bottom: 2rem;
+        }
 
-body{
-  margin:0;
-  background:var(--bg);
-  font-family:Arial, Helvetica, sans-serif;
-  color:var(--text);
-  font-size:12.5px;
-}
+        .section-separator {
+            padding: 4rem 0;
+            border-top: 1px solid var(--color-border);
+        }
 
-.container{
-  max-width:1320px;
-  margin:auto;
-  padding:28px;
-}
+        /* Requirement: 18px Font About Section */
+        .about-text-content {
+            font-size: 18px !important;
+            color: #d1d1d1;
+            background-color: var(--color-card);
+            padding: 3.5rem;
+            border-bottom: 4px solid var(--color-accent);
+        }
+        .about-text-content p {
+            font-size: 18px !important;
+            margin-bottom: 1.5rem;
+        }
 
-/* HEADER */
-.header{
-  background:#e5e7eb;
-  border:1px solid var(--border);
-  padding:18px 24px;
-  margin-bottom:26px;
-}
+        /* Requirement: 512x768 Portrait Frame */
+        .portrait-frame {
+            width: 320px;
+            height: 480px; 
+            background: #111;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .portrait-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.header h1{
-  font-size:14px;
-  margin:0;
-  font-weight:700;
-}
+        /* Dashboard Aspect Ratio 16:9 */
+        .dashboard-viewport {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .dashboard-viewport:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 0 20px rgba(166, 25, 46, 0.2);
+        }
+        .dashboard-viewport img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-/* CONTACT BAR */
-.contact-bar{
-  background:#eef0f3;
-  border:1px solid var(--border);
-  padding:14px 18px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-}
+        /* Viewport Controls */
+        .viewport-controls {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 20;
+        }
+        .dashboard-viewport:hover .viewport-controls {
+            opacity: 1;
+        }
 
-.contact-links{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
+        .control-btn {
+            background: white;
+            color: black;
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            margin: 5px;
+            width: 160px;
+            letter-spacing: 0.1em;
+            transition: all 0.2s;
+        }
+        .control-btn:hover {
+            background: var(--color-accent);
+            color: white;
+        }
 
-.contact-links a{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  text-decoration:none;
-  font-size:12.5px;
-  font-weight:700;
-  color:var(--text);
-}
+        /* Action Tiles */
+        .command-tile {
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+        }
+        .command-tile:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-accent);
+        }
 
-.contact-links img{
-  width:18px;
-  height:18px;
-}
+        .tile-active { border-bottom: 3px solid var(--color-accent); }
 
-.certs img{
-  height:36px;
-  margin-left:14px;
-}
+        /* Tech Logo with Blue Corner Framing */
+        .tech-module {
+            position: relative;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        /* The Blue Corners */
+        .tech-module::before, .tech-module::after, 
+        .tech-module span::before, .tech-module span::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-color: var(--color-tech-blue);
+            border-style: solid;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px var(--color-tech-blue);
+        }
+        
+        /* Top Left */
+        .tech-module::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+        /* Top Right */
+        .tech-module::after { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+        /* Bottom Left */
+        .tech-module span::before { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+        /* Bottom Right */
+        .tech-module span::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
 
-/* PROFILE */
-.profile{
-  display:grid;
-  grid-template-columns:1.4fr 0.9fr;
-  gap:34px;
-  margin-bottom:38px;
-}
+        .tech-module:hover {
+            background: rgba(99, 102, 241, 0.05);
+            transform: scale(1.05);
+        }
+        .tech-module:hover::before, .tech-module:hover::after,
+        .tech-module:hover span::before, .tech-module:hover span::after {
+            width: 12px;
+            height: 12px;
+        }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:22px;
-}
+        .tech-logo {
+            height: 42px;
+            width: auto;
+            filter: none;
+        }
 
-/* ABOUT */
-.about h2{
-  font-size:22px;
-  margin:0 0 14px;
-}
+        .btn-briefing {
+            font-size: 11px;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid var(--color-accent);
+            transition: gap 0.3s;
+        }
+        .btn-briefing:hover {
+            gap: 20px;
+        }
 
-.about p{
-  font-size:15px;
-  line-height:1.6;
-}
+        #ai-advisor {
+            background: #111;
+            border-top: 4px solid var(--color-accent);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        }
 
-.about b{
-  font-size:15px;
-}
-
-/* PHOTO */
-.photo-box img{
-  width:100%;
-  max-height:440px;
-  object-fit:cover;
-  border:1px solid var(--border);
-}
-
-.photo-box input{
-  margin-top:10px;
-}
-
-/* SECTION TITLE */
-.section-title{
-  font-size:14px;
-  font-weight:700;
-  border-bottom:1px solid var(--border);
-  padding-bottom:6px;
-  margin-bottom:18px;
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-
-/* CASE STUDY CARD */
-.case-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:16px;
-}
-
-.case-card h3{
-  font-size:14px;
-  margin-bottom:10px;
-}
-
-.case-card img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border:1px solid var(--border);
-  margin-bottom:8px;
-}
-
-.case-card input{
-  margin-bottom:10px;
-}
-
-/* IMPACT BLOCK */
-.impact{
-  padding:10px;
-  margin-top:8px;
-  font-weight:700;
-  font-size:13px;
-  border-left:4px solid var(--accent);
-}
-
-.impact.blue{background:var(--impact-blue)}
-.impact.green{background:var(--impact-green)}
-.impact.grey{background:var(--impact-grey)}
-
-/* TAGS */
-.tags span{
-  display:inline-block;
-  background:#e5e7eb;
-  padding:4px 8px;
-  font-size:12px;
-  margin-right:6px;
-  margin-top:6px;
-  border-radius:4px;
-}
-
-/* FOOTER */
-footer{
-  margin-top:50px;
-  text-align:center;
-  color:var(--muted);
-  font-size:12px;
-}
-</style>
+        .status-tag {
+            font-size: 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            background: #222;
+            color: #666;
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+        .status-active { color: var(--color-tech-blue); background: rgba(99, 102, 241, 0.1); }
+        
+        .social-link-icon {
+            width: 24px;
+            height: 24px;
+            filter: invert(1) opacity(0.5);
+            transition: all 0.3s;
+        }
+        .social-link-icon:hover {
+            filter: invert(1) opacity(1);
+            transform: scale(1.2);
+        }
+    </style>
 </head>
-
 <body>
-<div class="container">
 
-<!-- HEADER -->
-<div class="header">
-  <h1>Mohd Ghouse — Business Intelligence & Analytics Workspace</h1>
-</div>
-
-<!-- CONTACT -->
-<div class="contact-bar">
-  <div class="contact-links">
-    <a href="https://www.linkedin.com/in/ghoouseismohd13/" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png">LinkedIn
-    </a>
-    <a href="https://github.com/MohdGhouse13" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png">GitHub
-    </a>
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ghouse908@gmail.com" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png">Email
-    </a>
-  </div>
-
-  <div class="certs">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg">
-  </div>
-</div>
-
-<!-- PROFILE -->
-<div class="profile">
-
-  <!-- ABOUT -->
-  <div class="card about">
-    <h2>About</h2>
-    <p>
-      Business Intelligence & Analytics professional delivering enterprise-grade
-      reporting, forecasting, and data-driven insights for executive decision-making.
-    </p>
-    <p>
-      <b>Core Competencies:</b><br>
-      Power BI · Data Modeling · Forecasting · SQL · Python · Pandas · Matplotlib ·
-      Stakeholder Management · KPI Design · Performance Optimization
-    </p>
-  </div>
-
-  <!-- PHOTO -->
-  <div class="card photo-box">
-    <img id="profileImg" src="https://via.placeholder.com/640x440">
-    <input type="file" accept="image/*" onchange="uploadImage(this,'profileImg')">
-  </div>
-
-</div>
-
-<!-- CASE STUDIES -->
-<div class="section-title">Analytics Case Studies</div>
-
-<div class="grid">
-
-  <!-- POWER BI -->
-  <div class="case-card">
-    <h3>Power BI — Sales Forecasting</h3>
-    <img id="cs1">
-    <input type="file" accept="image/*" onchange="uploadImage(this,'cs1')">
-    <div class="impact blue">Impact: Enabled long-term demand planning and reduced manual reporting by ~35%</div>
-    <div class="tags">
-      <span>Power BI</span><span>DAX</span><span>Forecasting</span>
+    <!-- Executive Utility Navigation -->
+    <div class="bg-black py-4 px-10 border-b border-white/5 text-[9px] font-black tracking-[0.3em] uppercase flex justify-between items-center text-gray-500 sticky top-0 z-[100] backdrop-blur-md bg-black/80">
+        <div class="flex items-center gap-4">
+            <span class="text-white border-r border-white/20 pr-4">Mohammed Ghouse</span>
+            <span>Strategic BI Intelligence // International Dossier</span>
+        </div>
+        <span id="header-date">FEED SYNCING...</span>
     </div>
-  </div>
 
-  <!-- PYTHON -->
-  <div class="case-card">
-    <h3>Python — Analytics & EDA</h3>
-    <img id="cs2">
-    <input type="file" accept="image/*" onchange="uploadImage(this,'cs2')">
-    <div class="impact green">Impact: Improved insight accuracy and faster exploratory analysis</div>
-    <div class="tags">
-      <span>Python</span><span>EDA</span><span>Statistics</span>
+    <!-- AI Hub Assistant -->
+    <div id="ai-anchor" class="fixed bottom-10 right-10 z-[101]">
+        <div id="ai-advisor" class="hidden absolute bottom-20 right-0 w-80 md:w-96 flex flex-col overflow-hidden">
+            <div class="bg-[#1a1a1a] p-5 text-white flex justify-between items-center border-b border-white/5">
+                <div>
+                    <p class="text-[8px] font-black tracking-widest uppercase opacity-50">Analytical Assistant</p>
+                    <p class="text-sm font-bold">Copilot Core</p>
+                </div>
+                <button onclick="toggleAI()" class="text-2xl hover:text-red-700">&times;</button>
+            </div>
+            <div id="ai-chat-content" class="h-80 overflow-y-auto p-6 space-y-4 text-xs font-medium bg-[#111] text-gray-400">
+                <div class="italic border-l-2 border-red-700 pl-4">System Online. Technical repositories and live URLs are accessible via individual tiles. state your inquiry.</div>
+            </div>
+            <div class="p-4 border-t border-white/5 bg-[#1a1a1a] flex gap-2">
+                <input type="text" id="ai-input" placeholder="Query technical impact..." class="flex-1 bg-black border-none p-2 text-xs text-white focus:ring-1 focus:ring-red-700 outline-none font-bold">
+                <button onclick="askAI()" class="bg-red-700 text-white px-4 py-2 font-black text-[10px] uppercase">Send</button>
+            </div>
+        </div>
+        <button onclick="toggleAI()" class="w-16 h-16 bg-red-700 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-105 transition-all transform active:scale-95 group">
+            <svg class="w-8 h-8 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        </button>
     </div>
-  </div>
 
-  <!-- PANDAS -->
-  <div class="case-card">
-    <h3>Pandas & Matplotlib</h3>
-    <img id="cs3">
-    <input type="file" accept="image/*" onchange="uploadImage(this,'cs3')">
-    <div class="impact grey">Impact: Clear executive-ready visual storytelling</div>
-    <div class="tags">
-      <span>Pandas</span><span>Matplotlib</span><span>Visualization</span>
-    </div>
-  </div>
+    <main class="max-w-7xl mx-auto px-10 pt-20 pb-20">
 
-</div>
+        <!-- Header Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-20 reveal">
+            <div class="lg:col-span-8 space-y-12">
+                <div class="accent-bar"></div>
+                <div>
+                    <h1 class="text-7xl md:text-8xl font-black text-white leading-[0.85] tracking-tighter uppercase mb-2">
+                        Mohammed
+                    </h1>
+                    <h2 class="text-3xl md:text-4xl font-light text-gray-600 tracking-[0.3em] uppercase">
+                        Ghouse
+                    </h2>
+                </div>
+                <div class="space-y-6">
+                    <p class="text-3xl font-light text-gray-500 italic">BI Developer & Strategic Reporting Analyst at <span class="text-white not-italic font-bold border-b border-red-700">Accenture</span></p>
+                    <p class="text-lg text-gray-400 max-w-xl leading-relaxed">Championing autonomous Business Intelligence ecosystems. Specialized in data modeling, multifunctional stakeholder strategy, and GenAI-integrated automation to drive global ROI.</p>
+                </div>
 
-<footer>
-© 2026 Mohd Ghouse | Internal Analytics Portfolio
-</footer>
+                <!-- Action Tiles Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-1 shadow-2xl">
+                    <!-- Certifications -->
+                    <div class="command-tile tile-active">
+                        <div class="flex gap-4 mb-3">
+                            <div onclick="document.getElementById('badge1-up').click()">
+                                <img id="badge1-img" src="https://via.placeholder.com/64?text=MS" class="h-10 w-auto invert opacity-50 hover:opacity-100" alt="MS">
+                            </div>
+                            <div onclick="document.getElementById('badge2-up').click()">
+                                <img id="badge2-img" src="https://via.placeholder.com/64?text=IBM" class="h-10 w-auto invert opacity-50 hover:opacity-100" alt="IBM">
+                            </div>
+                        </div>
+                        <p class="text-[9px] font-black uppercase tracking-[0.2em] text-red-700">Certifications</p>
+                        <input type="file" id="badge1-up" class="hidden" onchange="previewFile(this, 'badge1-img')">
+                        <input type="file" id="badge2-up" class="hidden" onchange="previewFile(this, 'badge2-img')">
+                    </div>
+                    
+                    <!-- Dynamic Resume Module -->
+                    <div class="command-tile tile-active" id="resume-container">
+                        <div onclick="document.getElementById('resume-up').click()" class="absolute top-3 right-3 opacity-30 hover:opacity-100 transition-opacity" title="Update Master Resume File">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                        </div>
+                        <a id="resume-dl" href="#" download="Mohammed_Ghouse_Resume.pdf" class="flex flex-col items-center">
+                            <svg class="w-8 h-8 mb-3 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            <p class="text-xs font-black uppercase tracking-widest mb-1">Download Resume</p>
+                            <p id="resume-status" class="text-[8px] text-gray-600 uppercase tracking-widest">Awaiting master file</p>
+                        </a>
+                        <input type="file" id="resume-up" class="hidden" onchange="handleResumeUpload(this)">
+                    </div>
 
-</div>
+                    <!-- Enhanced Social Links -->
+                    <div class="command-tile tile-active">
+                        <div class="flex gap-5 justify-center mb-4">
+                            <a href="https://www.linkedin.com/in/ghoouseismohd13/" target="_blank" title="LinkedIn">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="social-link-icon" alt="LinkedIn">
+                            </a>
+                            <a href="https://github.com/MohdGhouse13" target="_blank" title="GitHub">
+                                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="social-link-icon" alt="GitHub">
+                            </a>
+                            <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new" target="_blank" title="Gmail">
+                                <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="social-link-icon" alt="Gmail">
+                            </a>
+                        </div>
+                        <p class="text-[9px] font-black uppercase tracking-widest text-red-700">Network Uplink</p>
+                    </div>
+                </div>
 
-<script>
-function uploadImage(input,id){
-  const reader=new FileReader();
-  reader.onload=()=>{
-    document.getElementById(id).src=reader.result;
-    localStorage[id]=reader.result;
-  };
-  reader.readAsDataURL(input.files[0]);
-}
+                <div class="pt-4">
+                    <button id="briefing-btn" onclick="generateAudioBriefing()" class="btn-briefing group">
+                        <span class="w-3 h-3 bg-red-700 rounded-full animate-pulse group-hover:scale-125 transition-transform"></span>
+                        Initiate Executive Briefing
+                    </button>
+                </div>
+            </div>
 
-window.onload=()=>{
-  ['profileImg','cs1','cs2','cs3'].forEach(id=>{
-    if(localStorage[id]) document.getElementById(id).src=localStorage[id];
-  });
-};
-</script>
+            <!-- Portrait Frame -->
+            <div class="lg:col-span-4 flex justify-center lg:justify-end">
+                <div class="portrait-frame shadow-2xl" onclick="document.getElementById('p-up').click()">
+                    <img id="p-img" src="https://via.placeholder.com/512x768?text=ANALYZING_ID..." alt="Portrait">
+                    <div class="absolute bottom-0 left-0 w-full bg-red-700/90 text-white p-3 text-center text-[9px] font-bold uppercase tracking-[0.2em]">
+                        Validated Analyst Dossier
+                    </div>
+                </div>
+                <input type="file" id="p-up" class="hidden" onchange="previewFile(this, 'p-img')">
+            </div>
+        </section>
 
+        <!-- Technology Ecosystem with Blue Corner Framing -->
+        <section class="mb-20 border-y border-white/5 py-12 reveal">
+            <p class="text-[9px] font-black text-red-700 uppercase tracking-[0.3em] mb-12 text-center">Integrated BI & GenAI Infrastructure</p>
+            <div class="flex flex-wrap items-center justify-center gap-6">
+                <!-- Power BI -->
+                <div class="tech-module">
+                    <span></span>
+                    <img src="https://img.icons8.com/color/48/power-bi.png" class="tech-logo" title="Power BI">
+                </div>
+                <!-- SQL Server -->
+                <div class="tech-module">
+                    <span></span>
+                    <img src="https://img.icons8.com/color/48/microsoft-sql-server.png" class="tech-logo" title="SQL Server">
+                </div>
+                <!-- Python -->
+                <div class="tech-module">
+                    <span></span>
+                    <img src="https://img.icons8.com/color/48/python--v1.png" class="tech-logo" title="Python">
+                </div>
+                <!-- Pandas -->
+                <div class="tech-module">
+                    <span></span>
+                    <img src="https://img.icons8.com/color/48/pandas.png" class="tech-logo" title="Pandas">
+                </div>
+                <!-- Matplotlib -->
+                <div class="tech-module">
+                    <span></span>
+                    <img src="https://img.icons8.com/color/48/matplotlib.png" class="tech-logo" title="Matplotlib">
+                </div>
+                <!-- Gemini -->
+                <div class="tech-module">
+                    <span></span>
+                    <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d473530c25e5e019198.svg" class="tech-logo" style="height: 40px;" title="Gemini AI">
+                </div>
+                <!-- ChatGPT -->
+                <div class="tech-module">
+                    <span></span>
+                    <img src="https://img.icons8.com/color/48/chatgpt.png" class="tech-logo" title="ChatGPT">
+                </div>
+                <!-- Looker -->
+                <div class="tech-module">
+                    <span></span>
+                    <img src="https://img.icons8.com/color/48/google-looker.png" class="tech-logo" title="Looker Studio">
+                </div>
+                <!-- Cognos -->
+                <div class="tech-module">
+                    <span></span>
+                    <img src="https://img.icons8.com/color/48/ibm.png" class="tech-logo" title="Cognos Analytics">
+                </div>
+                <!-- Excel -->
+                <div class="tech-module">
+                    <span></span>
+                    <img src="https://img.icons8.com/color/48/microsoft-excel-2019.png" class="tech-logo" title="Excel">
+                </div>
+            </div>
+        </section>
+
+        <!-- The Perspective -->
+        <section id="perspective" class="reveal mb-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <div class="lg:col-span-4">
+                    <p class="text-[10px] font-black text-red-700 uppercase tracking-widest mb-4">Perspective</p>
+                    <h2 class="text-4xl font-black text-white leading-tight italic uppercase">Automation-First.<br>Intelligence-Driven.</h2>
+                </div>
+                <div class="lg:col-span-8 about-text-content shadow-2xl">
+                    <p>Mohammed initiated his professional journey at <strong>Cognizant (2019 – 2022)</strong> as a Data Associate, mastering the clinical rigor required for mission-critical data hygiene. He specialized in standardizing complex <strong>Geo-Spatial attributes</strong> and spearheaded cleaning and visualization for <strong>US and UK Election datasets</strong> using Looker Studio.</p>
+                    
+                    <p>Today, as a <strong>Business Reporting Analyst at Accenture</strong>, Mohammed pioneers end-to-end Business Intelligence ecosystems. He is a specialist in the <strong>automation of Power BI report architecture</strong>, successfully transitioning manual reporting workflows into autonomous, self-sustaining refresh cycles.</p>
+
+                    <p>By architecting comprehensive libraries of <strong>reusable DAX and Python queries</strong>, Mohammed has effectively reduced technical manual effort by <strong>65% per refresh cycle</strong> and accelerated overall dashboard deployment speed by <strong>40%</strong>. His technical workflow incorporates a <strong>medium-level mastery of Prompt Engineering</strong>, leveraging <strong>Gemini and ChatGPT</strong> to optimize SQL architecture.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Core Grid -->
+        <section id="technical-core" class="reveal mb-20">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 px-4">
+                <!-- Core 1 -->
+                <div class="space-y-4">
+                    <div class="dashboard-viewport !aspect-square shadow-sm" id="v-c1">
+                        <div class="viewport-controls">
+                            <button class="control-btn" onclick="document.getElementById('c1-up').click()">Upload Visual</button>
+                            <button class="control-btn" onclick="setProjectLink('c1')">Set Project URL</button>
+                        </div>
+                        <img id="c1-img" class="hidden">
+                        <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest text-center px-4">Dashboard Repository</span>
+                    </div>
+                    <input type="file" id="c1-up" class="hidden" onchange="previewFile(this, 'c1-img')">
+                    <h5 class="text-xs font-black text-white uppercase text-center">BI Dashboards</h5>
+                    <div id="c1-link-status" class="status-tag mx-auto block w-fit">Awaiting Link</div>
+                </div>
+                <!-- Core 2 -->
+                <div class="space-y-4">
+                    <div class="dashboard-viewport !aspect-square shadow-sm" id="v-c2">
+                        <div class="viewport-controls">
+                            <button class="control-btn" onclick="document.getElementById('c2-up').click()">Upload Visual</button>
+                            <button class="control-btn" onclick="setProjectLink('c2')">Set Project URL</button>
+                        </div>
+                        <img id="c2-img" class="hidden">
+                        <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest text-center px-4">Python Automation</span>
+                    </div>
+                    <input type="file" id="c2-up" class="hidden" onchange="previewFile(this, 'c2-img')">
+                    <h5 class="text-xs font-black text-white uppercase text-center">Python Scripts</h5>
+                    <div id="c2-link-status" class="status-tag mx-auto block w-fit">Awaiting Link</div>
+                </div>
+                <!-- Core 3 -->
+                <div class="space-y-4">
+                    <div class="dashboard-viewport !aspect-square shadow-sm" id="v-c3">
+                        <div class="viewport-controls">
+                            <button class="control-btn" onclick="document.getElementById('c3-up').click()">Upload Visual</button>
+                            <button class="control-btn" onclick="setProjectLink('c3')">Set Project URL</button>
+                        </div>
+                        <img id="c3-img" class="hidden">
+                        <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest text-center px-4">SQL Architectures</span>
+                    </div>
+                    <input type="file" id="c3-up" class="hidden" onchange="previewFile(this, 'c3-img')">
+                    <h5 class="text-xs font-black text-white uppercase text-center">SQL Projects</h5>
+                    <div id="c3-link-status" class="status-tag mx-auto block w-fit">Awaiting Link</div>
+                </div>
+                <!-- Core 4 -->
+                <div class="space-y-4">
+                    <div class="dashboard-viewport !aspect-square shadow-sm" id="v-c4">
+                        <div class="viewport-controls">
+                            <button class="control-btn" onclick="document.getElementById('c4-up').click()">Upload Visual</button>
+                            <button class="control-btn" onclick="setProjectLink('c4')">Set Project URL</button>
+                        </div>
+                        <img id="c4-img" class="hidden">
+                        <span class="text-[8px] font-black text-gray-600 uppercase tracking-widest text-center px-4">GenAI Workflow</span>
+                    </div>
+                    <input type="file" id="c4-up" class="hidden" onchange="previewFile(this, 'c4-img')">
+                    <h5 class="text-xs font-black text-white uppercase text-center">AI Solutions</h5>
+                    <div id="c4-link-status" class="status-tag mx-auto block w-fit">Awaiting Link</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Case Repositories -->
+        <section id="cases" class="section-separator reveal">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-5xl font-black text-white uppercase tracking-tighter italic">Impact Cases</h2>
+                    <div class="h-1 bg-red-700 w-24 mt-2"></div>
+                </div>
+                <p class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.3em] hidden md:block">Strategic Portfolio View</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Case 1 -->
+                <div class="space-y-6 group">
+                    <div class="dashboard-viewport shadow-sm" id="v-d1">
+                        <div class="viewport-controls">
+                            <button class="control-btn" onclick="document.getElementById('d1-up').click()">Upload Visual</button>
+                            <button class="control-btn" onclick="setProjectLink('d1')">Set Project URL</button>
+                        </div>
+                        <img id="d1-img" class="hidden">
+                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest text-center px-6 group-hover:text-white transition-colors">90% Area Visual View<br><span id="d1-action" onclick="getProjectInsight('Election Intelligence', event)" class="text-red-700 underline mt-4 block cursor-pointer">✨ Start AI Analysis</span></span>
+                    </div>
+                    <input type="file" id="d1-up" class="hidden" onchange="previewFile(this, 'd1-img')">
+                    <h4 class="text-xl font-bold text-white uppercase">Election Intelligence (US/UK)</h4>
+                    <p id="insight-1" class="text-xs text-gray-600 font-medium leading-relaxed">Large-scale data cleaning and visualization utilizing Looker Studio.</p>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="space-y-6 group">
+                    <div class="dashboard-viewport shadow-sm" id="v-d2">
+                        <div class="viewport-controls">
+                            <button class="control-btn" onclick="document.getElementById('d2-up').click()">Upload Visual</button>
+                            <button class="control-btn" onclick="setProjectLink('d2')">Set Project URL</button>
+                        </div>
+                        <img id="d2-img" class="hidden">
+                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest text-center px-6 group-hover:text-white transition-colors">Operational Logic View<br><span id="d2-action" onclick="getProjectInsight('Power Apps Workflow', event)" class="text-red-700 underline mt-4 block cursor-pointer">✨ Start AI Analysis</span></span>
+                    </div>
+                    <input type="file" id="d2-up" class="hidden" onchange="previewFile(this, 'd2-img')">
+                    <h4 class="text-xl font-bold text-white uppercase">Power App Workflow Automation</h4>
+                    <p id="insight-2" class="text-xs text-gray-500 font-medium leading-relaxed">Integrating custom Power Apps to automate multifunctional business workflows.</p>
+                </div>
+
+                <!-- Case 3 -->
+                <div class="space-y-6 group">
+                    <div class="dashboard-viewport shadow-sm" id="v-d3">
+                        <div class="viewport-controls">
+                            <button class="control-btn" onclick="document.getElementById('d3-up').click()">Upload Visual</button>
+                            <button class="control-btn" onclick="setProjectLink('d3')">Set Project URL</button>
+                        </div>
+                        <img id="d3-img" class="hidden">
+                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest text-center px-6 group-hover:text-white transition-colors">Architecture Schema View<br><span id="d3-action" onclick="getProjectInsight('Data Modeling', event)" class="text-red-700 underline mt-4 block cursor-pointer">✨ Start AI Analysis</span></span>
+                    </div>
+                    <input type="file" id="d3-up" class="hidden" onchange="previewFile(this, 'd3-img')">
+                    <h4 class="text-xl font-bold text-white uppercase">Automated Data Modeling (RLS)</h4>
+                    <p id="insight-3" class="text-xs text-gray-500 font-medium leading-relaxed">Architecting secured models with reusable DAX and Row-Level access.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Telemetry Index -->
+        <section id="stats" class="section-separator reveal mb-24">
+            <h3 class="text-3xl font-black mb-16 uppercase tracking-tighter">Technical <span class="text-red-700 italic">Telemetry</span> Index</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="command-tile p-8 border-l-4 border-red-700">
+                    <p class="text-[9px] font-black text-red-700 uppercase mb-4 tracking-widest">BI Automation</p>
+                    <ul class="text-xs font-bold space-y-4 text-slate-400 uppercase">
+                        <li class="flex justify-between">Reusable DAX <span>95%</span></li>
+                        <li class="flex justify-between">Auto Refresh <span>90%</span></li>
+                        <li class="flex justify-between">Looker Studio <span>85%</span></li>
+                    </ul>
+                </div>
+                <div class="command-tile p-8 border-l-4 border-red-700">
+                    <p class="text-[9px] font-black text-red-700 uppercase mb-4 tracking-widest">GenAI Core</p>
+                    <ul class="text-xs font-bold space-y-4 text-slate-400 uppercase">
+                        <li class="flex justify-between">Prompt Eng <span>Mid</span></li>
+                        <li class="flex justify-between">Gemini/GPT <span>Elite</span></li>
+                        <li class="flex justify-between">Pythonic <span>Pro</span></li>
+                    </ul>
+                </div>
+                <div class="command-tile p-8 border-l-4 border-red-700">
+                    <p class="text-[9px] font-black text-red-700 uppercase mb-4 tracking-widest">Architecture</p>
+                    <ul class="text-xs font-bold space-y-4 text-slate-400 uppercase">
+                        <li class="flex justify-between">Secure RLS <span>Elite</span></li>
+                        <li class="flex justify-between">Star Schema <span>Gold</span></li>
+                        <li class="flex justify-between">SQL Optimization <span>High</span></li>
+                    </ul>
+                </div>
+                <div class="command-tile p-8 border-l-4 border-red-700">
+                    <p class="text-[9px] font-black text-red-700 uppercase mb-4 tracking-widest">Business Value</p>
+                    <ul class="text-xs font-bold space-y-4 text-slate-400 uppercase">
+                        <li class="flex justify-between">Effort Recov <span>65%</span></li>
+                        <li class="flex justify-between">Deploy Speed <span>+40%</span></li>
+                        <li class="flex justify-between">ROI Insight <span>High</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black text-white py-24 px-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 text-center md:text-left">
+            <div class="space-y-8 w-full md:w-auto">
+                <h2 class="text-4xl font-extrabold tracking-tighter uppercase mx-auto md:mx-0 italic">Mohammed</h2>
+                <div class="accent-bar mx-auto md:mx-0"></div>
+                <p class="text-gray-600 text-sm max-w-sm font-light leading-relaxed mx-auto md:mx-0 uppercase tracking-wider">Engineering mission-critical BI solutions and high-speed automation for global enterprise performance.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-20 mx-auto md:mx-0">
+                <div class="space-y-4">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-red-700">Academic Background</p>
+                    <ul class="text-xs space-y-2 text-gray-300 font-bold uppercase italic">
+                        <li>MBA Business Analytics</li>
+                        <li class="text-gray-600 font-normal">Osmania University</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-red-700">Experience History</p>
+                    <ul class="text-xs space-y-2 text-gray-300 font-bold uppercase italic">
+                        <li>Accenture <span class="text-red-700">(Current)</span></li>
+                        <li class="text-gray-600 font-normal">Cognizant (Alumni)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-24 pt-12 border-t border-white/5 text-[9px] text-gray-700 font-bold uppercase tracking-[0.4em] text-center">
+            &copy; 2026 Executive Performance Portfolio // Mohammed Ghouse. International Deployment Version.
+        </div>
+    </footer>
+
+    <script>
+        const apiKey = ""; 
+        const projectLinks = {};
+
+        window.onload = function() {
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            
+            const headerDate = document.getElementById('header-date');
+            if (headerDate) headerDate.innerText = "FEED SYNC: " + today.toLocaleDateString('en-US', options).toUpperCase();
+
+            // Intersection Observer for Reveal
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        };
+
+        // --- PROJECT LINK LOGIC ---
+        function setProjectLink(id) {
+            const url = prompt("Input Live Deployment URL (e.g., GitHub, PowerBI Service):");
+            if (url) {
+                projectLinks[id] = url;
+                const status = document.getElementById(id + '-link-status');
+                if (status) {
+                    status.innerText = "LINK ACTIVE";
+                    status.classList.add('status-active');
+                }
+                const action = document.getElementById(id + '-action');
+                if (action) {
+                    action.innerHTML = "🚀 View Live Project";
+                    action.classList.add('text-white', 'font-black');
+                    action.onclick = (e) => {
+                        e.stopPropagation();
+                        window.open(url, '_blank');
+                    };
+                }
+            }
+        }
+
+        // --- RESUME UPLOAD LOGIC ---
+        function handleResumeUpload(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                const file = input.files[0];
+                reader.onload = function(e) {
+                    const dl = document.getElementById('resume-dl');
+                    const status = document.getElementById('resume-status');
+                    dl.href = e.target.result;
+                    status.innerText = "READY: " + file.name.substring(0, 10).toUpperCase() + "...";
+                    status.classList.add('text-white', 'font-bold');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // --- PREVIEW FILE LOGIC ---
+        function previewFile(input, id) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = document.getElementById(id);
+                    img.src = e.target.result;
+                    img.classList.remove('hidden');
+                    const parent = img.closest('.dashboard-viewport');
+                    if (parent) {
+                        const spans = parent.querySelectorAll('span');
+                        spans.forEach(s => s.classList.add('hidden'));
+                    }
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // --- GEMINI API HELPERS ---
+        async function fetchGemini(model, payload) {
+            let retries = 0;
+            while (retries <= 5) {
+                try {
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!res.ok) throw new Error();
+                    return await res.json();
+                } catch (e) {
+                    if (retries === 5) throw e;
+                    await new Promise(r => setTimeout(r, Math.pow(2, retries) * 1000));
+                    retries++;
+                }
+            }
+        }
+
+        function pcmToWav(pcmData, sampleRate) {
+            const buffer = new ArrayBuffer(44 + pcmData.length * 2);
+            const view = new DataView(buffer);
+            const writeString = (o, s) => { for (let i = 0; i < s.length; i++) view.setUint8(o + i, s.charCodeAt(i)); };
+            writeString(0, 'RIFF'); view.setUint32(4, 36 + pcmData.length * 2, true);
+            writeString(8, 'WAVE'); writeString(12, 'fmt '); view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true); view.setUint16(22, 1, true);
+            view.setUint32(24, sampleRate, true); view.setUint32(28, sampleRate * 2, true);
+            view.setUint16(32, 2, true); view.setUint16(34, 16, true);
+            writeString(36, 'data'); view.setUint32(40, pcmData.length * 2, true);
+            let offset = 44;
+            for (let i = 0; i < pcmData.length; i++, offset += 2) view.setInt16(offset, pcmData[i], true);
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        async function generateAudioBriefing() {
+            const btn = document.getElementById('briefing-btn');
+            const original = btn.innerHTML;
+            btn.innerHTML = "✨ Syncing Global Briefing...";
+            const text = "Say in an authoritative news reporter voice: This is an exclusive executive dossier on Mohammed Ghouse, a lead BI Developer at Accenture. Mohammed is a specialist in report automation and Prompt Engineering. By leveraging Gemini and ChatGPT to optimize technical schemas, he has recovered sixty-five percent of technical manual effort, providing championship-level ROI for international operations.";
+            try {
+                const result = await fetchGemini('gemini-2.5-flash-preview-tts', {
+                    contents: [{ parts: [{ text }] }],
+                    generationConfig: {
+                        responseModalities: ["AUDIO"],
+                        speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Fenrir" } } }
+                    }
+                });
+                const base64 = result.candidates[0].content.parts[0].inlineData.data;
+                const binary = atob(base64);
+                const bytes = new Int16Array(binary.length / 2);
+                for (let i = 0; i < binary.length; i += 2) bytes[i / 2] = (binary.charCodeAt(i + 1) << 8) | binary.charCodeAt(i);
+                const audio = new Audio(URL.createObjectURL(pcmToWav(bytes, 24000)));
+                audio.play();
+            } catch (err) { console.error(err); }
+            finally { btn.innerHTML = original; }
+        }
+
+        async function getProjectInsight(name, e) {
+            e.stopPropagation();
+            const idMap = { 
+                'Election Intelligence': 'insight-1', 
+                'Power Apps Workflow': 'insight-2', 
+                'Data Modeling': 'insight-3'
+            };
+            const id = idMap[name] || 'insight-1';
+            const display = document.getElementById(id);
+            if (!display) return;
+            const originalText = display.innerText;
+            display.innerText = "✨ Requesting Strategic Impact Report...";
+            const prompt = `Provide a sophisticated reporter-style executive summary on the strategic business value of a project titled "${name}" focusing on automation and ROI. Keep it under 40 words. Address the subject as Mohammed.`;
+            try {
+                const res = await fetchGemini('gemini-2.5-flash-preview-09-2025', { contents: [{ parts: [{ text: prompt }] }] });
+                display.innerText = res.candidates[0].content.parts[0].text;
+            } catch (e) { display.innerText = originalText; }
+        }
+
+        function toggleAI() { document.getElementById('ai-advisor').classList.toggle('hidden'); }
+
+        async function askAI() {
+            const input = document.getElementById('ai-input');
+            const chat = document.getElementById('ai-chat-content');
+            const q = input.value.trim();
+            if(!q) return;
+            const u = document.createElement('div');
+            u.className = "text-right font-bold border-r-2 border-red-700 pr-2 mb-2 text-[10px] text-white uppercase";
+            u.innerText = `QUERY >> ${q}`;
+            chat.appendChild(u);
+            input.value = "";
+            const prompt = `Consultative advisor for Mohammed, a BI Developer at Accenture. Expertise: Power BI Automation, Prompt Engineering (Gemini/ChatGPT), reusable query ROI (65% effort recovery), and Geo-Spatial data. Address him as Mohammed only. Theme: Analytical Command (Dark UI). Focus on international readiness for UK and QATAR.`;
+            try {
+                const res = await fetchGemini('gemini-2.5-flash-preview-09-2025', {
+                    contents: [{ parts: [{ text: q }] }],
+                    systemInstruction: { parts: [{ text: prompt }] },
+                    tools: [{ "google_search": {} }]
+                });
+                const txt = res.candidates?.[0]?.content?.parts?.[0]?.text || "Communication lost.";
+                const a = document.createElement('div');
+                a.className = "bg-[#1a1a1a] p-4 text-[11px] border-l-2 border-red-700 italic text-gray-300 shadow-sm";
+                a.innerText = txt;
+                chat.appendChild(a);
+                chat.scrollTop = chat.scrollHeight;
+            } catch (e) { console.error(e); }
+        }
+    </script>
 </body>
 </html>
