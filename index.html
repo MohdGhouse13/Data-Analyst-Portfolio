@@ -315,12 +315,10 @@
                 <div class="flex flex-wrap gap-4 mb-10">
                     <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded flex items-center gap-8 shadow-sm">
                         <div class="flex gap-4">
-                            <!-- MS Badge Slot -->
                             <div class="relative group badge-slot">
                                 <img id="badge1-img" class="max-h-[85%] max-w-[85%] hidden object-contain" alt="Badge 1">
                                 <input type="file" class="absolute inset-0 opacity-0 cursor-pointer admin-only" onchange="previewFile(this, 'badge1-img')">
                             </div>
-                            <!-- IBM Badge Slot -->
                             <div class="relative group badge-slot">
                                 <img id="badge2-img" class="max-h-[85%] max-w-[85%] hidden object-contain" alt="Badge 2">
                                 <input type="file" class="absolute inset-0 opacity-0 cursor-pointer admin-only" onchange="previewFile(this, 'badge2-img')">
@@ -529,38 +527,64 @@
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
         import { getFirestore, doc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'mohd-ghouse-portfolio-master';
+        let db, auth, appId;
 
-        const initAuth = async () => {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                await signInWithCustomToken(auth, __initial_auth_token);
-            } else {
-                await signInAnonymously(auth);
+        // Function to hide loading screen
+        const hideLoading = () => {
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) {
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.style.display = 'none', 500);
             }
         };
 
-        initAuth();
+        // SAFETY FAIL-SAFE: Automatically dismiss loading screen after 3 seconds
+        const safetyTimer = setTimeout(hideLoading, 3000);
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'content', 'portfolio');
-                onSnapshot(docRef, (docSnap) => {
-                    if (docSnap.exists()) applyCloudData(docSnap.data());
-                    document.getElementById('loading-overlay').style.opacity = '0';
-                    setTimeout(() => document.getElementById('loading-overlay').style.display = 'none', 500);
-                }, (error) => {
-                    console.error("Cloud Access Error:", error);
-                    document.getElementById('loading-overlay').style.display = 'none';
+        try {
+            // Check if firebase config exists (only available in development environment)
+            if (typeof __firebase_config !== 'undefined') {
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+                appId = typeof __app_id !== 'undefined' ? __app_id : 'mohd-ghouse-portfolio-master';
+
+                const initAuth = async () => {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                };
+
+                initAuth();
+
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'content', 'portfolio');
+                        onSnapshot(docRef, (docSnap) => {
+                            clearTimeout(safetyTimer);
+                            if (docSnap.exists()) applyCloudData(docSnap.data());
+                            hideLoading();
+                        }, (error) => {
+                            console.error("Cloud Access Error:", error);
+                            hideLoading();
+                        });
+                    }
                 });
+            } else {
+                // Not in dev environment, proceed in local mode
+                console.warn("Cloud features disabled (Local Mode).");
+                hideLoading();
             }
-        });
+        } catch (e) {
+            console.error("Firebase init failed:", e);
+            hideLoading();
+        }
 
         window.saveToCloud = async function() {
-            if (!auth.currentUser) return;
+            if (!auth || !auth.currentUser) return alert("System Not Authorized for Cloud Operations in Local Mode.");
             const btn = document.getElementById('save-btn');
             btn.innerText = "TRANSMITTING TO CLOUD...";
             btn.disabled = true;
@@ -592,11 +616,10 @@
             try {
                 const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'content', 'portfolio');
                 await setDoc(docRef, payload);
-                alert("CLOUD SYNC SUCCESSFUL. Portfolio is now live and persistent.");
+                alert("CLOUD SYNC SUCCESSFUL.");
                 document.body.classList.remove('is-admin');
             } catch (e) {
-                alert("SYNC ERROR: Payload may exceed 1MB limit. Please compress assets.");
-                console.error(e);
+                alert("SYNC ERROR: Payload too large (Max 1MB). Compress images and retry.");
             } finally {
                 btn.innerText = "Save Changes to Cloud";
                 btn.disabled = false;
@@ -604,13 +627,7 @@
         };
 
         function applyCloudData(data) {
-            const elements = { 
-                'p-img': data.portrait, 
-                'badge1-img': data.badge1, 
-                'badge2-img': data.badge2,
-                'resume-link': data.resume
-            };
-            
+            const elements = { 'p-img': data.portrait, 'badge1-img': data.badge1, 'badge2-img': data.badge2, 'resume-link': data.resume };
             Object.entries(elements).forEach(([id, val]) => {
                 if (val && (val.startsWith('data:') || val.startsWith('http'))) {
                     const el = document.getElementById(id);
@@ -618,24 +635,16 @@
                     else { el.src = val; el.classList.remove('hidden'); }
                 }
             });
-
             if (data.projectImages) {
                 Object.keys(data.projectImages).forEach(id => {
                     const el = document.getElementById(id + '-img');
-                    if (el && data.projectImages[id].startsWith('data:')) {
-                        el.src = data.projectImages[id];
-                        el.classList.remove('hidden');
-                    }
+                    if (el && data.projectImages[id].startsWith('data:')) { el.src = data.projectImages[id]; el.classList.remove('hidden'); }
                 });
             }
-
             if (data.projectStatuses) {
                 Object.keys(data.projectStatuses).forEach(id => {
                     const el = document.getElementById(id + '-status');
-                    if (el) {
-                        el.innerText = data.projectStatuses[id];
-                        if (data.projectStatuses[id].includes('ACTIVE')) el.style.color = "#2563EB";
-                    }
+                    if (el) { el.innerText = data.projectStatuses[id]; if (data.projectStatuses[id].includes('ACTIVE')) el.style.color = "#2563EB"; }
                 });
             }
         }
@@ -653,7 +662,8 @@
             const day = String(today.getDate()).padStart(2, '0');
             const month = String(today.getMonth() + 1).padStart(2, '0');
             const year = today.getFullYear();
-            document.getElementById('header-date').innerText = `${day}.${month}.${year}`;
+            const dateEl = document.getElementById('header-date');
+            if(dateEl) dateEl.innerText = `${day}.${month}.${year}`;
         };
 
         function handleLockClick() {
@@ -692,10 +702,7 @@
                 const reader = new FileReader();
                 const el = document.getElementById(targetId);
                 changeHistory.push({id: targetId, old: el.href, type: 'href'});
-                reader.onload = e => {
-                    el.href = e.target.result;
-                    alert("Master File Source Updated Locally. Click 'Save Changes to Cloud' to finalize deployment.");
-                };
+                reader.onload = e => { el.href = e.target.result; alert("Master File Updated Locally. Save to Cloud to finalize."); };
                 reader.readAsDataURL(input.files[0]);
             }
         }
@@ -703,11 +710,8 @@
         function setLink(id) {
             const el = document.getElementById(id + '-status');
             changeHistory.push({id: id + '-status', old: el.innerText, type: 'status'});
-            const url = prompt("Enter Target Repository Link (GitHub / Power BI URL):");
-            if (url) {
-                el.innerText = "SIGNAL: ACTIVE";
-                el.style.color = "#2563EB";
-            }
+            const url = prompt("Target URL (GitHub/Portfolio):");
+            if (url) { el.innerText = "SIGNAL: ACTIVE"; el.style.color = "#2563EB"; }
         }
     </script>
 </body>
