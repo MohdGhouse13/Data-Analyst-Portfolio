@@ -95,6 +95,8 @@
             animation: scroll 40s linear infinite;
         }
 
+        .marquee-content:hover { animation-play-state: paused; }
+
         .tech-logo-item {
             display: flex;
             align-items: center;
@@ -107,7 +109,9 @@
             height: 48px;
             object-fit: contain;
             filter: grayscale(0.1);
+            transition: all 0.3s;
         }
+        .tech-logo:hover { filter: grayscale(0); transform: scale(1.15); }
 
         .mgmt-btn {
             background: var(--gc-blue);
@@ -315,10 +319,12 @@
                 <div class="flex flex-wrap gap-4 mb-10">
                     <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded flex items-center gap-8 shadow-sm">
                         <div class="flex gap-4">
+                            <!-- MS Badge Slot -->
                             <div class="relative group badge-slot">
                                 <img id="badge1-img" class="max-h-[85%] max-w-[85%] hidden object-contain" alt="Badge 1">
                                 <input type="file" class="absolute inset-0 opacity-0 cursor-pointer admin-only" onchange="previewFile(this, 'badge1-img')">
                             </div>
+                            <!-- IBM Badge Slot -->
                             <div class="relative group badge-slot">
                                 <img id="badge2-img" class="max-h-[85%] max-w-[85%] hidden object-contain" alt="Badge 2">
                                 <input type="file" class="absolute inset-0 opacity-0 cursor-pointer admin-only" onchange="previewFile(this, 'badge2-img')">
@@ -538,11 +544,11 @@
             }
         };
 
-        // SAFETY FAIL-SAFE: Automatically dismiss loading screen after 3 seconds
-        const safetyTimer = setTimeout(hideLoading, 3000);
+        // SAFETY FAIL-SAFE: Always hide loading after 2.5 seconds regardless of sync
+        const safetyTimer = setTimeout(hideLoading, 2500);
 
         try {
-            // Check if firebase config exists (only available in development environment)
+            // Institutional Config Logic
             if (typeof __firebase_config !== 'undefined') {
                 const firebaseConfig = JSON.parse(__firebase_config);
                 const app = initializeApp(firebaseConfig);
@@ -574,17 +580,18 @@
                     }
                 });
             } else {
-                // Not in dev environment, proceed in local mode
-                console.warn("Cloud features disabled (Local Mode).");
+                // Standalone Mode (GitHub/GitLab)
+                console.warn("Cloud features localized. Authentication bypassed.");
                 hideLoading();
             }
         } catch (e) {
-            console.error("Firebase init failed:", e);
+            console.error("Firebase System Fail:", e);
             hideLoading();
         }
 
         window.saveToCloud = async function() {
-            if (!auth || !auth.currentUser) return alert("System Not Authorized for Cloud Operations in Local Mode.");
+            if (!auth || !auth.currentUser) return alert("Standalone Mode Detected: Saving restricted to Institutional Dev Workspace. To enable public cloud save on GitHub, your own Firebase config must be provided.");
+            
             const btn = document.getElementById('save-btn');
             btn.innerText = "TRANSMITTING TO CLOUD...";
             btn.disabled = true;
@@ -616,10 +623,10 @@
             try {
                 const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'content', 'portfolio');
                 await setDoc(docRef, payload);
-                alert("CLOUD SYNC SUCCESSFUL.");
+                alert("CLOUD SYNC SUCCESSFUL. Portfolio data is now globally persistent.");
                 document.body.classList.remove('is-admin');
             } catch (e) {
-                alert("SYNC ERROR: Payload too large (Max 1MB). Compress images and retry.");
+                alert("SYNC ERROR: Payload size exceed limit (Max 1MB). Please compress your images.");
             } finally {
                 btn.innerText = "Save Changes to Cloud";
                 btn.disabled = false;
@@ -638,7 +645,10 @@
             if (data.projectImages) {
                 Object.keys(data.projectImages).forEach(id => {
                     const el = document.getElementById(id + '-img');
-                    if (el && data.projectImages[id].startsWith('data:')) { el.src = data.projectImages[id]; el.classList.remove('hidden'); }
+                    if (el && data.projectImages[id] && data.projectImages[id].startsWith('data:')) {
+                        el.src = data.projectImages[id];
+                        el.classList.remove('hidden');
+                    }
                 });
             }
             if (data.projectStatuses) {
@@ -702,7 +712,7 @@
                 const reader = new FileReader();
                 const el = document.getElementById(targetId);
                 changeHistory.push({id: targetId, old: el.href, type: 'href'});
-                reader.onload = e => { el.href = e.target.result; alert("Master File Updated Locally. Save to Cloud to finalize."); };
+                reader.onload = e => { el.href = e.target.result; alert("Master File Updated Locally. Click 'Save to Cloud' to finalize."); };
                 reader.readAsDataURL(input.files[0]);
             }
         }
