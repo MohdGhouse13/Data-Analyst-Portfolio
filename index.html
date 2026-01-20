@@ -1,150 +1,131 @@
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-  import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-  import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammed Ghouse | Power BI Developer Portfolio</title>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBfo4tviYF-mb8GP5GG7ElN7r_g0z94qO0",
-    authDomain: "bi-developer-portfolio.firebaseapp.com",
-    projectId: "bi-developer-portfolio",
-    storageBucket: "bi-developer-portfolio.firebasestorage.app",
-    messagingSenderId: "361759112211",
-    appId: "1:361759112211:web:0dbebef7db5499768953e6",
-    measurementId: "G-713BL1RHMP"
-  };
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  const appId = "mohd-ghouse-portfolio-master";
+  <style>
+    :root{
+      --gc-blue:#002C77;
+      --gc-accent:#2563EB;
+      --bg:#fff;
+      --surface:#F1F5F9;
+      --text:#334155;
+      --head:#0F172A;
+      --border:#E2E8F0;
+    }
+    body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);margin:0}
+    .nav{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--border);padding:18px 40px;display:flex;justify-content:space-between;align-items:center}
+    .hero-name{font-size:clamp(2.5rem,8vw,4.8rem);line-height:.95;font-weight:900;text-transform:uppercase;margin:0 0 1.5rem}
+    .name1{color:var(--head)} .name2{color:var(--gc-accent)}
+    .card{background:var(--bg);border:1px solid var(--border);border-radius:6px}
+    #loading-overlay{position:fixed;inset:0;background:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:9999;transition:opacity .4s ease}
+  </style>
+</head>
 
-  let db, auth;
+<body>
 
-  const hideLoading = () => {
+  <div id="loading-overlay">
+    <div class="w-12 h-12 border-4 border-blue-800 border-t-transparent rounded-full animate-spin mb-4"></div>
+    <div class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Loading Portfolio...</div>
+  </div>
+
+  <nav class="nav">
+    <div class="flex items-center gap-4">
+      <span class="text-sm font-extrabold text-blue-800 uppercase tracking-tight">BI Developer Portfolio</span>
+      <span class="h-4 w-px bg-slate-200"></span>
+      <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">GitHub Pages Deployment</span>
+    </div>
+    <div class="text-[10px] font-black text-slate-500 uppercase tracking-widest" id="header-date">ONLINE</div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-10 py-24">
+
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-24">
+      <div class="lg:col-span-7">
+        <div class="h-1.5 w-24 bg-blue-800 mb-10"></div>
+
+        <h1 class="hero-name">
+          <span class="name1">Mohammed</span><br>
+          <span class="name2">Ghouse</span>
+        </h1>
+
+        <p class="text-2xl font-light italic text-slate-400 mb-10">
+          BI Developer & Strategic Reporting Analyst at
+          <span class="not-italic font-bold text-blue-800 border-b-2 border-slate-100">Accenture</span>
+        </p>
+
+        <div class="card p-8 flex flex-wrap gap-10 items-center mb-10">
+          <a href="https://www.linkedin.com/in/ghoouseismohd13/" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="w-8 h-8" alt="LinkedIn">
+          </a>
+          <a href="https://github.com/MohdGhouse13" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="w-8 h-8" alt="GitHub">
+          </a>
+          <a href="mailto:ghousemoh908@gmail.com">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="w-8 h-8" alt="Gmail">
+          </a>
+        </div>
+
+        <a class="inline-flex items-center gap-3 bg-[#002C77] text-white px-8 py-4 font-bold uppercase text-xs rounded"
+           href="mailto:ghousemoh908@gmail.com">
+          Contact Me
+        </a>
+      </div>
+
+      <div class="lg:col-span-5 flex justify-end">
+        <div class="card overflow-hidden w-[420px] h-[650px]">
+          <img class="w-full h-full object-cover"
+               src="https://via.placeholder.com/512x768?text=Your+Photo+Here"
+               alt="Portrait">
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <h2 class="text-4xl font-black text-slate-900 mb-8 uppercase">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card p-8">
+          <h3 class="font-black uppercase text-slate-900">Video Games Forecast 2030</h3>
+          <p class="text-slate-500 mt-2 text-sm">Power BI forecasting + trend analysis</p>
+        </div>
+        <div class="card p-8">
+          <h3 class="font-black uppercase text-slate-900">Mental Health Case Study</h3>
+          <p class="text-slate-500 mt-2 text-sm">Workplace wellness analytics</p>
+        </div>
+        <div class="card p-8">
+          <h3 class="font-black uppercase text-slate-900">SQL Architecture Hub</h3>
+          <p class="text-slate-500 mt-2 text-sm">Modeling + RLS security</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-950 text-white py-16 px-10 border-t-8 border-blue-800">
+    <div class="max-w-7xl mx-auto text-sm text-slate-400 uppercase tracking-widest">
+      © Mohammed Ghouse — BI Developer Portfolio
+    </div>
+  </footer>
+
+  <script>
+    // Always hide loader (never allow blank page)
     const overlay = document.getElementById("loading-overlay");
-    if (overlay) {
+    setTimeout(() => {
       overlay.style.opacity = "0";
-      setTimeout(() => overlay.style.display = "none", 500);
-    }
-  };
+      setTimeout(() => overlay.style.display = "none", 400);
+    }, 700);
 
-  const safetyTimer = setTimeout(hideLoading, 2500);
+    const today = new Date();
+    const d = String(today.getDate()).padStart(2, "0");
+    const m = String(today.getMonth() + 1).padStart(2, "0");
+    const y = today.getFullYear();
+    document.getElementById("header-date").innerText = `${d}.${m}.${y}`;
+  </script>
 
-  function applyCloudData(data) {
-    const elements = {
-      "p-img": data.portrait,
-      "badge1-img": data.badge1,
-      "badge2-img": data.badge2,
-      "resume-link": data.resume
-    };
-
-    Object.entries(elements).forEach(([id, val]) => {
-      if (val && (val.startsWith("data:") || val.startsWith("http"))) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        if (id === "resume-link") el.href = val;
-        else {
-          el.src = val;
-          el.classList.remove("hidden");
-        }
-      }
-    });
-
-    if (data.projectImages) {
-      Object.keys(data.projectImages).forEach(id => {
-        const el = document.getElementById(id + "-img");
-        if (el && data.projectImages[id] && (data.projectImages[id].startsWith("data:") || data.projectImages[id].startsWith("http"))) {
-          el.src = data.projectImages[id];
-          el.classList.remove("hidden");
-        }
-      });
-    }
-
-    if (data.projectStatuses) {
-      Object.keys(data.projectStatuses).forEach(id => {
-        const el = document.getElementById(id + "-status");
-        if (el) {
-          el.innerText = data.projectStatuses[id];
-          if (data.projectStatuses[id].includes("ACTIVE")) el.style.color = "#2563EB";
-        }
-      });
-    }
-  }
-
-  window.saveToCloud = async function () {
-    if (!auth || !auth.currentUser) {
-      return alert("Auth not ready. Wait 2 seconds and try again.");
-    }
-
-    const btn = document.getElementById("save-btn");
-    btn.innerText = "TRANSMITTING TO CLOUD...";
-    btn.disabled = true;
-
-    const payload = {
-      portrait: document.getElementById("p-img")?.src || "",
-      badge1: document.getElementById("badge1-img")?.src || "",
-      badge2: document.getElementById("badge2-img")?.src || "",
-      resume: document.getElementById("resume-link")?.href || "",
-      projectImages: {
-        p1: document.getElementById("p1-img")?.src || "",
-        p2: document.getElementById("p2-img")?.src || "",
-        p3: document.getElementById("p3-img")?.src || "",
-        p4: document.getElementById("p4-img")?.src || "",
-        p5: document.getElementById("p5-img")?.src || "",
-        p6: document.getElementById("p6-img")?.src || ""
-      },
-      projectStatuses: {
-        p1: document.getElementById("p1-status")?.innerText || "Offline",
-        p2: document.getElementById("p2-status")?.innerText || "Offline",
-        p3: document.getElementById("p3-status")?.innerText || "Offline",
-        p4: document.getElementById("p4-status")?.innerText || "Offline",
-        p5: document.getElementById("p5-status")?.innerText || "Offline",
-        p6: document.getElementById("p6-status")?.innerText || "Offline"
-      },
-      timestamp: Date.now()
-    };
-
-    try {
-      const docRef = doc(db, "artifacts", appId, "public", "data", "content", "portfolio");
-      await setDoc(docRef, payload);
-      alert("CLOUD SYNC SUCCESSFUL. Portfolio data is now globally persistent.");
-      document.body.classList.remove("is-admin");
-    } catch (e) {
-      console.error("Save Error:", e);
-      alert("SYNC ERROR: Firestore blocked OR payload too large (Max 1MB). Use smaller images.");
-    } finally {
-      btn.innerText = "Save Changes to Cloud";
-      btn.disabled = false;
-    }
-  };
-
-  try {
-    const app = initializeApp(firebaseConfig);
-    auth = getAuth(app);
-    db = getFirestore(app);
-
-    // ✅ No top-level await (Fix blank page)
-    signInAnonymously(auth)
-      .then(() => {
-        onAuthStateChanged(auth, (user) => {
-          if (!user) return;
-
-          const docRef = doc(db, "artifacts", appId, "public", "data", "content", "portfolio");
-
-          onSnapshot(docRef, (docSnap) => {
-            clearTimeout(safetyTimer);
-            if (docSnap.exists()) applyCloudData(docSnap.data());
-            hideLoading();
-          }, (error) => {
-            console.error("Cloud Access Error:", error);
-            hideLoading();
-          });
-        });
-      })
-      .catch((err) => {
-        console.error("Anonymous Auth Error:", err);
-        hideLoading();
-      });
-
-  } catch (e) {
-    console.error("Firebase Init Fail:", e);
-    hideLoading();
-  }
-</script>
+</body>
+</html>
