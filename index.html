@@ -8,302 +8,197 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --apple-bg: #F5F5F7;
-            --apple-card: #FFFFFF;
-            --apple-text-pri: #000000;
-            --apple-footer-grey: #6E6E73;
-            --apple-border: #D2D2D7;
-            --apple-accent: #0066CC;
-            --radius: 22px;
-            --color-bg: var(--apple-bg);
+            --apple-bg: #F5F5F7; --apple-card: #FFFFFF; --apple-text-pri: #000000;
+            --apple-footer-grey: #6E6E73; --apple-border: #D2D2D7; --radius: 22px;
+            --color-bg: var(--apple-bg); --color-surface: var(--apple-card);
         }
-
         .dark-mode {
-            --apple-bg: #000000;
-            --apple-card: #1C1C1E;
-            --apple-text-pri: #FFFFFF;
-            --apple-footer-grey: #A1A1A6;
-            --apple-border: #38383A;
-            --color-bg: var(--apple-bg);
+            --apple-bg: #000000; --apple-card: #1C1C1E; --apple-text-pri: #FFFFFF;
+            --apple-footer-grey: #A1A1A6; --apple-border: #38383A;
         }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--color-bg);
-            color: var(--apple-text-pri);
-            transition: background-color 0.4s ease;
-            line-height: 1.6;
-            margin: 0;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Inter', sans-serif; background-color: var(--color-bg);
+            color: var(--apple-text-pri); transition: all 0.4s ease; margin: 0;
         }
-
-        h1, h2, h3, h4, h5, span, p, a, li { color: var(--apple-text-pri); }
-        footer h2, footer p, footer h5, footer div, footer li, footer span {
-            color: var(--apple-footer-grey) !important;
-        }
-
         .admin-only { display: none !important; }
         body.is-admin .admin-only { display: inline-flex !important; }
         body.is-admin .admin-only-flex { display: flex !important; }
-
-        .nav-glass {
-            background: var(--color-bg);
-            opacity: 0.98;
-            backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--apple-border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 14px 40px;
-        }
-
-        .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.07; font-weight: 800; }
-        .tech-carousel { display: flex; overflow-x: auto; gap: 24px; padding: 20px 0; scrollbar-width: none; }
-        .tech-carousel::-webkit-scrollbar { display: none; }
-        .tech-card { flex: 0 0 auto; width: 140px; height: 140px; background: var(--apple-card); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; border: 1px solid var(--apple-border); transition: transform 0.3s; }
-        
-        .apple-card { background: var(--apple-card); border-radius: var(--radius); padding: 40px; border: 1px solid var(--apple-border); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; height: 100%; }
-        .apple-card:hover { box-shadow: 0 30px 60px rgba(0,0,0,0.06); transform: translateY(-4px); }
-
-        .portrait-frame { width: 100%; max-width: 480px; height: 750px; background: #E8E8ED; border-radius: var(--radius); position: relative; overflow: hidden; border: 1px solid var(--apple-border); }
-        .portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-
-        .visual-viewport { width: 100%; aspect-ratio: 16/10; background: #E8E8ED; border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border: 1px solid var(--apple-border); }
-        .badge-slot { width: 60px; height: 60px; background: #FFFFFF; border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; border: 1px solid var(--apple-border); }
-
-        .apple-button { background: var(--apple-text-pri); color: var(--color-bg) !important; padding: 12px 32px; border-radius: 980px; font-weight: 700; font-size: 0.95rem; cursor: pointer; display: inline-block; }
-        .mgmt-hub { position: absolute; inset: 0; background: rgba(0,0,0,0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; z-index: 10; }
+        .nav-glass { background: var(--color-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--apple-border); position: sticky; top: 0; z-index: 1000; padding: 14px 40px; }
+        .apple-card { background: var(--color-surface); border-radius: var(--radius); padding: 40px; border: 1px solid var(--apple-border); transition: all 0.4s ease; position: relative; overflow: hidden; height: 100%; }
+        .portrait-frame { width: 100%; max-width: 480px; height: 600px; background: #E8E8ED; border-radius: var(--radius); overflow: hidden; position: relative; border: 1px solid var(--apple-border); }
+        .portrait-frame img { width: 100%; height: 100%; object-fit: cover; }
+        .visual-viewport { width: 100%; aspect-ratio: 16/10; background: #E8E8ED; border-radius: 12px; overflow: hidden; position: relative; border: 1px solid var(--apple-border); margin-bottom: 20px; }
+        .visual-viewport img { width: 100%; height: 100%; object-fit: cover; }
+        .apple-button { background: var(--apple-text-pri); color: var(--color-bg) !important; padding: 12px 32px; border-radius: 980px; font-weight: 700; cursor: pointer; }
+        .mgmt-hub { position: absolute; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
         .apple-card:hover .mgmt-hub, .portrait-frame:hover .mgmt-hub { opacity: 1; }
-
-        #loading-overlay { position: fixed; inset: 0; background: var(--apple-bg); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--apple-text-pri); margin-right: 8px; }
+        #loading-overlay { position: fixed; inset: 0; background: var(--apple-bg); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.6s; }
     </style>
 </head>
 <body>
 
-    <div id="loading-overlay">
-        <div class="w-12 h-12 border-2 border-neutral-300 border-t-neutral-800 rounded-full animate-spin mb-6"></div>
-        <span class="text-sm font-bold tracking-tight">Synchronizing Portfolio Intel...</span>
+<div id="loading-overlay">
+    <div class="w-12 h-12 border-2 border-neutral-300 border-t-neutral-800 rounded-full animate-spin mb-4"></div>
+    <span class="text-xs font-bold tracking-widest">CONNECTING TO CLOUD...</span>
+</div>
+
+<nav class="nav-glass">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <span class="font-extrabold text-lg">Mohammed Ghouse</span>
+            <span class="text-[10px] font-bold uppercase opacity-50">BI Architect</span>
+        </div>
+        <div class="flex items-center gap-6">
+            <button onclick="toggleTheme()" class="text-[10px] font-bold uppercase tracking-widest">Theme</button>
+            <span id="lock-trigger" onclick="handleLockClick()" class="w-2 h-2 bg-neutral-400 rounded-full cursor-pointer"></span>
+        </div>
     </div>
+    <div class="admin-only max-w-7xl mx-auto mt-4 pt-4 border-t border-neutral-200 flex gap-4">
+        <button id="save-btn" onclick="saveToCloud()" class="text-[10px] bg-black text-white px-4 py-1.5 rounded-full font-bold">DEPLOY CLOUD SYNC</button>
+    </div>
+</nav>
 
-    <nav class="nav-glass">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <span class="font-extrabold text-lg tracking-tighter">Mohammed Ghouse</span>
-                <span class="h-4 w-px bg-neutral-300 dark:bg-neutral-700"></span>
-                <span class="text-[11px] font-bold uppercase tracking-widest opacity-60">BI Architect</span>
-            </div>
-            <div class="flex items-center gap-6">
-                <button onclick="toggleTheme()" class="text-[11px] font-bold hover:opacity-70 uppercase tracking-widest">Theme</button>
-                <div class="flex items-center gap-2 px-3 py-1 bg-neutral-200/50 dark:bg-neutral-800 rounded-full">
-                    <span id="lock-trigger" onclick="handleLockClick()" class="w-1.5 h-1.5 bg-neutral-400 rounded-full cursor-pointer"></span>
-                    <span class="text-[9px] font-black uppercase tracking-widest opacity-60">Authorized</span>
-                </div>
+<main class="max-w-7xl mx-auto px-6 py-20">
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center mb-32">
+        <div class="lg:col-span-7">
+            <h1 class="text-6xl font-extrabold mb-8 leading-tight">Clinical Intelligence.<br><span class="opacity-30">Strategically Engineered.</span></h1>
+            <p class="text-lg font-medium mb-10 opacity-70">Leading Business Intelligence at <span class="underline">Accenture</span>. Specialist in enterprise-scale data modeling.</p>
+            <div class="flex gap-4 mb-10">
+                <a id="resume-link" href="#" class="apple-button">Get Master Resume</a>
+                <input type="file" id="res-up" class="hidden" onchange="previewFile(this, 'resume-link', true)">
+                <button onclick="document.getElementById('res-up').click()" class="admin-only text-[10px] font-bold">Update PDF</button>
             </div>
         </div>
-        <div class="admin-only max-w-7xl mx-auto mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-800 flex gap-4">
-            <button id="save-btn" onclick="saveToCloud()" class="text-[10px] bg-black text-white dark:bg-white dark:text-black px-4 py-1.5 rounded-full font-bold">DEPLOY CLOUD SYNC</button>
-            <button onclick="undoLastChange()" class="text-[10px] border border-neutral-300 dark:border-neutral-700 px-4 py-1.5 rounded-full font-bold">ROLLBACK</button>
+        <div class="lg:col-span-5">
+            <div class="portrait-frame">
+                <img id="p-img" src="https://via.placeholder.com/500x700" alt="Profile">
+                <div class="mgmt-hub admin-only-flex">
+                    <button onclick="document.getElementById('p-up').click()" class="bg-white text-black px-4 py-2 rounded-full text-xs font-bold">Replace Photo</button>
+                </div>
+                <input type="file" id="p-up" class="hidden" onchange="previewFile(this, 'p-img')">
+            </div>
         </div>
-    </nav>
+    </section>
 
-    <main class="max-w-7xl mx-auto px-6 py-20 lg:py-32">
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center mb-40">
-            <div class="lg:col-span-7">
-                <h2 class="font-extrabold mb-4 uppercase text-xs tracking-widest">Dossier</h2>
-                <h1 class="hero-title mb-8">Clinical Intelligence.<br><span class="opacity-30">Strategically Engineered.</span></h1>
-                <p class="mb-12 max-w-xl text-lg font-bold leading-relaxed">Leading Business Intelligence and Strategic Reporting at <span class="font-extrabold underline decoration-neutral-800 decoration-2">Accenture</span>.</p>
-                <div class="flex flex-wrap gap-8 items-center mb-12">
-                    <div class="flex gap-3">
-                        <div class="badge-slot"><img id="badge1-img" class="max-h-[70%] hidden"><input type="file" class="absolute inset-0 opacity-0 cursor-pointer admin-only" onchange="previewFile(this, 'badge1-img')"></div>
-                        <div class="badge-slot"><img id="badge2-img" class="max-h-[70%] hidden"><input type="file" class="absolute inset-0 opacity-0 cursor-pointer admin-only" onchange="previewFile(this, 'badge2-img')"></div>
-                    </div>
-                    <div class="h-8 w-px bg-neutral-300 dark:bg-neutral-700"></div>
-                    <div class="flex gap-8">
-                        <a href="https://www.linkedin.com/in/ghoouseismohd13/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="w-6 h-6 transition-transform hover:scale-110"></a>
-                        <a href="https://github.com/MohdGhouse13" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="w-6 h-6 filter brightness-0 dark:invert dark:brightness-100 transition-transform hover:scale-110"></a>
-                        <a href="mailto:ghousemoh908@gmail.com"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="w-6 h-6 transition-transform hover:scale-110"></a>
-                    </div>
-                </div>
-                <div class="flex flex-col items-start gap-4">
-                    <a id="resume-link" href="#" download="Mohammed_Ghouse_Resume.pdf" class="apple-button">Get Master Resume</a>
-                    <input type="file" id="res-up" class="hidden" onchange="handleFileUpload(this, 'resume-link')">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="apple-card">
+            <div class="visual-viewport">
+                <img id="p1-img" src="https://via.placeholder.com/800x500" class="hidden">
+                <div class="mgmt-hub admin-only-flex">
+                    <button onclick="document.getElementById('p1-up').click()" class="bg-white text-black px-4 py-2 rounded-full text-xs font-bold">Upload Project</button>
                 </div>
             </div>
-            <div class="lg:col-span-5 flex justify-center lg:justify-end">
-                <div class="portrait-frame">
-                    <img id="p-img" src="https://via.placeholder.com/512x768?text=RESERVED...">
-                    <div class="mgmt-hub admin-only-flex"><button onclick="document.getElementById('p-up').click()" class="text-xs bg-white text-black px-6 py-2 rounded-full font-bold">Replace Asset</button></div>
-                    <input type="file" id="p-up" class="hidden" onchange="previewFile(this, 'p-img')">
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-40">
-            <h3 class="text-2xl font-bold mb-10">Commissions. <span class="opacity-30">Case Studies.</span></h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="apple-card">
-                    <div class="visual-viewport" id="vp-p1"><img id="p1-img" class="hidden h-full w-full object-cover"><div class="mgmt-hub admin-only-flex"><button onclick="document.getElementById('p1-up').click()" class="text-[10px] bg-white text-black px-4 py-1.5 rounded-full font-bold">Upload</button></div></div>
-                    <input type="file" id="p1-up" class="hidden" onchange="previewFile(this, 'p1-img')">
-                    <h5 class="text-2xl font-bold mb-4">Video Games Sales Prediction</h5>
-                    <div id="p1-status" class="text-[10px] font-black uppercase flex items-center"><span class="status-dot"></span>Node: Offline</div>
-                </div>
-                <div class="apple-card">
-                    <div class="visual-viewport" id="vp-p2"><img id="p2-img" class="hidden h-full w-full object-cover"><div class="mgmt-hub admin-only-flex"><button onclick="document.getElementById('p2-up').click()" class="text-[10px] bg-white text-black px-4 py-1.5 rounded-full font-bold">Upload</button></div></div>
-                    <input type="file" id="p2-up" class="hidden" onchange="previewFile(this, 'p2-img')">
-                    <h5 class="text-2xl font-bold mb-4">Mental Health Intelligence</h5>
-                    <div id="p2-status" class="text-[10px] font-black uppercase flex items-center"><span class="status-dot"></span>Node: Offline</div>
-                </div>
-                <div class="apple-card">
-                    <div class="visual-viewport" id="vp-p3"><img id="p3-img" class="hidden h-full w-full object-cover"><div class="mgmt-hub admin-only-flex"><button onclick="document.getElementById('p3-up').click()" class="text-[10px] bg-white text-black px-4 py-1.5 rounded-full font-bold">Upload</button></div></div>
-                    <input type="file" id="p3-up" class="hidden" onchange="previewFile(this, 'p3-img')">
-                    <h5 class="text-2xl font-bold mb-4">Automation Frameworks</h5>
-                    <div id="p3-status" class="text-[10px] font-black uppercase flex items-center"><span class="status-dot"></span>Node: Offline</div>
-                </div>
-                <div class="apple-card">
-                    <div class="visual-viewport" id="vp-p4"><img id="p4-img" class="hidden h-full w-full object-cover"><div class="mgmt-hub admin-only-flex"><button onclick="document.getElementById('p4-up').click()" class="text-[10px] bg-white text-black px-4 py-1.5 rounded-full font-bold">Upload</button></div></div>
-                    <input type="file" id="p4-up" class="hidden" onchange="previewFile(this, 'p4-img')">
-                    <h5 class="text-2xl font-bold mb-4">SQL Architecture Hub</h5>
-                    <div id="p4-status" class="text-[10px] font-black uppercase flex items-center"><span class="status-dot"></span>Node: Offline</div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-white dark:bg-black py-40 px-8 border-t border-neutral-200 dark:border-neutral-800">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
-                <div class="md:col-span-6">
-                    <h2 class="text-5xl font-extrabold mb-10 tracking-tighter">Mohammed Ghouse</h2>
-                    <p class="text-lg font-bold max-w-lg leading-relaxed">Engineering high-speed data intelligence for world-class enterprise performance across Accenture and Cognizant global ecosystems.</p>
-                </div>
-                <div class="md:col-span-3">
-                    <h5 class="text-[11px] font-black uppercase tracking-[0.3em] mb-10">Academic credentials</h5>
-                    <div class="space-y-6">
-                        <div><p class="text-md font-extrabold">MBA Business Analytics</p><p class="text-sm font-bold italic mt-2">Osmania University</p></div>
-                    </div>
-                </div>
-                <div class="md:col-span-3">
-                    <h5 class="text-[11px] font-black uppercase tracking-[0.3em] mb-10">Current deployment</h5>
-                    <div class="space-y-6">
-                        <div><p class="text-md font-extrabold">Accenture <span>(Active)</span></p><p class="text-sm font-bold mt-2">Business Reporting Analyst</p></div>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-12 border-t border-neutral-200 dark:border-neutral-800"><p class="text-[12px] font-extrabold tracking-tight">Copyright © 2026 Mohammed Ghouse. All institutional rights reserved. Authorized access only.</p></div>
+            <input type="file" id="p1-up" class="hidden" onchange="previewFile(this, 'p1-img')">
+            <h5 class="text-2xl font-bold">Video Games Forecast 2030</h5>
         </div>
-    </footer>
+    </div>
+</main>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js';
+    import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js';
+    import { getFirestore, doc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js';
+    import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js';
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBfo4tviYF-mb8GP5GG7ElN7r_g0z94qO0",
-            authDomain: "bi-developer-portfolio.firebaseapp.com",
-            projectId: "bi-developer-portfolio",
-            storageBucket: "bi-developer-portfolio.firebasestorage.app",
-            messagingSenderId: "361759112211",
-            appId: "1:361759112211:web:5d2fa569e3a7a8548953e6",
-            measurementId: "G-TW07J5YETW"
-        };
+    const firebaseConfig = {
+        apiKey: "AIzaSyBfo4tvtYF-mB8GP5GG7ElN7r_g8z94qQ0",
+        authDomain: "bi-developer-portfolio.firebaseapp.com",
+        projectId: "bi-developer-portfolio",
+        storageBucket: "bi-developer-portfolio.appspot.com",
+        messagingSenderId: "361759112211",
+        appId: "1:361759112211:web:0dbebef7db5499768953e6"
+    };
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+    const docId = 'main-portfolio';
 
-        const hideLoading = () => {
-            const overlay = document.getElementById('loading-overlay');
-            if (overlay) { overlay.style.opacity = '0'; setTimeout(() => overlay.style.display = 'none', 600); }
-        };
+    // Helper: Upload file to Storage and return URL
+    async function uploadFile(file, folder) {
+        if (!file) return null;
+        const storageRef = ref(storage, `${folder}/${Date.now()}_${file.name}`);
+        const snapshot = await uploadBytes(storageRef, file);
+        return await getDownloadURL(snapshot.ref);
+    }
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                const docRef = doc(db, 'content', 'portfolio_main');
-                onSnapshot(docRef, (docSnap) => {
-                    if (docSnap.exists()) applyCloudData(docSnap.data());
-                    hideLoading();
-                }, () => hideLoading());
-            } else {
-                signInAnonymously(auth);
-            }
-        });
+    // Save to Cloud Logic
+    window.saveToCloud = async function() {
+        const btn = document.getElementById('save-btn');
+        btn.innerText = "UPLOADING ASSETS...";
+        btn.disabled = true;
 
-        window.saveToCloud = async function() {
-            if (!auth.currentUser) return alert("System Auth Fail.");
-            const btn = document.getElementById('save-btn');
-            btn.innerText = "SYNCHRONIZING...";
-            btn.disabled = true;
+        try {
+            // Check for new files selected in inputs
+            const pFile = document.getElementById('p-up').files[0];
+            const p1File = document.getElementById('p1-up').files[0];
+            const resFile = document.getElementById('res-up').files[0];
+
+            // Upload and get URLs, otherwise keep existing
+            const pUrl = pFile ? await uploadFile(pFile, 'portraits') : document.getElementById('p-img').src;
+            const p1Url = p1File ? await uploadFile(p1File, 'projects') : document.getElementById('p1-img').src;
+            const resUrl = resFile ? await uploadFile(resFile, 'resumes') : document.getElementById('resume-link').href;
 
             const payload = {
-                portrait: document.getElementById('p-img').src,
-                badge1: document.getElementById('badge1-img').src,
-                badge2: document.getElementById('badge2-img').src,
-                resume: document.getElementById('resume-link').href,
-                p1_img: document.getElementById('p1-img').src,
-                p2_img: document.getElementById('p2-img').src,
-                p3_img: document.getElementById('p3-img').src,
-                p4_img: document.getElementById('p4-img').src,
-                timestamp: Date.now()
+                portrait: pUrl,
+                p1_img: p1Url,
+                resume: resUrl,
+                updatedAt: Date.now()
             };
 
-            try {
-                await setDoc(doc(db, 'content', 'portfolio_main'), payload);
-                alert("CLOUD SYNC SUCCESSFUL.");
-                document.body.classList.remove('is-admin');
-            } catch (e) { alert("Error: Payload potentially too large."); }
-            finally { btn.innerText = "DEPLOY CLOUD SYNC"; btn.disabled = false; }
-        };
+            await setDoc(doc(db, 'content', docId), payload);
+            alert("PORTFOLIO SYNCED TO CLOUD");
+            document.body.classList.remove('is-admin');
+        } catch (e) {
+            console.error(e);
+            alert("Sync Failed: " + e.message);
+        } finally {
+            btn.innerText = "DEPLOY CLOUD SYNC";
+            btn.disabled = false;
+        }
+    };
 
-        function applyCloudData(data) {
-            const elements = { 'p-img': data.portrait, 'badge1-img': data.badge1, 'badge2-img': data.badge2, 'resume-link': data.resume };
-            Object.entries(elements).forEach(([id, val]) => {
-                if (val && val.startsWith('data:')) {
-                    const el = document.getElementById(id);
-                    if (id.includes('-link')) el.href = val;
-                    else { el.src = val; el.classList.remove('hidden'); }
+    // Load Data Logic
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            onSnapshot(doc(db, 'content', docId), (snap) => {
+                if (snap.exists()) {
+                    const data = snap.data();
+                    if(data.portrait) document.getElementById('p-img').src = data.portrait;
+                    if(data.p1_img) {
+                        document.getElementById('p1-img').src = data.p1_img;
+                        document.getElementById('p1-img').classList.remove('hidden');
+                    }
+                    if(data.resume) document.getElementById('resume-link').href = data.resume;
                 }
-            });
-            ['p1', 'p2', 'p3', 'p4'].forEach(id => {
-                const src = data[id + '_img'];
-                if (src && src.startsWith('data:')) {
-                    const el = document.getElementById(id + '-img');
-                    if (el) { el.src = src; el.classList.remove('hidden'); }
-                }
+                document.getElementById('loading-overlay').style.opacity = '0';
+                setTimeout(() => document.getElementById('loading-overlay').style.display = 'none', 600);
             });
         }
-    </script>
+    });
 
-    <script>
-        let clickCount = 0; let lastClickTime = 0;
-        function toggleTheme() { document.body.classList.toggle('dark-mode'); }
-        function handleLockClick() {
-            const now = Date.now();
-            if (now - lastClickTime < 500) clickCount++; else clickCount = 1;
-            lastClickTime = now;
-            if (clickCount >= 3) { document.body.classList.toggle('is-admin'); clickCount = 0; }
+    signInAnonymously(auth);
+</script>
+
+<script>
+    let clickCount = 0;
+    function handleLockClick() {
+        clickCount++;
+        if (clickCount >= 3) { document.body.classList.toggle('is-admin'); clickCount = 0; }
+    }
+    function toggleTheme() { document.body.classList.toggle('dark-mode'); }
+    function previewFile(input, targetId, isLink = false) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const el = document.getElementById(targetId);
+                if (isLink) el.href = e.target.result;
+                else { el.src = e.target.result; el.classList.remove('hidden'); }
+            };
+            reader.readAsDataURL(input.files[0]);
         }
-        function previewFile(input, id) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                const target = document.getElementById(id);
-                reader.onload = (e) => {
-                    target.src = e.target.result;
-                    target.classList.remove('hidden');
-                    const parent = target.closest('.badge-slot, .portrait-frame');
-                    if (parent) parent.querySelectorAll('span, p').forEach(p => { if (!p.classList.contains('admin-only')) p.classList.add('hidden'); });
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        function handleFileUpload(input, targetId) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = e => { document.getElementById(targetId).href = e.target.result; alert("Asset localized. Click Sync to save."); };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+    }
+</script>
 </body>
-</html>```eof
+</html>
