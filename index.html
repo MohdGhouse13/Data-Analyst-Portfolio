@@ -3,597 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammed Ghouse | Power-BI Developer Portfolio</title>
-    <!-- Institutional Identity: Pure Inter Suite -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+    <title>Mohammed Ghouse | BI Architect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            /* Institutional Palette */
-            --gc-blue: #002C77;
-            --gc-accent: #2563EB;
-            --color-bg: #FFFFFF;
-            --color-surface: #F1F5F9;
-            --color-text-header: #0F172A; 
-            --color-text-body: #334155; 
-            --color-border: #E2E8F0;
-            --color-danger: #991B1B;
+            --apple-bg: #F5F5F7;
+            --apple-card: #FFFFFF;
+            --apple-text-pri: #000000;
+            --apple-footer-grey: #6E6E73;
+            --apple-border: #D2D2D7;
+            --apple-accent: #0066CC;
+            --radius: 22px;
+            --color-bg: var(--apple-bg);
         }
 
         .dark-mode {
-            --color-bg: #0B0E14;
-            --color-surface: #151921;
-            --color-text-header: #F8FAFC;
-            --color-text-body: #CBD5E1;
-            --color-border: #2D333B;
+            --apple-bg: #000000;
+            --apple-card: #1C1C1E;
+            --apple-text-pri: #FFFFFF;
+            --apple-footer-grey: #A1A1A6;
+            --apple-border: #38383A;
+            --color-bg: var(--apple-bg);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--color-bg);
-            color: var(--color-text-body);
-            transition: background-color 0.4s ease, color 0.4s ease;
-            line-height: 1.8;
+            color: var(--apple-text-pri);
+            transition: background-color 0.4s ease;
+            line-height: 1.6;
             margin: 0;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
         }
 
-        h1, h2, h3, .font-ui { 
-            font-family: 'Inter', sans-serif; 
-            letter-spacing: -0.04em;
-            font-weight: 800;
+        h1, h2, h3, h4, h5, span, p, a, li { color: var(--apple-text-pri); }
+        footer h2, footer p, footer h5, footer div, footer li, footer span {
+            color: var(--apple-footer-grey) !important;
         }
 
-        /* --- GOVERNANCE LOCK SYSTEM --- */
         .admin-only { display: none !important; }
         body.is-admin .admin-only { display: inline-flex !important; }
         body.is-admin .admin-only-flex { display: flex !important; }
-        body.is-admin .badge-slot { border: 2px dashed var(--color-border) !important; }
 
-        .nav-utility {
+        .nav-glass {
             background: var(--color-bg);
-            border-bottom: 1px solid var(--color-border);
-            padding: 18px 40px;
+            opacity: 0.98;
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--apple-border);
             position: sticky;
             top: 0;
             z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(12px);
+            padding: 14px 40px;
         }
 
-        /* Institutional Header - BOLD 900 */
-        .hero-name {
-            font-size: clamp(2.5rem, 8vw, 4.8rem);
-            line-height: 0.95;
-            font-weight: 900; 
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
-        .name-part-1 { color: var(--color-text-header); }
-        .name-part-2 { color: var(--gc-accent); }
+        .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.07; font-weight: 800; }
+        .tech-carousel { display: flex; overflow-x: auto; gap: 24px; padding: 20px 0; scrollbar-width: none; }
+        .tech-carousel::-webkit-scrollbar { display: none; }
+        .tech-card { flex: 0 0 auto; width: 140px; height: 140px; background: var(--apple-card); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; border: 1px solid var(--apple-border); transition: transform 0.3s; }
+        
+        .apple-card { background: var(--apple-card); border-radius: var(--radius); padding: 40px; border: 1px solid var(--apple-border); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; height: 100%; }
+        .apple-card:hover { box-shadow: 0 30px 60px rgba(0,0,0,0.06); transform: translateY(-4px); }
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        .portrait-frame { width: 100%; max-width: 480px; height: 750px; background: #E8E8ED; border-radius: var(--radius); position: relative; overflow: hidden; border: 1px solid var(--apple-border); }
+        .portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 
-        .marquee-container {
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            background: var(--color-surface);
-            padding: 3rem 0;
-            border-top: 1px solid var(--color-border);
-            border-bottom: 1px solid var(--color-border);
-        }
+        .visual-viewport { width: 100%; aspect-ratio: 16/10; background: #E8E8ED; border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border: 1px solid var(--apple-border); }
+        .badge-slot { width: 60px; height: 60px; background: #FFFFFF; border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; border: 1px solid var(--apple-border); }
 
-        .marquee-content {
-            display: inline-flex;
-            animation: scroll 40s linear infinite;
-        }
+        .apple-button { background: var(--apple-text-pri); color: var(--color-bg) !important; padding: 12px 32px; border-radius: 980px; font-weight: 700; font-size: 0.95rem; cursor: pointer; display: inline-block; }
+        .mgmt-hub { position: absolute; inset: 0; background: rgba(0,0,0,0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; z-index: 10; }
+        .apple-card:hover .mgmt-hub, .portrait-frame:hover .mgmt-hub { opacity: 1; }
 
-        .marquee-content:hover { animation-play-state: paused; }
-
-        .tech-logo-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 0 4rem;
-        }
-
-        .tech-logo {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            filter: grayscale(0.1);
-            transition: all 0.3s;
-        }
-        .tech-logo:hover { filter: grayscale(0); transform: scale(1.15); }
-
-        .mgmt-btn {
-            background: var(--gc-blue);
-            color: white;
-            font-size: 9px;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 12px 18px;
-            border-radius: 2px;
-            margin: 4px;
-            cursor: pointer;
-            letter-spacing: 0.08em;
-        }
-
-        /* Portrait - 750px TALL ARCHITECTURE */
-        .portrait-frame {
-            width: 420px;
-            height: 750px; 
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.12);
-        }
-        .portrait-frame img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            object-position: center top; 
-        }
-
-        .mgmt-controls-hub {
-            position: absolute;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.9);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            z-index: 20;
-        }
-        .portrait-frame:hover .mgmt-controls-hub,
-        .visual-viewport:hover .mgmt-controls-hub { opacity: 1; }
-
-        .visual-viewport {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: #000;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .badge-slot {
-            width: 80px;
-            height: 80px;
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: var(--color-bg);
-            transition: border-color 0.2s ease;
-            overflow: hidden;
-        }
-        .badge-slot:hover { border-color: var(--gc-accent); }
-
-        .admin-console-btn {
-            font-size: 9px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            padding: 6px 14px;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .btn-save { background: var(--gc-blue); color: white; }
-        .btn-undo { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; }
-
-        .project-card {
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .project-card:hover { border-color: var(--gc-blue); transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.08); }
-
-        .action-tile {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background-color: var(--gc-blue);
-            color: white;
-            padding: 1.6rem 3rem;
-            border-radius: 2px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            transition: all 0.2s;
-            cursor: pointer;
-            box-shadow: 0 15px 30px rgba(0, 44, 119, 0.15);
-        }
-        .action-tile:hover { transform: translateY(-3px); box-shadow: 0 25px 50px rgba(0, 44, 119, 0.25); }
-
-        /* Pillars with BLACK text headings */
-        .expertise-pillar {
-            border-top: 5px solid var(--gc-blue);
-            background: var(--color-surface);
-            padding: 3.5rem;
-            transition: all 0.4s;
-        }
-        .expertise-pillar:hover { transform: translateY(-8px); background: var(--color-bg); }
-        .expertise-pillar h4 { color: #000000; } 
-        .dark-mode .expertise-pillar h4 { color: #FFFFFF; }
-
-        .method-step {
-            position: relative;
-            padding-left: 4rem;
-            border-left: 2px solid var(--color-border);
-        }
-        .method-step::before {
-            content: "";
-            position: absolute;
-            left: -7px;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            background: var(--gc-blue);
-            border-radius: 50%;
-        }
-
-        #loading-overlay {
-            position: fixed;
-            inset: 0;
-            background: white;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease;
-        }
-        .dark-mode #loading-overlay { background: #0B0E14; }
+        #loading-overlay { position: fixed; inset: 0; background: var(--apple-bg); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--apple-text-pri); margin-right: 8px; }
     </style>
 </head>
 <body>
 
-    <!-- Institutional Auth Mask -->
     <div id="loading-overlay">
-        <div class="w-12 h-12 border-4 border-blue-800 border-t-transparent rounded-full animate-spin mb-4"></div>
-        <span class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Authenticating Institutional Access...</span>
+        <div class="w-12 h-12 border-2 border-neutral-300 border-t-neutral-800 rounded-full animate-spin mb-6"></div>
+        <span class="text-sm font-bold tracking-tight">Synchronizing Portfolio Intel...</span>
     </div>
 
-    <!-- Executive Navigation -->
-    <nav class="nav-utility">
-        <div class="flex items-center gap-4">
-            <span class="font-ui text-sm text-blue-800 uppercase tracking-tighter">Power -Bi Developer Portfolio</span>
-            <span class="h-4 w-px bg-slate-200"></span>
-            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Global Infrastructure Relay</span>
+    <nav class="nav-glass">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <span class="font-extrabold text-lg tracking-tighter">Mohammed Ghouse</span>
+                <span class="h-4 w-px bg-neutral-300 dark:bg-neutral-700"></span>
+                <span class="text-[11px] font-bold uppercase tracking-widest opacity-60">BI Architect</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <button onclick="toggleTheme()" class="text-[11px] font-bold hover:opacity-70 uppercase tracking-widest">Theme</button>
+                <div class="flex items-center gap-2 px-3 py-1 bg-neutral-200/50 dark:bg-neutral-800 rounded-full">
+                    <span id="lock-trigger" onclick="handleLockClick()" class="w-1.5 h-1.5 bg-neutral-400 rounded-full cursor-pointer"></span>
+                    <span class="text-[9px] font-black uppercase tracking-widest opacity-60">Authorized</span>
+                </div>
+            </div>
         </div>
-        <div class="flex flex-col items-end gap-1">
-            <div class="flex items-center gap-8">
-                <div class="flex items-center gap-3">
-                    <span class="text-[9px] font-bold uppercase text-slate-400">Night Mode</span>
-                    <div class="theme-switch" onclick="toggleTheme()"></div>
-                </div>
-                <!-- Live Active Indicator -->
-                <div class="flex items-center gap-2 border-l border-slate-200 dark:border-slate-700 pl-8">
-                    <span id="lock-trigger" onclick="handleLockClick()" class="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse admin-trigger cursor-pointer"></span>
-                    <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-2">
-                        ACTIVE 
-                        <span class="text-slate-300 font-light">|</span>
-                        <span id="header-date" class="text-blue-600 dark:text-blue-400">ONLINE</span>
-                    </span>
-                </div>
-            </div>
-            <!-- Admin Command Console -->
-            <div class="admin-only flex gap-3 mt-1">
-                <button id="save-btn" onclick="saveToCloud()" class="admin-console-btn btn-save">Save Changes to Cloud</button>
-                <button onclick="undoLastChange()" class="admin-console-btn btn-undo">Undo</button>
-            </div>
+        <div class="admin-only max-w-7xl mx-auto mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-800 flex gap-4">
+            <button id="save-btn" onclick="saveToCloud()" class="text-[10px] bg-black text-white dark:bg-white dark:text-black px-4 py-1.5 rounded-full font-bold">DEPLOY CLOUD SYNC</button>
+            <button onclick="undoLastChange()" class="text-[10px] border border-neutral-300 dark:border-neutral-700 px-4 py-1.5 rounded-full font-bold">ROLLBACK</button>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-10 py-32">
-
-        <!-- Hero Section -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start mb-48">
+    <main class="max-w-7xl mx-auto px-6 py-20 lg:py-32">
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center mb-40">
             <div class="lg:col-span-7">
-                <div class="h-1.5 w-24 bg-blue-800 mb-12"></div>
-                <h1 class="hero-name">
-                    <span class="name-part-1">Mohammed</span><br>
-                    <span class="name-part-2">Ghouse</span>
-                </h1>
-                <p class="text-3xl font-light italic text-slate-400 mb-16">BI Developer & Strategic Reporting Analyst at <span class="not-italic font-bold text-blue-800 border-b-2 border-slate-100">Accenture</span></p>
-                
-                <!-- Credentials Hub -->
-                <div class="flex flex-wrap gap-4 mb-10">
-                    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded flex items-center gap-8 shadow-sm">
-                        <div class="flex gap-4">
-                            <!-- MS Badge Slot -->
-                            <div class="relative group badge-slot">
-                                <img id="badge1-img" class="max-h-[85%] max-w-[85%] hidden object-contain" alt="Badge 1">
-                                <input type="file" class="absolute inset-0 opacity-0 cursor-pointer admin-only" onchange="previewFile(this, 'badge1-img')">
-                            </div>
-                            <!-- IBM Badge Slot -->
-                            <div class="relative group badge-slot">
-                                <img id="badge2-img" class="max-h-[85%] max-w-[85%] hidden object-contain" alt="Badge 2">
-                                <input type="file" class="absolute inset-0 opacity-0 cursor-pointer admin-only" onchange="previewFile(this, 'badge2-img')">
-                            </div>
-                        </div>
-                        <div class="flex flex-col ml-3">
-                            <span class="text-[14px] font-bold uppercase tracking-widest text-slate-500">Microsoft & IBM Certified</span>
-                        </div>
+                <h2 class="font-extrabold mb-4 uppercase text-xs tracking-widest">Dossier</h2>
+                <h1 class="hero-title mb-8">Clinical Intelligence.<br><span class="opacity-30">Strategically Engineered.</span></h1>
+                <p class="mb-12 max-w-xl text-lg font-bold leading-relaxed">Leading Business Intelligence and Strategic Reporting at <span class="font-extrabold underline decoration-neutral-800 decoration-2">Accenture</span>.</p>
+                <div class="flex flex-wrap gap-8 items-center mb-12">
+                    <div class="flex gap-3">
+                        <div class="badge-slot"><img id="badge1-img" class="max-h-[70%] hidden"><input type="file" class="absolute inset-0 opacity-0 cursor-pointer admin-only" onchange="previewFile(this, 'badge1-img')"></div>
+                        <div class="badge-slot"><img id="badge2-img" class="max-h-[70%] hidden"><input type="file" class="absolute inset-0 opacity-0 cursor-pointer admin-only" onchange="previewFile(this, 'badge2-img')"></div>
                     </div>
-
-                    <!-- Contact Hub -->
-                    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded flex items-center gap-14 shadow-sm px-12">
-                        <a href="https://www.linkedin.com/in/ghoouseismohd13/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="brand-icon w-8 h-8" alt="LinkedIn"></a>
-                        <a href="https://github.com/MohdGhouse13" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="brand-icon w-8 h-8" alt="GitHub"></a>
-                        <a href="mailto:ghousemoh908@gmail.com"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="brand-icon w-8 h-8" alt="Gmail"></a>
+                    <div class="h-8 w-px bg-neutral-300 dark:bg-neutral-700"></div>
+                    <div class="flex gap-8">
+                        <a href="https://www.linkedin.com/in/ghoouseismohd13/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" class="w-6 h-6 transition-transform hover:scale-110"></a>
+                        <a href="https://github.com/MohdGhouse13" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" class="w-6 h-6 filter brightness-0 dark:invert dark:brightness-100 transition-transform hover:scale-110"></a>
+                        <a href="mailto:ghousemoh908@gmail.com"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" class="w-6 h-6 transition-transform hover:scale-110"></a>
                     </div>
                 </div>
-
-                <!-- Action Hub -->
-                <div class="flex flex-wrap gap-10 items-start">
-                    <div class="flex flex-col items-center">
-                        <a id="resume-link" href="#" download="Mohammed_Ghouse_Resume.pdf" class="action-tile">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                            Download Resume
-                        </a>
-                        <button onclick="document.getElementById('res-up').click()" class="mt-4 text-[10px] font-bold uppercase text-blue-600 admin-only hover:underline tracking-widest">Update Master Source</button>
-                        <input type="file" id="res-up" class="hidden" onchange="handleFileUpload(this, 'resume-link')">
-                    </div>
+                <div class="flex flex-col items-start gap-4">
+                    <a id="resume-link" href="#" download="Mohammed_Ghouse_Resume.pdf" class="apple-button">Get Master Resume</a>
+                    <input type="file" id="res-up" class="hidden" onchange="handleFileUpload(this, 'resume-link')">
                 </div>
             </div>
-
-            <!-- Portrait Frame -->
-            <div class="lg:col-span-5 flex justify-end">
+            <div class="lg:col-span-5 flex justify-center lg:justify-end">
                 <div class="portrait-frame">
-                    <img id="p-img" src="https://via.placeholder.com/512x768?text=SCAN_TO_AUTHORIZE..." alt="Portrait">
-                    <div class="mgmt-controls-hub admin-only-flex">
-                        <button onclick="document.getElementById('p-up').click()" class="mgmt-btn">Update Portrait</button>
-                    </div>
+                    <img id="p-img" src="https://via.placeholder.com/512x768?text=RESERVED...">
+                    <div class="mgmt-hub admin-only-flex"><button onclick="document.getElementById('p-up').click()" class="text-xs bg-white text-black px-6 py-2 rounded-full font-bold">Replace Asset</button></div>
                     <input type="file" id="p-up" class="hidden" onchange="previewFile(this, 'p-img')">
                 </div>
             </div>
         </section>
 
-        <!-- Institutional Expertise -->
-        <section class="mb-48">
-            <h3 class="text-xs font-black text-blue-800 uppercase tracking-[0.4em] mb-16">Institutional Expertise</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-black">
-                <div class="expertise-pillar">
-                    <h4 class="text-2xl font-ui font-black mb-6 uppercase tracking-tighter">Data Engineering</h4>
-                    <p class="text-[15px] text-slate-500 leading-relaxed">Specializing in Python-based ETL pipelines and SQL schema optimization to ensure clinical data hygiene for enterprise-scale ingestion across multi-cloud environments.</p>
+        <section class="mb-40">
+            <h3 class="text-2xl font-bold mb-10">Commissions. <span class="opacity-30">Case Studies.</span></h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="apple-card">
+                    <div class="visual-viewport" id="vp-p1"><img id="p1-img" class="hidden h-full w-full object-cover"><div class="mgmt-hub admin-only-flex"><button onclick="document.getElementById('p1-up').click()" class="text-[10px] bg-white text-black px-4 py-1.5 rounded-full font-bold">Upload</button></div></div>
+                    <input type="file" id="p1-up" class="hidden" onchange="previewFile(this, 'p1-img')">
+                    <h5 class="text-2xl font-bold mb-4">Video Games Sales Prediction</h5>
+                    <div id="p1-status" class="text-[10px] font-black uppercase flex items-center"><span class="status-dot"></span>Node: Offline</div>
                 </div>
-                <div class="expertise-pillar">
-                    <h4 class="text-2xl font-ui font-black mb-6 uppercase tracking-tighter">BI Architecture</h4>
-                    <p class="text-[15px] text-slate-500 leading-relaxed">Architecting high-performance Power BI models using advanced DAX logic and complex relationship mapping to enable seamless executive-level drill-through analysis.</p>
+                <div class="apple-card">
+                    <div class="visual-viewport" id="vp-p2"><img id="p2-img" class="hidden h-full w-full object-cover"><div class="mgmt-hub admin-only-flex"><button onclick="document.getElementById('p2-up').click()" class="text-[10px] bg-white text-black px-4 py-1.5 rounded-full font-bold">Upload</button></div></div>
+                    <input type="file" id="p2-up" class="hidden" onchange="previewFile(this, 'p2-img')">
+                    <h5 class="text-2xl font-bold mb-4">Mental Health Intelligence</h5>
+                    <div id="p2-status" class="text-[10px] font-black uppercase flex items-center"><span class="status-dot"></span>Node: Offline</div>
                 </div>
-                <div class="expertise-pillar">
-                    <h4 class="text-2xl font-ui font-black mb-6 uppercase tracking-tighter">Security Governance</h4>
-                    <p class="text-[15px] text-slate-500 leading-relaxed">Implementing robust Row Level Security (RLS) and spatial clinical hygiene parameters to protect mission-critical datasets across US, UK, and global regions.</p>
+                <div class="apple-card">
+                    <div class="visual-viewport" id="vp-p3"><img id="p3-img" class="hidden h-full w-full object-cover"><div class="mgmt-hub admin-only-flex"><button onclick="document.getElementById('p3-up').click()" class="text-[10px] bg-white text-black px-4 py-1.5 rounded-full font-bold">Upload</button></div></div>
+                    <input type="file" id="p3-up" class="hidden" onchange="previewFile(this, 'p3-img')">
+                    <h5 class="text-2xl font-bold mb-4">Automation Frameworks</h5>
+                    <div id="p3-status" class="text-[10px] font-black uppercase flex items-center"><span class="status-dot"></span>Node: Offline</div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Technical Repositories -->
-        <section class="mb-16 border-b border-slate-100 dark:border-slate-800 pb-12 flex justify-between items-end">
-            <h3 class="text-8xl font-ui font-black text-slate-900 dark:text-white uppercase leading-none">Projects</h3>
-            <span class="text-[12px] font-bold text-slate-400 uppercase tracking-[0.3em] mb-2 italic">Institutional Repositories</span>
-        </section>
-
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 mb-48">
-            <!-- Project 1-6 Architecture -->
-            <div class="project-card">
-                <div class="visual-viewport" id="vp-p1">
-                    <img id="p1-img" class="hidden h-full w-full object-cover">
-                    <div class="mgmt-controls-hub admin-only-flex">
-                        <button class="mgmt-btn" onclick="document.getElementById('p1-up').click()">Upload Visual</button>
-                        <button class="mgmt-btn !bg-slate-700" onclick="setLink('p1')">Set Link</button>
-                    </div>
-                </div>
-                <input type="file" id="p1-up" class="hidden" onchange="previewFile(this, 'p1-img')">
-                <div class="p-12">
-                    <h5 class="text-xl font-ui font-black text-slate-900 dark:text-white mb-4 uppercase">Video Games Forecast 2030</h5>
-                    <p class="text-sm text-slate-400 font-medium italic">Predicting global titles, consoles, and publishers utilizing historical market shifts.</p>
-                    <div id="p1-status" class="text-[10px] font-bold uppercase text-slate-300 mt-4">Offline</div>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="visual-viewport" id="vp-p2">
-                    <img id="p2-img" class="hidden h-full w-full object-cover">
-                    <div class="mgmt-controls-hub admin-only-flex">
-                        <button class="mgmt-btn" onclick="document.getElementById('p2-up').click()">Upload Visual</button>
-                        <button class="mgmt-btn !bg-slate-700" onclick="setLink('p2')">Set Link</button>
-                    </div>
-                </div>
-                <input type="file" id="p2-up" class="hidden" onchange="previewFile(this, 'p2-img')">
-                <div class="p-12">
-                    <h5 class="text-xl font-ui font-black text-slate-900 dark:text-white mb-4 uppercase">Case Study: Mental Health</h5>
-                    <p class="text-sm text-slate-400 font-medium italic">Analyzing workplace wellness trends and intervention efficacy globally.</p>
-                    <div id="p2-status" class="text-[10px] font-bold uppercase text-slate-300 mt-4">Offline</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="visual-viewport" id="vp-p3">
-                    <img id="p3-img" class="hidden h-full w-full object-cover">
-                    <div class="mgmt-controls-hub admin-only-flex">
-                        <button class="mgmt-btn" onclick="document.getElementById('p3-up').click()">Upload Visual</button>
-                        <button class="mgmt-btn !bg-slate-700" onclick="setLink('p3')">Set Link</button>
-                    </div>
-                </div>
-                <input type="file" id="p3-up" class="hidden" onchange="previewFile(this, 'p3-img')">
-                <div class="p-12">
-                    <h5 class="text-xl font-ui font-black text-slate-900 dark:text-white mb-4 uppercase">Automation Scripts</h5>
-                    <p class="text-sm text-slate-400 font-medium italic">Python-based ETL frameworks reducing manual technical debt by 65% per cycle.</p>
-                    <div id="p3-status" class="text-[10px] font-bold uppercase text-slate-300 mt-4">Offline</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="visual-viewport" id="vp-p4">
-                    <img id="p4-img" class="hidden h-full w-full object-cover">
-                    <div class="mgmt-controls-hub admin-only-flex">
-                        <button class="mgmt-btn" onclick="document.getElementById('p4-up').click()">Upload Visual</button>
-                        <button class="mgmt-btn !bg-slate-700" onclick="setLink('p4')">Set Link</button>
-                    </div>
-                </div>
-                <input type="file" id="p4-up" class="hidden" onchange="previewFile(this, 'p4-img')">
-                <div class="p-12">
-                    <h5 class="text-xl font-ui font-black text-slate-900 dark:text-white mb-4 uppercase">SQL Architecture Hub</h5>
-                    <p class="text-sm text-slate-400 font-medium italic">Strategic relationship modeling and RLS security parameters for sensitive datasets.</p>
-                    <div id="p4-status" class="text-[10px] font-bold uppercase text-slate-300 mt-4">Offline</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="visual-viewport" id="vp-p5">
-                    <img id="p5-img" class="hidden h-full w-full object-cover">
-                    <div class="mgmt-controls-hub admin-only-flex">
-                        <button class="mgmt-btn" onclick="document.getElementById('p5-up').click()">Upload Visual</button>
-                        <button class="mgmt-btn !bg-slate-700" onclick="setLink('p5')">Set Link</button>
-                    </div>
-                </div>
-                <input type="file" id="p5-up" class="hidden" onchange="previewFile(this, 'p5-img')">
-                <div class="p-12">
-                    <h5 class="text-xl font-ui font-black text-slate-900 dark:text-white mb-4 uppercase">GenAI Integration</h5>
-                    <p class="text-sm text-slate-400 font-medium italic">Expert prompt engineering bridging backend logic with clinical executive clarity.</p>
-                    <div id="p5-status" class="text-[10px] font-bold uppercase text-slate-300 mt-4">Offline</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="visual-viewport" id="vp-p6">
-                    <img id="p6-img" class="hidden h-full w-full object-cover">
-                    <div class="mgmt-controls-hub admin-only-flex">
-                        <button class="mgmt-btn" onclick="document.getElementById('p6-up').click()">Upload Visual</button>
-                        <button class="mgmt-btn !bg-slate-700" onclick="setLink('p6')">Set Link</button>
-                    </div>
-                </div>
-                <input type="file" id="p6-up" class="hidden" onchange="previewFile(this, 'p6-img')">
-                <div class="p-12">
-                    <h5 class="text-xl font-ui font-black text-slate-900 dark:text-white mb-4 uppercase">Election Analytics</h5>
-                    <p class="text-sm text-slate-400 font-medium italic">Geospatial clinical hygiene and visualization for US/UK election datasets.</p>
-                    <div id="p6-status" class="text-[10px] font-bold uppercase text-slate-300 mt-4">Offline</div>
+                <div class="apple-card">
+                    <div class="visual-viewport" id="vp-p4"><img id="p4-img" class="hidden h-full w-full object-cover"><div class="mgmt-hub admin-only-flex"><button onclick="document.getElementById('p4-up').click()" class="text-[10px] bg-white text-black px-4 py-1.5 rounded-full font-bold">Upload</button></div></div>
+                    <input type="file" id="p4-up" class="hidden" onchange="previewFile(this, 'p4-img')">
+                    <h5 class="text-2xl font-bold mb-4">SQL Architecture Hub</h5>
+                    <div id="p4-status" class="text-[10px] font-black uppercase flex items-center"><span class="status-dot"></span>Node: Offline</div>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- Final Institutional Footer -->
-    <footer class="bg-slate-950 text-white py-40 px-12 border-t-8 border-blue-800">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-40">
-            <div>
-                <h2 class="text-7xl font-ui italic mb-10 uppercase tracking-tighter">
-                    <span class="text-white">Mohammed</span><br>
-                    <span class="name-part-2">Ghouse</span>
-                </h2>
-                <div class="h-1.5 w-32 bg-blue-700 mb-12"></div>
-                <p class="text-slate-500 text-sm max-w-md font-medium uppercase tracking-widest leading-loose italic mb-12">Engineering high-speed data intelligence for world-class enterprise performance across Accenture and Cognizant global ecosystems.</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-16 text-left">
-                <div>
-                    <p class="text-[12px] font-bold uppercase text-blue-500 border-b border-white/10 pb-6 mb-10 tracking-[0.3em]">Academic Credentials</p>
-                    <ul class="text-[14px] space-y-8 text-slate-400 font-bold uppercase italic">
-                        <li>MBA Business Analytics</li>
-                        <li class="text-slate-600 font-normal">Osmania University</li>
-                    </ul>
+    <footer class="bg-white dark:bg-black py-40 px-8 border-t border-neutral-200 dark:border-neutral-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
+                <div class="md:col-span-6">
+                    <h2 class="text-5xl font-extrabold mb-10 tracking-tighter">Mohammed Ghouse</h2>
+                    <p class="text-lg font-bold max-w-lg leading-relaxed">Engineering high-speed data intelligence for world-class enterprise performance across Accenture and Cognizant global ecosystems.</p>
                 </div>
-                <div>
-                    <p class="text-[12px] font-bold uppercase text-blue-500 border-b border-white/10 pb-6 mb-10 tracking-[0.3em]">Current Deployment</p>
-                    <ul class="text-[14px] space-y-8 text-slate-400 font-bold uppercase italic">
-                        <li>Accenture <span class="text-blue-500">(Active)</span></li>
-                        <li class="text-slate-600 font-normal">Business Reporting Analyst</li>
-                    </ul>
+                <div class="md:col-span-3">
+                    <h5 class="text-[11px] font-black uppercase tracking-[0.3em] mb-10">Academic credentials</h5>
+                    <div class="space-y-6">
+                        <div><p class="text-md font-extrabold">MBA Business Analytics</p><p class="text-sm font-bold italic mt-2">Osmania University</p></div>
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                    <h5 class="text-[11px] font-black uppercase tracking-[0.3em] mb-10">Current deployment</h5>
+                    <div class="space-y-6">
+                        <div><p class="text-md font-extrabold">Accenture <span>(Active)</span></p><p class="text-sm font-bold mt-2">Business Reporting Analyst</p></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="legal-footer italic opacity-30">
-            WARNING: UNAUTHORIZED REPRODUCTION, REDISTRIBUTION, OR MODIFICATION OF THIS DOSSIER WILL LEAD TO SERIOUS LEGAL ACTION. REGISTERED FOR PROFESSIONAL USE ONLY.
+            <div class="pt-12 border-t border-neutral-200 dark:border-neutral-800"><p class="text-[12px] font-extrabold tracking-tight">Copyright © 2026 Mohammed Ghouse. All institutional rights reserved. Authorized access only.</p></div>
         </div>
     </footer>
 
-    <!-- Firebase Integration -->
     <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
-        import { getFirestore, doc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        let db, auth, appId;
-
-        // Function to hide loading screen
-        const hideLoading = () => {
-            const overlay = document.getElementById('loading-overlay');
-            if (overlay) {
-                overlay.style.opacity = '0';
-                setTimeout(() => overlay.style.display = 'none', 500);
-            }
+        const firebaseConfig = {
+            apiKey: "AIzaSyBfo4tviYF-mb8GP5GG7ElN7r_g0z94qO0",
+            authDomain: "bi-developer-portfolio.firebaseapp.com",
+            projectId: "bi-developer-portfolio",
+            storageBucket: "bi-developer-portfolio.firebasestorage.app",
+            messagingSenderId: "361759112211",
+            appId: "1:361759112211:web:5d2fa569e3a7a8548953e6",
+            measurementId: "G-TW07J5YETW"
         };
 
-        // SAFETY FAIL-SAFE: Always hide loading after 2.5 seconds regardless of sync
-        const safetyTimer = setTimeout(hideLoading, 2500);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
 
-        try {
-            // Institutional Config Logic
-            if (typeof __firebase_config !== 'undefined') {
-                const firebaseConfig = JSON.parse(__firebase_config);
-                const app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-                appId = typeof __app_id !== 'undefined' ? __app_id : 'mohd-ghouse-portfolio-master';
+        const hideLoading = () => {
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) { overlay.style.opacity = '0'; setTimeout(() => overlay.style.display = 'none', 600); }
+        };
 
-                const initAuth = async () => {
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                };
-
-                initAuth();
-
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'content', 'portfolio');
-                        onSnapshot(docRef, (docSnap) => {
-                            clearTimeout(safetyTimer);
-                            if (docSnap.exists()) applyCloudData(docSnap.data());
-                            hideLoading();
-                        }, (error) => {
-                            console.error("Cloud Access Error:", error);
-                            hideLoading();
-                        });
-                    }
-                });
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const docRef = doc(db, 'content', 'portfolio_main');
+                onSnapshot(docRef, (docSnap) => {
+                    if (docSnap.exists()) applyCloudData(docSnap.data());
+                    hideLoading();
+                }, () => hideLoading());
             } else {
-                // Standalone Mode (GitHub/GitLab)
-                console.warn("Cloud features localized. Authentication bypassed.");
-                hideLoading();
+                signInAnonymously(auth);
             }
-        } catch (e) {
-            console.error("Firebase System Fail:", e);
-            hideLoading();
-        }
+        });
 
         window.saveToCloud = async function() {
-            if (!auth || !auth.currentUser) return alert("Standalone Mode Detected: Saving restricted to Institutional Dev Workspace. To enable public cloud save on GitHub, your own Firebase config must be provided.");
-            
+            if (!auth.currentUser) return alert("System Auth Fail.");
             const btn = document.getElementById('save-btn');
-            btn.innerText = "TRANSMITTING TO CLOUD...";
+            btn.innerText = "SYNCHRONIZING...";
             btn.disabled = true;
 
             const payload = {
@@ -601,128 +241,69 @@
                 badge1: document.getElementById('badge1-img').src,
                 badge2: document.getElementById('badge2-img').src,
                 resume: document.getElementById('resume-link').href,
-                projectImages: {
-                    p1: document.getElementById('p1-img').src,
-                    p2: document.getElementById('p2-img').src,
-                    p3: document.getElementById('p3-img').src,
-                    p4: document.getElementById('p4-img').src,
-                    p5: document.getElementById('p5-img').src,
-                    p6: document.getElementById('p6-img').src
-                },
-                projectStatuses: {
-                    p1: document.getElementById('p1-status').innerText,
-                    p2: document.getElementById('p2-status').innerText,
-                    p3: document.getElementById('p3-status').innerText,
-                    p4: document.getElementById('p4-status').innerText,
-                    p5: document.getElementById('p5-status').innerText,
-                    p6: document.getElementById('p6-status').innerText
-                },
+                p1_img: document.getElementById('p1-img').src,
+                p2_img: document.getElementById('p2-img').src,
+                p3_img: document.getElementById('p3-img').src,
+                p4_img: document.getElementById('p4-img').src,
                 timestamp: Date.now()
             };
 
             try {
-                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'content', 'portfolio');
-                await setDoc(docRef, payload);
-                alert("CLOUD SYNC SUCCESSFUL. Portfolio data is now globally persistent.");
+                await setDoc(doc(db, 'content', 'portfolio_main'), payload);
+                alert("CLOUD SYNC SUCCESSFUL.");
                 document.body.classList.remove('is-admin');
-            } catch (e) {
-                alert("SYNC ERROR: Payload size exceed limit (Max 1MB). Please compress your images.");
-            } finally {
-                btn.innerText = "Save Changes to Cloud";
-                btn.disabled = false;
-            }
+            } catch (e) { alert("Error: Payload potentially too large."); }
+            finally { btn.innerText = "DEPLOY CLOUD SYNC"; btn.disabled = false; }
         };
 
         function applyCloudData(data) {
             const elements = { 'p-img': data.portrait, 'badge1-img': data.badge1, 'badge2-img': data.badge2, 'resume-link': data.resume };
             Object.entries(elements).forEach(([id, val]) => {
-                if (val && (val.startsWith('data:') || val.startsWith('http'))) {
+                if (val && val.startsWith('data:')) {
                     const el = document.getElementById(id);
-                    if (id === 'resume-link') el.href = val;
+                    if (id.includes('-link')) el.href = val;
                     else { el.src = val; el.classList.remove('hidden'); }
                 }
             });
-            if (data.projectImages) {
-                Object.keys(data.projectImages).forEach(id => {
+            ['p1', 'p2', 'p3', 'p4'].forEach(id => {
+                const src = data[id + '_img'];
+                if (src && src.startsWith('data:')) {
                     const el = document.getElementById(id + '-img');
-                    if (el && data.projectImages[id] && data.projectImages[id].startsWith('data:')) {
-                        el.src = data.projectImages[id];
-                        el.classList.remove('hidden');
-                    }
-                });
-            }
-            if (data.projectStatuses) {
-                Object.keys(data.projectStatuses).forEach(id => {
-                    const el = document.getElementById(id + '-status');
-                    if (el) { el.innerText = data.projectStatuses[id]; if (data.projectStatuses[id].includes('ACTIVE')) el.style.color = "#2563EB"; }
-                });
-            }
+                    if (el) { el.src = src; el.classList.remove('hidden'); }
+                }
+            });
         }
     </script>
 
     <script>
-        let clickCount = 0;
-        let lastClickTime = 0;
-        let changeHistory = [];
-
+        let clickCount = 0; let lastClickTime = 0;
         function toggleTheme() { document.body.classList.toggle('dark-mode'); }
-
-        window.onload = function() {
-            const today = new Date();
-            const day = String(today.getDate()).padStart(2, '0');
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const year = today.getFullYear();
-            const dateEl = document.getElementById('header-date');
-            if(dateEl) dateEl.innerText = `${day}.${month}.${year}`;
-        };
-
         function handleLockClick() {
             const now = Date.now();
             if (now - lastClickTime < 500) clickCount++; else clickCount = 1;
             lastClickTime = now;
             if (clickCount >= 3) { document.body.classList.toggle('is-admin'); clickCount = 0; }
         }
-
-        function undoLastChange() {
-            if (changeHistory.length === 0) return;
-            const last = changeHistory.pop();
-            const el = document.getElementById(last.id);
-            if (last.type === 'src') el.src = last.old;
-            else if (last.type === 'href') el.href = last.old;
-            else if (last.type === 'status') { el.innerText = last.old; el.style.color = "#cbd5e1"; }
-        }
-
         function previewFile(input, id) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 const target = document.getElementById(id);
-                changeHistory.push({id: id, old: target.src || target.href, type: 'src'});
                 reader.onload = (e) => {
                     target.src = e.target.result;
                     target.classList.remove('hidden');
-                    const parent = target.closest('.badge-slot, .visual-viewport, .portrait-frame');
+                    const parent = target.closest('.badge-slot, .portrait-frame');
                     if (parent) parent.querySelectorAll('span, p').forEach(p => { if (!p.classList.contains('admin-only')) p.classList.add('hidden'); });
                 };
                 reader.readAsDataURL(input.files[0]);
             }
         }
-
         function handleFileUpload(input, targetId) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                const el = document.getElementById(targetId);
-                changeHistory.push({id: targetId, old: el.href, type: 'href'});
-                reader.onload = e => { el.href = e.target.result; alert("Master File Updated Locally. Click 'Save to Cloud' to finalize."); };
+                reader.onload = e => { document.getElementById(targetId).href = e.target.result; alert("Asset localized. Click Sync to save."); };
                 reader.readAsDataURL(input.files[0]);
             }
         }
-
-        function setLink(id) {
-            const el = document.getElementById(id + '-status');
-            changeHistory.push({id: id + '-status', old: el.innerText, type: 'status'});
-            const url = prompt("Target URL (GitHub/Portfolio):");
-            if (url) { el.innerText = "SIGNAL: ACTIVE"; el.style.color = "#2563EB"; }
-        }
     </script>
 </body>
-</html>
+</html>```eof
