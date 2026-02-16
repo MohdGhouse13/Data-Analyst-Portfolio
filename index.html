@@ -3,82 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohammed Ghouse | BI Analyst</title>
+<title>Mohammed Ghouse | Business Intelligence Analyst</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
 body { font-family: 'Inter', sans-serif; }
-.card { border-radius:20px; padding:20px; background:#fff; box-shadow:0 5px 20px rgba(0,0,0,0.05);}
+.card {
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+}
+.viewport img{
+  width:100%;
+  border-radius:12px;
+}
 </style>
 </head>
 
 <body class="bg-gray-100">
 
-<div class="max-w-5xl mx-auto p-6">
+<div class="max-w-6xl mx-auto px-6 py-16">
 
-<h1 class="text-3xl font-bold mb-6">Mohammed Ghouse Portfolio</h1>
+<!-- HERO -->
+<div class="grid md:grid-cols-2 gap-10 items-center mb-20">
 
-<!-- PROFILE IMAGE -->
-<div class="mb-10">
-<h2 class="font-bold mb-2">Upload Profile Photo</h2>
-<input type="file" id="profileInput" accept="image/*">
-<img id="profilePreview" class="mt-4 w-40 rounded-xl"/>
+<div>
+<h1 class="text-4xl font-extrabold mb-4">
+Business Intelligence Analyst
+</h1>
+
+<p class="text-lg text-gray-600 mb-6">
+Power BI Developer | SQL | Python | Data Modeling  
+Building scalable dashboards and data-driven insights.
+</p>
+
+<a href="assets/resume.pdf" download class="bg-black text-white px-6 py-3 rounded-full">
+Download Resume
+</a>
 </div>
 
-<!-- RESUME -->
-<div class="mb-10">
-<h2 class="font-bold mb-2">Upload Resume</h2>
-<input type="file" id="resumeInput" accept=".pdf">
-<a id="resumeLink" target="_blank" class="block mt-3 text-blue-600 font-semibold"></a>
+<div>
+<img src="assets/unnamed%20(1).png" class="rounded-2xl shadow-lg">
 </div>
-
-<!-- PROJECT IMAGE UPLOAD -->
-<div class="mb-10">
-<h2 class="font-bold mb-2">Upload Project Image</h2>
-<input type="file" id="projectInput" accept="image/*">
-</div>
-
-<!-- PROJECT GALLERY -->
-<div id="gallery" class="grid grid-cols-2 gap-6"></div>
 
 </div>
 
-<script>
-// PROFILE IMAGE
-document.getElementById("profileInput").addEventListener("change", function(e){
-const file = e.target.files[0];
-const url = URL.createObjectURL(file);
-document.getElementById("profilePreview").src = url;
-});
+<!-- PROJECTS -->
+<h2 class="text-2xl font-bold mb-8">Projects</h2>
 
-// RESUME
-document.getElementById("resumeInput").addEventListener("change", function(e){
-const file = e.target.files[0];
-const url = URL.createObjectURL(file);
+<div class="grid md:grid-cols-2 gap-8">
 
-const link = document.getElementById("resumeLink");
-link.href = url;
-link.innerText = "View Uploaded Resume";
-});
+<div class="card">
+<img src="assets/Screenshot%202025-12-23%20205529.png">
+<h3 class="font-bold mt-4">Project 1</h3>
+</div>
 
-// PROJECT IMAGE
-document.getElementById("projectInput").addEventListener("change", function(e){
-const file = e.target.files[0];
-const url = URL.createObjectURL(file);
+<div class="card">
+<img src="assets/Screenshot%202026-01-12%20175510.png">
+<h3 class="font-bold mt-4">Project 2</h3>
+</div>
 
-const img = document.createElement("img");
-img.src = url;
-img.className = "rounded-xl";
+<div class="card">
+<img src="assets/Screenshot%202026-01-12%20175618.png">
+<h3 class="font-bold mt-4">Project 3</h3>
+</div>
 
-const div = document.createElement("div");
-div.className = "card";
-div.appendChild(img);
+<div class="card">
+<img src="assets/Screenshot%202026-01-12%20175704.png">
+<h3 class="font-bold mt-4">Project 4</h3>
+</div>
 
-document.getElementById("gallery").appendChild(div);
-});
-</script>
+<div class="card">
+<img src="assets/Screenshot%202026-01-12%20175720.png">
+<h3 class="font-bold mt-4">Project 5</h3>
+</div>
+
+<div class="card">
+<img src="assets/Screenshot%202026-01-12%20175741.png">
+<h3 class="font-bold mt-4">Project 6</h3>
+</div>
+
+</div>
+
+</div>
 
 </body>
 </html>
